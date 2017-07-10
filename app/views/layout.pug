@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title= title
+    meta(name='viewport', content='width=device-width, height=device-height, initial-scale=1.0')
+    script(src='/node_modules/jquery/dist/jquery.js')
+    script(src='/node_modules/bootstrap/dist/js/bootstrap.js')
+    script(src='/public/javascripts/layout.js')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/node_modules/bootstrap/dist/css/bootstrap.css')
+body
+  div.wrapper
+    include nav
+    block content
