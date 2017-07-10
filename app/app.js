@@ -10,7 +10,8 @@ var monk = require('monk');
 var db = monk('localhost:27017/app');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+// var users = require('./routes/students');
+// var login = require('./routes/auth');
 
 var app = express();
 
@@ -35,7 +36,9 @@ app.use(function(req,res,next){
 });
 
 app.use('/', index);
-app.use('/users', users);
+// app.use('/students', users);
+// app.use('/register', auth);
+// app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
