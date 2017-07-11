@@ -8,7 +8,10 @@ html
     script(src='/public/javascripts/layout.js')
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/node_modules/bootstrap/dist/css/bootstrap.css')
+    link(rel='stylesheet', href='/node_modules/font-awesome/css/font-awesome.min.css')
 body
   div.wrapper
     include nav
-    block content
+    div.main
+      block content
+  include footer

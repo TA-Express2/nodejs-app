@@ -19,5 +19,10 @@
     "pug": "^2.0.0-rc.2",
     "pug-bootstrap": "0.0.15",
     "serve-favicon": "~2.3.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.2.0",
+    "eslint-config-google": "^0.9.1"
   }
 }

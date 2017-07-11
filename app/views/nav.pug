@@ -1,20 +1,30 @@
+- var links = { "Item1": "/link1", "Item2": "/link2" }
+- var userItems = { "Profile": "/user/profile", "Marks": "/user/marks", "Log out": "/user/logout" }
+
+mixin dropdown-item(name, link)
+  a.dropdown-item(href=link)= name
+
+mixin nav-item(name, link)
+  li.nav-item
+    a.nav-link(href=link)= name
+  
 nav.navbar.navbar-fixed-top.navbar-light
-    .container
+  .container
     
     .navbar-brand 
-      a.nav-link(href="/") brand
-
-    ul.nav.navbar-nav
-      li.nav-item.active
-        a.nav-link(href='#') Item active
-
-ul.nav.navbar-nav.pull-xs-right
+      a.nav-link(href="/") Markbook
+        
+    ul.nav.navbar-nav.pull-right
 
       li.nav-item.dropdown
-        a.nav-link.dropdown-toggle(data-toggle="dropdown",href="#",role="button") Admin
+        a.nav-link.dropdown-toggle(data-toggle="dropdown",href="#",role="button") User
         .dropdown-menu
-    
+          each val, key in userItems
+            +dropdown-item(key, val)
+
+    ul.nav.navbar-nav.pull-right
       li.nav-item
-        a.nav-link(href="#") 
-          i.fa.fa-wrench
-          | Settings     
+        a.nav-link(href='#') Item 2
+    ul.nav.navbar-nav.pull-right
+      li.nav-item
+        a.nav-link(href='#') Item 1
