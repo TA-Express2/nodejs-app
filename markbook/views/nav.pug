@@ -18,13 +18,13 @@ nav.navbar.navbar-fixed-top.navbar-light
 
       li.nav-item.dropdown
         a.nav-link.dropdown-toggle(data-toggle="dropdown",href="#",role="button") User
-        .dropdown-menu
+        //.dropdown-menu
           each val, key in userItems
             +dropdown-item(key, val)
 
     ul.nav.navbar-nav.pull-right
       li.nav-item
-        a.nav-link(href='#') Item 2
+        a.nav-link(href='/marks') Marks
     ul.nav.navbar-nav.pull-right
       li.nav-item
-        a.nav-link(href='#') Item 1
+        a.nav-link(href='/students') Students
