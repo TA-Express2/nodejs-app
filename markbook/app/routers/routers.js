@@ -4,6 +4,6 @@ module.exports = (app, data) => {
     const students = require('./students')(app, data);
 
     app.use('/', home);
-    app.use('/login', login);
-    app.use('/students', students);
+    app.use('/', login);
+    app.use('/', students);
 };

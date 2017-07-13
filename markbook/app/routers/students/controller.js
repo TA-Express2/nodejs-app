@@ -1,9 +1,9 @@
 const init = (app, data) => {
     const controller = {
         getStudentView(req, res) {
-                    return res.render('students', {
-                        title: 'Students',
-                    });
+            return res.render('students', {
+                title: 'Students',
+            });
         },
     };
 

@@ -13,7 +13,7 @@ async()
     .then((app) => {
         app.set('port', port);
         const server = http.createServer(app);
-        app.listen(config.port, () => console.log(`Listening at :${config.port}`));
+        app.listen(config.port, () => console.log(`Listening at: ${config.port}`));
     });
 
 function normalizePort(val) {
