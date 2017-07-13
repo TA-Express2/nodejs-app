@@ -1,14 +1,13 @@
 const express = require('express');
-const router = new express.Router();
 
-/* GET students page. */
-router.get('/students', (req, res) => {
-  res.render('students/all', { title: 'List all students' });
-});
+module.exports = (app, data) => {
+    const router = new express.Router();
+    const controller = require('./controller').init(app, data);
 
-/* GET student details page. */
-router.get('/students/:id', (req, res) => {
-  res.render('students/details', { title: 'Student' });
-});
+    /* GET students page. */
+    router.get('/students', (req, res) => {
+      return controller.getStudentView(req, res);
+    });
 
-module.exports = router;
+    return router;
+};

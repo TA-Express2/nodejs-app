@@ -1,19 +1,13 @@
 const express = require('express');
+
+module.exports = (app, data) => {
 const router = new express.Router();
+const controller = require('./controller').init(app, data);
 
-/* GET home page. */
-router.get('/', (req, res) => {
-  res.render('home', { title: 'Home' });
-});
+    /* GET register page. */
+    router.get('/login', (req, res) => {
+      return controller.getRegView(req, res);
+    });
 
-/* GET register page. */
-router.get('/register', (req, res) => {
-  res.render('auth/register', { title: 'Register' });
-});
-
-/* GET login page. */
-router.get('/login', (req, res) => {
-  res.render('auth/login', { title: 'Login' });
-});
-
-module.exports = router;
+    return router;
+};
