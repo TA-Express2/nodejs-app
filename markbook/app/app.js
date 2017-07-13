@@ -10,7 +10,7 @@ const mongo = require('mongodb');
 const monk = require('monk');
 const db = monk('localhost:27017/app');
 
-const init = (data) => {
+const init = (data, config) => {
     const app = express();
 
 // confiq
@@ -23,8 +23,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
 app.use('/public', express.static(path.join(__dirname, '../public')));
+app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
+
+require('./routers/routers')(app, data, config);
 
 // Make our db accessible to our router
 // app.use(function(req, res, next) {
