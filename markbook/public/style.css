@@ -33,3 +33,8 @@ body {
 .footer-bottom ul {
   list-style-type: none;
 }
+
+.dropdown-item {
+  display: block;
+  padding: 5px;
+}
