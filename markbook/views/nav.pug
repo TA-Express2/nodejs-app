@@ -21,10 +21,13 @@ nav.navbar.navbar-fixed-top.navbar-light
         //.dropdown-menu
           each val, key in userItems
             +dropdown-item(key, val)
-
+    ul.nav.navbar-nav.pull-right
+      li.nav-item
+        a.nav-link(href='/logout') Log out
     ul.nav.navbar-nav.pull-right
       li.nav-item
         a.nav-link(href='/login') Log in
+    
     ul.nav.navbar-nav.pull-right
       li.nav-item
         a.nav-link(href='/students') Students
