@@ -1,5 +1,5 @@
 - var links = { "Item1": "/link1", "Item2": "/link2" }
-- var userItems = { "Profile": "/user/profile", "Marks": "/user/marks", "Log out": "/user/logout" }
+- var userItems = { "Profile": "/profile", "Marks": "/marks", "Log out": "/logout" }
 
 mixin dropdown-item(name, link)
   a.dropdown-item(href=link)= name
@@ -13,18 +13,24 @@ nav.navbar.navbar-fixed-top.navbar-light
     
     .navbar-brand 
       a.nav-link(href="/") Markbook
-        
-    ul.nav.navbar-nav.pull-right
-
-      li.nav-item.dropdown
-        a.nav-link.dropdown-toggle(data-toggle="dropdown",href="#",role="button") User
-        //.dropdown-menu
-          each val, key in userItems
-            +dropdown-item(key, val)
-
-    ul.nav.navbar-nav.pull-right
-      li.nav-item
-        a.nav-link(href='/login') Log in
+    
+    if loggedIn
+      ul.nav.navbar-nav.pull-right
+        li.nav-item.dropdown
+          a.nav-link.dropdown-toggle(data-toggle="dropdown",href="#",role="button") User
+            .dropdown-menu
+              each val, key in userItems
+                +dropdown-item(key, val)
+    if !loggedIn
+      ul.nav.navbar-nav.pull-right
+        li.nav-item
+          a.nav-link(href='/login') Log in
     ul.nav.navbar-nav.pull-right
       li.nav-item
         a.nav-link(href='/students') Students
+    ul.nav.navbar-nav.pull-right
+      li.nav-item
+        a.nav-link(href='/about') About
+    ul.nav.navbar-nav.pull-right
+      li.nav-item
+        a.nav-link(href='/home') Home
