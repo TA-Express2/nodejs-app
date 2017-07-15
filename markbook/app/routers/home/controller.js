@@ -5,6 +5,11 @@ const init = (app, data) => {
                 title: 'Home',
             });
         },
+        getAboutView(req, res) {
+            return res.render('about', {
+                title: 'About',
+            });
+        },
     };
 
     return controller;

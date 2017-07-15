@@ -5,9 +5,16 @@ module.exports = (app, data) => {
     const controller = require('./controller').init(app, data);
 
     /* GET home page. */
-    router.get('/', (req, res) => {
-        return controller.getHomeView(req, res);
-    });
+    router
+        .get('/', (req, res) => {
+            return controller.getHomeView(req, res);
+        })
+        .get('/home', (req, res) => {
+            return controller.getHomeView(req, res);
+        })
+        .get('/about', (req, res) => {
+            return controller.getAboutView(req, res);
+        });
 
     return router;
 };
