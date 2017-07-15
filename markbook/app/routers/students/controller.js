@@ -1,9 +1,13 @@
 const init = (app, data) => {
     const controller = {
-        getStudentView(req, res) {
-            return res.render('students', {
-                title: 'Students',
-            });
+        getAll(req, res) {
+            // return data.students.getAll()
+            //     .then((students) => {
+                    return res.render('students', {
+                        // model: students,
+                        title: 'Students',
+                    });
+                // });
         },
     };
 

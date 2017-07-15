@@ -1,0 +1,29 @@
+{
+  "students": [
+    {
+      "id": "S0001",
+      "name": "Nadezhda Grozdeva",
+      "egn": "9502222222",
+      "grade": "12"
+    },
+    {
+      "id": "S0002",
+      "name": "Plamen",
+      "egn": "9502221111",
+      "grade": "12"
+    },
+    {
+      "id": "S0003",
+      "name": "Emilia Pavlova",
+      "egn": "9502223333",
+      "grade": "12"
+    }
+  ],
+  "teachers": [
+    {
+      "id": "T0001",
+      "name": "Doncho",
+      "passhash": "!123456qw*"
+    }
+  ]
+}
