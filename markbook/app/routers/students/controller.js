@@ -1,6 +1,6 @@
 const init = (app, data) => {
     const controller = {
-        getAll(req, res) {
+        getStudentView(req, res) {
             // return data.students.getAll()
             //     .then((students) => {
                     return res.render('students', {
