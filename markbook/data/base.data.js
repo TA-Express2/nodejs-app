@@ -7,7 +7,7 @@ class BaseData {
         this.collection = this.db.collection(this.collectionName);
     }
 
-    getAll() {
+    getAllStudents() {
         const filter = {};
         const options = {};
         let result = this.collection

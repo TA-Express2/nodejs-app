@@ -2,7 +2,7 @@ const express = require('express');
 
 module.exports = (app, data) => {
     const router = new express.Router();
-    const controller = require('./controller').init(app, data);
+    const controller = require('./controller').init(data);
 
     /* GET students page. */
     router

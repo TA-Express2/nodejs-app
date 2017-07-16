@@ -1,4 +1,4 @@
-const StudentsData = require('./students.data');
+const { StudentsData } = require('./students.data');
 
 const usersList = [{
     id: 1,
@@ -37,6 +37,7 @@ const studentsMockUp = [{
     },
 ];
 
+
 const init = (db) => {
     return Promise.resolve({
         students: new StudentsData(db),
@@ -57,7 +58,6 @@ const users = {
     findByUsername(username) {
         const usernameToLower = username.toLowerCase();
         const user = usersList.find((u) => u.username.toLowerCase() === usernameToLower);
-        console.log(user);
         return new Promise((resolve, reject) => {
             if (!user) {
                 return reject('No user with such username!');
@@ -67,7 +67,9 @@ const users = {
     },
 };
 
+
 module.exports = {
-    users,
     init,
+    users,
+    students: require('./students.data'),
 };

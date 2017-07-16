@@ -1,4 +1,4 @@
-const init = (app, data) => {
+const init = (data) => {
     const controller = {
         getStudentView(req, res) {
             const db = req.db;
@@ -9,6 +9,15 @@ const init = (app, data) => {
                     title: 'Students list',
                 });
             });
+        },
+        getAllStudents(req, res) {
+            return data.students.getAllStudents()
+                .then((students) => {
+                    return res.render('students', {
+                        // model: students,
+                        title: 'Students',
+                    });
+                });
         },
         getStudentById(req, res) {
             if (!req.id) {
