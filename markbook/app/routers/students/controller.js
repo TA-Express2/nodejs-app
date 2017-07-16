@@ -1,13 +1,14 @@
-const init = (app, data) => {
+const init = (data) => {
+    console.log('****************************', data);
     const controller = {
-        getStudentView(req, res) {
-            // return data.students.getAll()
-            //     .then((students) => {
+        getAllStudents(req, res) {
+            return data.students.getAllStudents()
+                .then((students) => {
                     return res.render('students', {
                         // model: students,
                         title: 'Students',
                     });
-                // });
+                });
         },
         getStudentById(req, res) {
             if (!req.id) {

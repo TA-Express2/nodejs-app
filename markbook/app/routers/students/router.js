@@ -2,12 +2,12 @@ const express = require('express');
 
 module.exports = (app, data) => {
     const router = new express.Router();
-    const controller = require('./controller').init(app, data);
+    const controller = require('./controller').init(data);
 
     /* GET students page. */
     router
       .get('/', (req, res) => {
-      return controller.getStudentView(req, res);
+      return controller.getAllStudents(req, res);
     })
       .get('/:id', (req, res) => {
         const id = req.params.id;

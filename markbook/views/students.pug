@@ -4,14 +4,8 @@ block content
     h1= title
     p Name, marks, ...
 
-    //- block body
-    //-     ul
-    //-         each student in model
-    //-             li
-    //-                 =student.text
-
-//- block body
-//-     ul
-//-         each student in context
-//-             li
-//-                 =student.text
+    block body
+        ul
+            each student in model
+                li
+                    =student.text
