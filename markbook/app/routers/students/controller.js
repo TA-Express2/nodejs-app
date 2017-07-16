@@ -9,6 +9,16 @@ const init = (app, data) => {
                     });
                 // });
         },
+        getStudentById(req, res) {
+            if (!req.id) {
+                return res.render('noUser', {
+                    title: 'No such a student',
+                });
+            }
+            return res.render('student', {
+                title: `Student ${req.id}`,
+            });
+        },
         getStudentProfile(req, res) {
             if (req.user) {
                 return res.render('profile', {

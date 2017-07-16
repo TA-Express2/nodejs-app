@@ -4,6 +4,30 @@ const usersList = [{
     password: 'asdfg',
 }];
 
+
+const studentsMockUp = [
+    {
+        name: 'Ivan Ivanov',
+        gender: 'male',
+        grade: '11',
+    },
+    {
+        name: 'Angel Stoyanov',
+        gender: 'male',
+        grade: '11',
+    },
+    {
+        name: 'Ralitsa Pavlova',
+        gender: 'female',
+        grade: '11',
+    },
+    {
+        name: 'Kristina Raeva',
+        gender: 'female',
+        grade: '10',
+    },
+];
+
 const users = {
     findById(id) {
         id = parseInt(id, 10);
@@ -11,9 +35,8 @@ const users = {
         return new Promise((resolve, reject) => {
             if (!user) {
                 return reject('No user with such id!');
-            } else {
-                return resolve(user);
             }
+            return resolve(user);
         });
     },
     findByUsername(username) {
