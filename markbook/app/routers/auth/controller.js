@@ -1,6 +1,6 @@
 const init = (app, data) => {
     const controller = {
-        getRegView(req, res) {
+        getLoginView(req, res) {
             return res.render('login', {
                 title: 'Log in',
             });

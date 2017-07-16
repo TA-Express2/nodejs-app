@@ -2,16 +2,21 @@ extends layout
 
 block content
     h1= title
-    p Name, marks, ...
-
-    //- block body
-    //-     ul
-    //-         each student in model
-    //-             li
-    //-                 =student.text
-
-//- block body
-//-     ul
-//-         each student in context
-//-             li
-//-                 =student.text
+    table.table.table-responsive.table-striped
+                thead
+                    tr
+                        th
+                            | Student's id
+                        th
+                            | Student's name
+                        th
+                            | Student's grade
+                tbody
+                    each user in userlist
+                        tr
+                            td
+                                =user.id
+                            td
+                                =user.name
+                            td
+                                =user.grade

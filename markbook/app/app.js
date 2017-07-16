@@ -16,12 +16,20 @@ const data = require('../data');
 
 const init = async() => {
     require('../config/config')
-      await require('../config/auth.config')(app, data);
+    await require('../config/auth.config')(app, data);
 
     app.use((req, res, next) => {
         //console.log('----Current user-----');
         //console.log(`req.user = ${req.user}`);
         next();
+    });
+
+    //logged in user accessible via currentUser
+    app.use((req, res, next) => {
+        if (req.user) {
+            res.locals.currentUser = req.user;
+        }
+        next()
     });
 
     // confiq
@@ -38,13 +46,13 @@ const init = async() => {
     app.use('/public', express.static(path.join(__dirname, '../public')));
     app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
 
-    require('./routers/routers')(app, data);
-
     // Make our db accessible to our router
-    // app.use(function(req, res, next) {
-    //    req.db = db;
-    //    next();
-    // });
+    app.use(function(req, res, next) {
+        req.db = db;
+        next();
+    });
+
+    require('./routers/routers')(app, data);
 
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {
@@ -66,9 +74,8 @@ const init = async() => {
 
     return Promise.resolve(app);
 };
-  
+
 init();
 module.exports = {
     init,
 };
-

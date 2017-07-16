@@ -1,8 +1,6 @@
 class Student {
     static isValid(model) {
-        return typeof model !== 'undefined' &&
-            typeof model.text === 'string' &&
-            model.text.length > 3;
+        return typeof model !== 'undefined';
     }
 
     get id() {

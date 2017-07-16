@@ -8,19 +8,19 @@ module.exports = (app, data) => {
     /* GET register page. */
     router
         .get('/login', (req, res) => {
-            return controller.getRegView(req, res);
+            return controller.getLoginView(req, res);
         })
-        .post('/login', 
-        /*(req, res) => {
-            console.log('Post request sent')
-        }*/
+        .post('/login',
+            /*(req, res) => {
+                console.log('Post request sent')
+            }*/
             passport.authenticate('local', {
                 successRedirect: '/',
                 failureRedirect: '/login',
                 failureFlash: true,
             })
         )
-        .get('/logout', function(req, res){
+        .get('/logout', function(req, res) {
             req.logout();
             res.redirect('/');
         });

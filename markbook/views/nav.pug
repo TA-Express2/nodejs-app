@@ -14,14 +14,14 @@ nav.navbar.navbar-fixed-top.navbar-light
     .navbar-brand 
       a.nav-link(href="/") Markbook
     
-    if loggedIn
+    if (currentUser)
       ul.nav.navbar-nav.pull-right
         li.nav-item.dropdown
           a.nav-link.dropdown-toggle(data-toggle="dropdown",href="#",role="button") User
             .dropdown-menu
               each val, key in userItems
                 +dropdown-item(key, val)
-    if !loggedIn
+    else
       ul.nav.navbar-nav.pull-right
         li.nav-item
           a.nav-link(href='/login') Log in

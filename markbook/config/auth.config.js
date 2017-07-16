@@ -4,12 +4,12 @@ const session = require('express-session');
 const { Strategy } = require('passport-local');
 const auth = require('passport-local-authenticate');
 
-//const { MongoClient } = require('mongodb');
-//const MongoStore = require('connect-mongo')(session);
+const { MongoClient } = require('mongodb');
+const MongoStore = require('connect-mongo')(session);
 
 const configAuth = (app, { users }) => {
-    //return MongoClient.connect('mongodb://localhost/items-auth')
-        //.then((db) => {
+    return MongoClient.connect('mongodb://localhost/app')
+        .then((db) => {
             passport.use(new Strategy(
                 (username, password, done) => {
                     return users.findByUsername(username)
@@ -27,11 +27,11 @@ const configAuth = (app, { users }) => {
             app.use(cookieParser());
             app.use(session({
                 secret: 'Secret Key',
-                //maxAge: new Date(Date.now() + 60 * 60 * 1000),
-                //store: new MongoStore({ db },
-                //    (err) => {
-                //        console.log(err || 'connect-mongodb setup ok');
-                //    }),
+                maxAge: new Date(Date.now() + 60 * 60 * 1000),
+                store: new MongoStore({ db },
+                    (err) => {
+                        console.log(err || 'connect-mongodb setup ok');
+                    }),
             }));
             app.use(passport.initialize());
             app.use(passport.session());
@@ -47,7 +47,7 @@ const configAuth = (app, { users }) => {
                     })
                     .catch(done);
             });
-        //});
+        });
 };
 
 module.exports = configAuth;

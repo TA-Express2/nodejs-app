@@ -9,8 +9,8 @@ const http = require('http');
 const port = normalizePort(process.env.PORT || config.port);
 
 async()
-    // .then(() => require('./db').init(config.connectionString))
-    // .then((db) => require('./data').init(db))
+.then(() => require('./db').init(config.connectionString))
+    .then((db) => require('./data').init(db))
     .then((data) => require('./app').init(data))
     .then((app) => {
         app.set('port', port);
@@ -19,15 +19,15 @@ async()
     });
 
 function normalizePort(val) {
-  const portInt = parseInt(val, 10);
+    const portInt = parseInt(val, 10);
 
-  if (isNaN(portInt)) {
-    return val;
-  }
+    if (isNaN(portInt)) {
+        return val;
+    }
 
-  if (portInt >= 0) {
-    return portInt;
-  }
+    if (portInt >= 0) {
+        return portInt;
+    }
 
-  return false;
+    return false;
 }

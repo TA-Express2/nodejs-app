@@ -1,12 +1,21 @@
+const StudentsData = require('./students.data');
+
 const usersList = [{
     id: 1,
     username: 'nadeto',
     password: 'asdfg',
+    name: 'Nadezhda Grozdeva',
+    egn: 9502130058,
+    address: 'V. Tyrnovo',
+    grade: 12,
+    phone: 56983446,
+    parentName: 'Ivanka Ivanova',
+    parentAddress: 'V. Tyrnovo',
+    parentPhone: 21149764145
 }];
 
 
-const studentsMockUp = [
-    {
+const studentsMockUp = [{
         name: 'Ivan Ivanov',
         gender: 'male',
         grade: '11',
@@ -27,6 +36,12 @@ const studentsMockUp = [
         grade: '10',
     },
 ];
+
+const init = (db) => {
+    return Promise.resolve({
+        students: new StudentsData(db),
+    });
+};
 
 const users = {
     findById(id) {
@@ -54,4 +69,5 @@ const users = {
 
 module.exports = {
     users,
+    init,
 };

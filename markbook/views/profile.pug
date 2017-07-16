@@ -2,4 +2,61 @@ extends layout
 
 block content
     h1= title
-    p Profile of the student
+
+    ul.nav.nav-tabs
+        li.active
+            a(data-toggle='tab', href='#studentInfo') Student's info
+        li
+            a(data-toggle='tab', href='#parentInfo') Parent's info
+    .tab-content
+        #studentInfo.tab-pane.fade.in.active
+            table.table.table-responsive
+                tbody
+                    tr
+                        th
+                            | Username:
+                        td
+                            | #{currentUser.username}
+                    tr
+                        th
+                            | Name:
+                        td
+                            | #{currentUser.name}
+                    tr
+                        th
+                            | Identification number:
+                        td
+                            | #{currentUser.egn}
+                        tr
+                        th
+                            | Grade:
+                        td
+                            | #{currentUser.grade}
+                    tr
+                        th
+                            | Address:
+                        td
+                            | #{currentUser.address}
+                    tr
+                        th
+                            | Phone number:
+                        td
+                            | #{currentUser.phone}
+        #parentInfo.tab-pane.fade
+            table.table.table-responsive
+                tbody
+                    tr
+                        th
+                            | Name:
+                        td
+                            | #{currentUser.parentName}
+                    tr
+                        th
+                            | Address:
+                        td
+                            | #{currentUser.parentAddress}
+                    tr
+                        th
+                            | Phone number:
+                        td
+                            | #{currentUser.parentPhone}

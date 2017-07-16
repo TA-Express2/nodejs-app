@@ -1,13 +1,14 @@
 const init = (app, data) => {
     const controller = {
         getStudentView(req, res) {
-            // return data.students.getAll()
-            //     .then((students) => {
-                    return res.render('students', {
-                        // model: students,
-                        title: 'Students',
-                    });
-                // });
+            const db = req.db;
+            const collection = db.get('students');
+            collection.find({}, {}, function(e, list) {
+                res.render('students', {
+                    userlist: list,
+                    title: 'Students list',
+                });
+            });
         },
         getStudentById(req, res) {
             if (!req.id) {
