@@ -9,11 +9,22 @@ const MongoStore = require('connect-mongo')(session);
 
 const configAuth = (app, { users }) => {
     return MongoClient.connect('mongodb://localhost/app')
-        .then((db) => {
-            passport.use(new Strategy(
+        .then(async(db) => {
+            const collection = db.collection('students');
+            const usersList = await collection.find().toArray();
+            //console.log(usersList)
+
+            passport.use(new Strategy({
+                    usernameField: 'username',
+                    passwordField: 'password',
+                },
                 (username, password, done) => {
-                    return users.findByUsername(username)
+                    //console.log(typeof(usersList));
+                    //console.log(usersList)
+                    //console.log(`usersList in auth.config = ${usersList[0].info}`);
+                    return users.findByUsername(username, usersList)
                         .then((user) => {
+                            //console.log(user.password);
                             if (user.password !== password) {
                                 done(new Error('Invalid password!'));
                             }
@@ -22,6 +33,7 @@ const configAuth = (app, { users }) => {
                         .catch((err) => {
                             return done(err);
                         });
+
                 }
             ));
             app.use(cookieParser());
@@ -41,7 +53,7 @@ const configAuth = (app, { users }) => {
             });
 
             passport.deserializeUser((id, done) => {
-                return users.findById(id)
+                return users.findById(id, usersList)
                     .then((user) => {
                         done(null, user);
                     })

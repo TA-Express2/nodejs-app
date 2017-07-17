@@ -1,8 +1,9 @@
 const { StudentsData } = require('./students.data');
+const $ = require('jquery');
 
-const usersList = [{
+/*const usersList = [{
     id: 1,
-    username: 'nadeto',
+    username: 'S00001',
     password: 'asdfg',
     name: 'Nadezhda Grozdeva',
     egn: 9502130058,
@@ -11,8 +12,9 @@ const usersList = [{
     phone: 56983446,
     parentName: 'Ivanka Ivanova',
     parentAddress: 'V. Tyrnovo',
-    parentPhone: 21149764145
-}];
+    parentPhone: 21149764145,
+    info: 'from data.js'
+}];*/
 
 
 const studentsMockUp = [{
@@ -45,9 +47,17 @@ const init = (db) => {
 };
 
 const users = {
-    findById(id) {
+    findById(id, usersList) {
         id = parseInt(id, 10);
-        const user = usersList.find((u) => u.id === id)
+
+        //const user = usersList.find((u) => u.id === id)
+        function findUser(student) {
+            studentId = parseInt(student.id, 10);
+            return studentId = id;
+        }
+        const user = usersList.find(findUser);
+        console.log(`FIND BY ID => ${user.username}`)
+
         return new Promise((resolve, reject) => {
             if (!user) {
                 return reject('No user with such id!');
@@ -55,10 +65,24 @@ const users = {
             return resolve(user);
         });
     },
-    findByUsername(username) {
-        const usernameToLower = username.toLowerCase();
-        const user = usersList.find((u) => u.username.toLowerCase() === usernameToLower);
+    findByUsername(username, usersList) {
+        //console.log(username);
+        //console.log(usersList[0].info)
+        // console.log(usersList);
+        // const usernameToLower = username.toLowerCase();
+
+        //const user = usersList.find((u) => u.username.toLowerCase() === usernameToLower);
+
+        function findUser(student) {
+            return student.username = username;
+        }
+
+        const user = usersList.find(findUser);
+        //console.log(user.username);
+        //console.log(`FIND BY USERNAME => ${user}`)
+
         return new Promise((resolve, reject) => {
+            //console.log(user)
             if (!user) {
                 return reject('No user with such username!');
             }

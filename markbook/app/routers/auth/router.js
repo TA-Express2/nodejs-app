@@ -21,8 +21,21 @@ module.exports = (app, data) => {
             })
         )
         .get('/logout', function(req, res) {
-            req.logout();
-            res.redirect('/');
-        });
+                req.logout();
+                req.session.destroy(function(err) {
+                    res.redirect('/');
+                });
+
+                cookie = req.cookies;
+                for (var prop in cookie) {
+                    if (!cookie.hasOwnProperty(prop)) {
+                        continue;
+                    }
+                    res.cookie(prop, '', { expires: new Date(0) });
+                }
+
+            }
+
+        );
     return router;
 };
