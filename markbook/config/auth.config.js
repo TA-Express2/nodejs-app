@@ -10,18 +10,15 @@ const MongoStore = require('connect-mongo')(session);
 const configAuth = (app, { users }) => {
     return MongoClient.connect('mongodb://localhost/app')
         .then(async(db) => {
-            const collection = db.collection('students');
+            const collection = db.collection('users');
             const usersList = await collection.find().toArray();
-            //console.log(usersList)
 
             passport.use(new Strategy({
                     usernameField: 'username',
                     passwordField: 'password',
                 },
                 (username, password, done) => {
-                    //console.log(typeof(usersList));
-                    //console.log(usersList)
-                    //console.log(`usersList in auth.config = ${usersList[0].info}`);
+                    //console.log(username);
                     return users.findByUsername(username, usersList)
                         .then((user) => {
                             //console.log(user.password);

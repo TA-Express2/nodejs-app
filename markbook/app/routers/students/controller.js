@@ -2,7 +2,7 @@ const init = (data) => {
     const controller = {
         getStudentView(req, res) {
             const db = req.db;
-            const collection = db.get('students');
+            const collection = db.get('users');
             collection.find({}, {}, function(e, list) {
                 res.render('students', {
                     userlist: list,
@@ -32,7 +32,7 @@ const init = (data) => {
         getStudentProfile(req, res) {
             if (req.user) {
                 return res.render('profile', {
-                    title: 'Profile',
+                    title: 'Your profile:',
                 });
             } else {
                 return res.redirect('/login');
@@ -40,9 +40,17 @@ const init = (data) => {
         },
         getStudentMarks(req, res) {
             if (req.user) {
-                return res.render('marks', {
-                    title: 'Marks',
+                const db = req.db;
+                const collection = db.get('users');
+                collection.find({}, {}, function(e, list) {
+                    res.render('marks', {
+                        userlist: list,
+                        title: 'Marks',
+                    });
                 });
+                //eturn res.render('marks', {
+                ///  title: 'Marks',
+                //});
             } else {
                 return res.redirect('/login');
             }

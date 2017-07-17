@@ -1,5 +1,4 @@
 const { StudentsData } = require('./students.data');
-const $ = require('jquery');
 
 /*const usersList = [{
     id: 1,
@@ -50,13 +49,9 @@ const users = {
     findById(id, usersList) {
         id = parseInt(id, 10);
 
-        //const user = usersList.find((u) => u.id === id)
-        function findUser(student) {
-            studentId = parseInt(student.id, 10);
-            return studentId = id;
-        }
-        const user = usersList.find(findUser);
-        console.log(`FIND BY ID => ${user.username}`)
+        const user = usersList.find((student) => {
+            return student.id === id;
+        });
 
         return new Promise((resolve, reject) => {
             if (!user) {
@@ -66,26 +61,15 @@ const users = {
         });
     },
     findByUsername(username, usersList) {
-        //console.log(username);
-        //console.log(usersList[0].info)
-        // console.log(usersList);
-        // const usernameToLower = username.toLowerCase();
-
-        //const user = usersList.find((u) => u.username.toLowerCase() === usernameToLower);
-
-        function findUser(student) {
-            return student.username = username;
-        }
-
-        const user = usersList.find(findUser);
-        //console.log(user.username);
-        //console.log(`FIND BY USERNAME => ${user}`)
+        const user = usersList.find((student) => {
+            return student.username === username;
+        });
 
         return new Promise((resolve, reject) => {
-            //console.log(user)
             if (!user) {
                 return reject('No user with such username!');
             }
+            console.log(`PROMISE FINDUSER => ${user.id}`)
             return resolve(user);
         });
     },

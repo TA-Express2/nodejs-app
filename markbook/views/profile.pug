@@ -2,66 +2,110 @@ extends layout
 
 block content
     h1= title
-
-    ul.nav.nav-tabs
-        li.active
-            a(data-toggle='tab', href='#studentInfo') Student's info
-        li
-            a(data-toggle='tab', href='#parentInfo') Parent's info
-    .tab-content
-        #studentInfo.tab-pane.fade.in.active
-            table.table.table-responsive
-                tbody
-                    tr
-                        th
-                            | Username:
-                        td
-                            | #{currentUser.username}
-                    tr
-                        th
-                            | Role:
-                        td
-                            | #{currentUser.role}
-                    tr
-                        th
-                            | Name:
-                        td
-                            | #{currentUser.name}
-                    tr
-                        th
-                            | Identification number:
-                        td
-                            | #{currentUser.egn}
+    if (currentUser.role === 'student')
+        ul.nav.nav-tabs
+            li.active
+                a(data-toggle='tab', href='#studentInfo') Student's info
+            li
+                a(data-toggle='tab', href='#parentInfo') Parent's info
+        .tab-content
+            #studentInfo.tab-pane.fade.in.active
+                table.table.table-responsive
+                    tbody
                         tr
-                        th
-                            | Grade:
-                        td
-                            | #{currentUser.grade}
-                    tr
-                        th
-                            | Address:
-                        td
-                            | #{currentUser.address}
-                    tr
-                        th
-                            | Phone number:
-                        td
-                            | #{currentUser.phone}
-        #parentInfo.tab-pane.fade
-            table.table.table-responsive
-                tbody
-                    tr
-                        th
-                            | Name:
-                        td
-                            | #{currentUser.parentName}
-                    tr
-                        th
-                            | Address:
-                        td
-                            | #{currentUser.parentAddress}
-                    tr
-                        th
-                            | Phone number:
-                        td
-                            | #{currentUser.parentPhone}
+                            th
+                                | Username:
+                            td
+                                | #{currentUser.username}
+                        tr
+                            th
+                                | Role:
+                            td
+                                | #{currentUser.role}
+                        tr
+                            th
+                                | Name:
+                            td
+                                | #{currentUser.name}
+                        tr
+                            th
+                                | Identification number:
+                            td
+                                | #{currentUser.egn}
+                            tr
+                            th
+                                | Grade:
+                            td
+                                | #{currentUser.grade}
+                        tr
+                            th
+                                | Address:
+                            td
+                                | #{currentUser.address}
+                        tr
+                            th
+                                | Phone number:
+                            td
+                                | #{currentUser.phone}
+            #parentInfo.tab-pane.fade
+                table.table.table-responsive
+                    tbody
+                        tr
+                            th
+                                | Name:
+                            td
+                                | #{currentUser.parentName}
+                        tr
+                            th
+                                | Address:
+                            td
+                                | #{currentUser.parentAddress}
+                        tr
+                            th
+                                | Phone number:
+                            td
+                                | #{currentUser.parentPhone}
+    else
+        ul.nav.nav-tabs
+            li.active
+                a(data-toggle='tab', href='#userInfo') User's info
+        .tab-content
+            #userInfo.tab-pane.fade.in.active
+                table.table.table-responsive
+                    tbody
+                        tr
+                            th
+                                | Username:
+                            td
+                                | #{currentUser.username}
+                        tr
+                            th
+                                | Role:
+                            td
+                                | #{currentUser.role}
+                        tr
+                            th
+                                | Name:
+                            td
+                                | #{currentUser.name}
+                        tr
+                            tr
+                            th
+                                | Subject:
+                            td
+                                | #{currentUser.subject}
+                        tr
+                            th
+                                | Address:
+                            td
+                                | #{currentUser.address}
+                        tr
+                            th
+                                | Phone number:
+                            td
+                                | #{currentUser.phone}
+                        tr
+                            th
+                                | Email:
+                            td
+                                | #{currentUser.email}

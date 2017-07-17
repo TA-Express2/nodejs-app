@@ -13,10 +13,11 @@ block content
                             | Student's grade
                 tbody
                     each user in userlist
-                        tr
-                            td
-                                =user.username
-                            td
-                                =user.name
-                            td
-                                =user.grade
+                        if(user.role === 'student')
+                            tr
+                                td
+                                    =user.username
+                                td
+                                    =user.name
+                                td
+                                    =user.grade

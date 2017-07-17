@@ -2,4 +2,57 @@ extends layout
 
 block content
     h1= title
-    p Marks of the student
+
+    table.table.table-responsive.table-striped
+                thead
+                    tr
+                        th
+                            | Student's ID
+                        th
+                            | Student's name
+                        th
+                            | English
+                        th
+                            | History
+                        th
+                            | Mathematics
+                tbody
+                    if (currentUser.role === 'student') 
+                        tr
+                            td
+                                = currentUser.username
+                            td
+                                = currentUser.name
+                            td
+                                = currentUser.marks.english
+                            td
+                                = currentUser.marks.history
+                            td
+                                = currentUser.marks.mathematics
+                    if (currentUser.role === 'admin')
+                        each user in userlist
+                            if(user.role === 'student')
+                                tr
+                                    td
+                                        =user.username
+                                    td
+                                        =user.name
+                                    td
+                                        =user.marks.english
+                                    td
+                                        =user.marks.history
+                                    td
+                                        =user.marks.mathematics
+                                    td
+                                        button.buttonEditMarks.btn.btn-primary.editMarks(type='button')
+                                            | Edit 
+                                        button.buttonSaveMarks.btn.btn-primary.editMarks(type='button')
+                                            | Save 
+                                    
+                    else if (currentUser.role === 'teacher')
+                        tr
+                            td
+                                | You can edit only your own subject
+
+    
+
