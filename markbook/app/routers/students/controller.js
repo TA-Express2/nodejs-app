@@ -14,8 +14,8 @@ const init = (data) => {
             return data.students.getAllStudents()
                 .then((students) => {
                     return res.render('students', {
-                        // model: students,
                         title: 'Students',
+                        model: students
                     });
                 });
         },

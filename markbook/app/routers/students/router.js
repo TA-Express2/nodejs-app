@@ -7,7 +7,7 @@ module.exports = (app, data) => {
     /* GET students page. */
     router
         .get('/students', (req, res) => {
-            return controller.getStudentView(req, res);
+            return controller.getAllStudents(req, res);
         })
         .get('/:id', (req, res) => {
             const id = req.params.id;

@@ -25,6 +25,26 @@ class BaseData {
         return result;
     }
 
+    filterBy(props) {
+        return this.collection.find(props)
+            .toArray();
+    }
+
+    getAll() {
+        return this.collection.find()
+            .toArray()
+            .then((models) => {
+                if (this.ModelClass.toViewModel) {
+                    return models.map(
+                        (model) => this.ModelClass.toViewModel(model)
+                    );
+                }
+
+                return models;
+            });
+    }
+
+
     create(model) {
         if (!this._isModelValid(model)) {
             return Promise.reject('Invalid model');
@@ -37,6 +57,7 @@ class BaseData {
     }
 
     _isModelValid(model) {
+        // TODO
         return this.validator.isValid(model);
     }
 

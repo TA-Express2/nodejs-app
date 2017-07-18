@@ -12,12 +12,12 @@ block content
                         th
                             | Student's grade
                 tbody
-                    each user in userlist
-                        if(user.role === 'student')
+                    each user in model
+                         if(true || user.role === 'student')
                             tr
                                 td
-                                    =user.username
+                                    =user.number
                                 td
-                                    =user.name
+                                    =user.firstName + ' ' + user.lastName
                                 td
                                     =user.grade

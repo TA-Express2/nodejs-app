@@ -16,7 +16,7 @@ const { StudentsData } = require('./students.data');
 }];*/
 
 
-const studentsMockUp = [{
+/* const studentsMockUp = [{
         name: 'Ivan Ivanov',
         gender: 'male',
         grade: '11',
@@ -36,7 +36,7 @@ const studentsMockUp = [{
         gender: 'female',
         grade: '10',
     },
-];
+]; */
 
 
 const init = (db) => {
@@ -79,5 +79,5 @@ const users = {
 module.exports = {
     init,
     users,
-    students: require('./students.data'),
+    // students: require('./students.data'),
 };

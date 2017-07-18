@@ -1,28 +1,56 @@
 {
   "students": [
     {
-      "id": "S0001",
-      "name": "Nadezhda Grozdeva",
+      "number": "S0001",
+      "firstName": "Nadezhda",
+      "lastName": "Grozdeva",
       "egn": "9502222222",
-      "grade": "12"
+      "email": "nadeto@gmail.com",
+      "gender": "female",
+      "grade": "11A",
+      "status": "active",
+      "role": "student",
+      "address": "V. Turnovo",
+      "parentName": "Maria Grozdeva",
+      "parentPhone": "123",
+      "hashPassword": "123"
     },
     {
-      "id": "S0002",
-      "name": "Plamen",
-      "egn": "9502221111",
-      "grade": "12"
+      "number": "S0002",
+      "firstName": "Plamen",
+      "lastName": "Petrov",
+      "egn": "9201056181",
+      "email": "paco@gmail.com",
+      "gender": "male",
+      "grade": "12C",
+      "status": "active",
+      "role": "student",
+      "address": "Plovdiv",
+      "parentName": "Ivan Petrov",
+      "parentPhone": "456",
+      "hashPassword": "123"
     },
     {
-      "id": "S0003",
-      "name": "Emilia Pavlova",
-      "egn": "9502223333",
-      "grade": "12"
+      "number": "S0003",
+      "firstName": "Emilia",
+      "lastName": "Pavlova",
+      "egn": "8901258616",
+      "email": "ems@gmail.com",
+      "gender": "female",
+      "grade": "12A",
+      "status": "active",
+      "role": "student",
+      "address": "Sofia",
+      "parentName": "Pesho Pesho",
+      "parentPhone": "789",
+      "hashPassword": "123"
     }
   ],
   "teachers": [
     {
       "id": "T0001",
       "name": "Doncho",
+      "role": "teacher",
       "passhash": "!123456qw*"
     }
   ]
