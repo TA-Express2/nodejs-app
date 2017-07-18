@@ -4,55 +4,136 @@ block content
     h1= title
 
     table.table.table-responsive.table-striped
-                thead
+        if (currentUser.role === 'student') 
+            thead
+                tr
+                    th
+                        | Student's ID
+                    th
+                        | Student's name
+                    th
+                        | English
+                    th
+                        | History
+                    th
+                        | Mathematics
+            tbody
                     tr
-                        th
-                            | Student's ID
-                        th
-                            | Student's name
+                        td
+                            = currentUser.username
+                        td
+                            = currentUser.name
+                        td
+                            = currentUser.marks.english
+                        td
+                            = currentUser.marks.history
+                        td
+                            = currentUser.marks.mathematics
+        if (currentUser.role === 'admin')
+            thead
+                tr
+                    th
+                        | Student's ID
+                    th
+                        | Student's name
+                    th(colspan='2')
+                        | English
+                    th(colspan='2')
+                        | History
+                    th(colspan='2')
+                        | Mathematics
+            tbody
+                each user in userlist
+                    if (user.role === 'student')
+                        tr
+                            td
+                                =user.username
+                            td
+                                =user.name
+                            td
+                                =user.marks.english
+                            td.english
+                                button.editMarksButton.btn.btn-primary(href='', data-id=''+user.id type='button', data-toggle='modal', data-target='#myModal')
+                                    | Edit
+                            td
+                                =user.marks.history
+                            td.history
+                                button.editMarksButton.btn.btn-primary(href='', data-id=''+user.id type='button', data-toggle='modal', data-target='#myModal')
+                                    | Edit
+                            td
+                                =user.marks.mathematics
+                            td.mathematics
+                                button.editMarksButton.btn.btn-primary(href='', data-id=''+user.id type='button', data-toggle='modal', data-target='#myModal')
+                                    | Edit               
+        if (currentUser.role === 'teacher')
+            thead
+                tr
+                    th
+                        | Student's ID
+                    th
+                        | Student's name
+                    if (currentUser.subject && currentUser.subject === "English")
+                        th(colspan='2')
+                            | English
+                    else 
                         th
                             | English
+                    if (currentUser.subject && currentUser.subject === "History")
+                        th(colspan='2')
+                            | Histrory
+                    else 
                         th
                             | History
+                    if (currentUser.subject && currentUser.subject === "Mathemarics")
+                        th(colspan='2')
+                            | Mathematics
+                    else 
                         th
                             | Mathematics
-                tbody
-                    if (currentUser.role === 'student') 
+            tbody
+                each user in userlist
+                    if (user.role === 'student')
                         tr
                             td
-                                = currentUser.username
+                                =user.username
                             td
-                                = currentUser.name
-                            td
-                                = currentUser.marks.english
-                            td
-                                = currentUser.marks.history
-                            td
-                                = currentUser.marks.mathematics
-                    if (currentUser.role === 'admin')
-                        each user in userlist
-                            if(user.role === 'student')
-                                tr
-                                    td
-                                        =user.username
-                                    td
-                                        =user.name
-                                    td
-                                        =user.marks.english
-                                    td
-                                        =user.marks.history
-                                    td
-                                        =user.marks.mathematics
-                                    td
-                                        button.buttonEditMarks.btn.btn-primary.editMarks(type='button')
-                                            | Edit 
-                                        button.buttonSaveMarks.btn.btn-primary.editMarks(type='button')
-                                            | Save 
-                                    
-                    else if (currentUser.role === 'teacher')
-                        tr
-                            td
-                                | You can edit only your own subject
-
-    
-
+                                =user.name
+                            if (currentUser.subject && currentUser.subject === 'English')
+                                td
+                                    =user.marks.english
+                                td.english
+                                    button.editMarksButton.btn.btn-primary(href='', data-id=''+user.id type='button', data-toggle='modal', data-target='#myModal')
+                                        | Edit
+                            else
+                                td
+                                    =user.marks.english
+                            if (currentUser.subject && currentUser.subject === 'History')
+                                td
+                                    =user.marks.history
+                                td.history
+                                    button.editMarksButton.btn.btn-primary(href='', data-id=''+user.id type='button', data-toggle='modal', data-target='#myModal')
+                                        | Edit
+                            else
+                                td
+                                    =user.marks.history
+                            if (currentUser.subject && currentUser.subject === 'Mathematics')
+                                td
+                                    =user.marks.mathematics
+                                td.mathematics
+                                    button.editMarksButton.btn.btn-primary(href='', data-id=''+user.id type='button', data-toggle='modal', data-target='#myModal')
+                                        | Edit
+                            else
+                                td
+                                    =user.marks.mathematics
+    #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5#exampleModalLabel.modal-title Edit marks
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true')
+                .modal-body
+                    include modal
+                .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                    button.saveEditMarksButton.btn.btn-primary(type="submit") Save

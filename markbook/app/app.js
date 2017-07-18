@@ -11,9 +11,16 @@ const passport = require('passport');
 const mongo = require('mongodb');
 const monk = require('monk');
 const db = monk('localhost:27017/app');
+const app = express();
+const data = require('../data');
 
-const init = (data) => {
-    const app = express();
+const init = async() => {
+    require('../config/config')
+    await require('../config/auth.config')(app, data);
+
+    // Login with user from mongo not working with this one
+    // const init = (data) => {
+    //     const app = express();
 
     app.use((req, res, next) => {
         // console.log('----Current user-----');

@@ -4,8 +4,12 @@ module.exports = (app, data) => {
     const router = new express.Router();
     const controller = require('./controller').init(data);
 
-    /* GET students page. */
+
     router
+        .post('/students/marks/saveMarks', function(req, res, next) {
+            return controller.saveEditMarks(req, res, next);
+        })
+        /* GET students page. */
         .get('/students', (req, res) => {
             return controller.getAllStudents(req, res);
         })
@@ -16,6 +20,9 @@ module.exports = (app, data) => {
         /* GET student's profile. */
         .get('/students/profile', (req, res) => {
             return controller.getStudentProfile(req, res);
+        })
+        .get('/students/marks/editMarks', (req, res, next) => {
+            return controller.getEditMarksView(req, res, next);
         })
         /* GET student's marks. */
         .get('/students/marks', (req, res) => {

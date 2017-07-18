@@ -5,6 +5,8 @@ module.exports = (app, data) => {
     const students = require('./students')(app, data);
     const profile = require('./students')(app, data);
     const marks = require('./students')(app, data);
+    const editMarks = require('./students')(app, data);
+    const saveMarks = require('./students')(app, data);
 
     app.get('*', function(req, res, next) {
         // check if there is user logged in
@@ -18,4 +20,6 @@ module.exports = (app, data) => {
     app.use('/', students);
     app.use('/', profile);
     app.use('/', marks);
+    app.use('/', editMarks);
+    app.use('/', saveMarks);
 };

@@ -1,3 +1,5 @@
+const { MongoClient, ObjectID } = require('mongodb');
+
 const init = (data) => {
     const controller = {
         getStudentView(req, res) {
@@ -35,7 +37,7 @@ const init = (data) => {
                     title: 'Your profile:',
                 });
             }
-                return res.redirect('/login');
+            return res.redirect('/login');
         },
         getStudentMarks(req, res) {
             if (req.user) {
@@ -52,6 +54,51 @@ const init = (data) => {
                 // });
             } else {
                 return res.redirect('/login');
+            }
+        },
+        getEditMarksView(req, res, next) {
+            const id = parseInt(req.query.id);
+            if (req.user.role === "admin" || req.user.role === "teacher") {
+                return MongoClient.connect('mongodb://localhost/app')
+                    .then(async(db) => {
+                        const collection = db.collection('users');
+                        const usersList = await collection.find({ id: id }).toArray(function(err, docs) {
+
+                            if (err) throw err;
+
+                            res.send(docs);
+                            db.close();
+                        });
+                    })
+            } else {
+                return res.redirect('/students/marks');
+            }
+        },
+        saveEditMarks(req, res, next) {
+            if (req.user.role === "admin" || req.user.role === "teacher") {
+                return MongoClient.connect('mongodb://localhost/app')
+                    .then(async(db) => {
+                        const collection = db.collection('users');
+                        const userId = parseInt(req.body.id, 10);
+                        const subject = req.body.subject.toLowerCase();
+                        const key = `marks.${subject}`;
+                        const marks = req.body.marks.split(',').map(function(item) {
+                            return parseInt(item, 10);
+                        })
+
+                        collection.update({ id: userId }, {
+                                $set: {
+                                    ['marks.' + subject]: marks,
+                                }
+                            },
+                            function(err, success) {
+                                if (err) {
+                                    throw err;
+                                }
+                            }
+                        );
+                        return res.redirect('/students/marks');
+                    });
             }
         },
     };
