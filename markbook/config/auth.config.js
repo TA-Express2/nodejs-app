@@ -9,7 +9,7 @@ const MongoStore = require('connect-mongo')(session);
 
 const configAuth = (app, { users }) => {
     return MongoClient.connect('mongodb://localhost/app')
-        .then(async(db) => {
+        .then(async (db) => {
             const collection = db.collection('users');
             const usersList = await collection.find().toArray();
 
@@ -18,10 +18,10 @@ const configAuth = (app, { users }) => {
                     passwordField: 'password',
                 },
                 (username, password, done) => {
-                    //console.log(username);
+                    // console.log(username);
                     return users.findByUsername(username, usersList)
                         .then((user) => {
-                            //console.log(user.password);
+                            // console.log(user.password);
                             if (user.password !== password) {
                                 done(new Error('Invalid password!'));
                             }
@@ -30,7 +30,6 @@ const configAuth = (app, { users }) => {
                         .catch((err) => {
                             return done(err);
                         });
-
                 }
             ));
             app.use(cookieParser());

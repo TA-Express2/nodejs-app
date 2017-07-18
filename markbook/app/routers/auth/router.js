@@ -11,7 +11,7 @@ module.exports = (app, data) => {
             return controller.getLoginView(req, res);
         })
         .post('/login',
-            /*(req, res) => {
+            /* (req, res) => {
                 console.log('Post request sent')
             }*/
             passport.authenticate('local', {
@@ -26,14 +26,13 @@ module.exports = (app, data) => {
                     res.redirect('/');
                 });
 
-                cookie = req.cookies;
-                for (var prop in cookie) {
+                const cookie = req.cookies;
+                for (const prop in cookie) {
                     if (!cookie.hasOwnProperty(prop)) {
                         continue;
                     }
                     res.cookie(prop, '', { expires: new Date(0) });
                 }
-
             }
 
         );

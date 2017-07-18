@@ -5,31 +5,28 @@ const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const session = require('express-session')
-const passport = require('passport')
+const session = require('express-session');
+const passport = require('passport');
 
 const mongo = require('mongodb');
 const monk = require('monk');
 const db = monk('localhost:27017/app');
-const app = express();
-const data = require('../data');
 
-const init = async() => {
-    require('../config/config')
-    await require('../config/auth.config')(app, data);
+const init = (data) => {
+    const app = express();
 
     app.use((req, res, next) => {
-        //console.log('----Current user-----');
-        //console.log(`req.user = ${req.user}`);
+        // console.log('----Current user-----');
+        // console.log(`req.user = ${req.user}`);
         next();
     });
 
-    //logged in user accessible via currentUser
+    // logged in user accessible via currentUser
     app.use((req, res, next) => {
         if (req.user) {
             res.locals.currentUser = req.user;
         }
-        next()
+        next();
     });
 
     // confiq

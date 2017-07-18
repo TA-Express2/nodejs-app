@@ -1,6 +1,6 @@
 const { StudentsData } = require('./students.data');
 
-/*const usersList = [{
+/* const usersList = [{
     id: 1,
     username: 'S00001',
     password: 'asdfg',
@@ -69,7 +69,7 @@ const users = {
             if (!user) {
                 return reject('No user with such username!');
             }
-            console.log(`PROMISE FINDUSER => ${user.id}`)
+            console.log(`PROMISE FINDUSER => ${user.id}`);
             return resolve(user);
         });
     },

@@ -34,9 +34,8 @@ const init = (data) => {
                 return res.render('profile', {
                     title: 'Your profile:',
                 });
-            } else {
-                return res.redirect('/login');
             }
+                return res.redirect('/login');
         },
         getStudentMarks(req, res) {
             if (req.user) {
@@ -48,9 +47,9 @@ const init = (data) => {
                         title: 'Marks',
                     });
                 });
-                //eturn res.render('marks', {
-                ///  title: 'Marks',
-                //});
+                // return res.render('marks', {
+                //  title: 'Marks',
+                // });
             } else {
                 return res.redirect('/login');
             }

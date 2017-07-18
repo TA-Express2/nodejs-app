@@ -11,7 +11,7 @@ class StudentsData extends BaseData {
         // custom validation 
         return super._isModelValid(model);
     }
-};
+}
 
 const init = (db) => {
     const students = {
