@@ -10,7 +10,7 @@ const passport = require('passport');
 
 const mongo = require('mongodb');
 const monk = require('monk');
-const db = monk('localhost:27017/app');
+const db = monk('localhost:27017/markbook');
 const app = express();
 const data = require('../data');
 

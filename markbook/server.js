@@ -7,6 +7,7 @@ const async = () => {
 const config = require('./config');
 const http = require('http');
 const port = normalizePort(process.env.PORT || config.port);
+// const seed = require('./db/users.json');
 
 async()
     .then(() => require('./db').init(config.connectionString))

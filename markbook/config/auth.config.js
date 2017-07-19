@@ -8,7 +8,7 @@ const { MongoClient } = require('mongodb');
 const MongoStore = require('connect-mongo')(session);
 
 const configAuth = (app, { users }) => {
-    return MongoClient.connect('mongodb://localhost/app')
+    return MongoClient.connect('mongodb://localhost/markbook')
         .then(async (db) => {
             const collection = db.collection('users');
             const usersList = await collection.find().toArray();

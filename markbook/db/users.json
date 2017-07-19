@@ -1,4 +1,14 @@
 {
+  "admins": [
+    {
+      "firstName": "admin",
+      "lastName": "admin",
+      "email": "admin@admin.com",
+      "status": "active",
+      "role": "admin",
+      "hashPassword": "admin"
+    }
+  ],
   "students": [
     {
       "number": "S0001",
