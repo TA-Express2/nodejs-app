@@ -1,3 +1,4 @@
+const seed = require('../db/users.json');
 const { StudentsData } = require('./students.data');
 
 /* const usersList = [{
@@ -39,7 +40,14 @@ const { StudentsData } = require('./students.data');
 ]; */
 
 
-const init = (db) => {
+const init = async (db) => {
+    let collectionAdmins = db.collection('admins');
+    await collectionAdmins.count() === 0 && collectionAdmins.insert(seed.admins);
+    let collectionStudents = db.collection('students');
+    await collectionStudents.count() === 0 && collectionStudents.insert(seed.students);
+    let collectionTeachers = db.collection('teachers');
+    await collectionTeachers.count() === 0 && collectionTeachers.insert(seed.teachers);
+
     return Promise.resolve({
         students: new StudentsData(db),
     });
