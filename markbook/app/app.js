@@ -12,9 +12,10 @@ const mongo = require('mongodb');
 const monk = require('monk');
 const db = monk('localhost:27017/markbook');
 const app = express();
-const data = require('../data');
-
 const init = async() => {
+    const config = require('../config');
+    const db = await require('../db').init(config.connectionString);
+    const data = await require('../data').init(db);
     require('../config/config')
     await require('../config/auth.config')(app, data);
 

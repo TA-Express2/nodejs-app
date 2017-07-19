@@ -1,5 +1,5 @@
 const seed = require('../db/users.json');
-const { StudentsData } = require('./students.data');
+const StudentsData = require('./students.data');
 
 /* const usersList = [{
     id: 1,
@@ -16,31 +16,8 @@ const { StudentsData } = require('./students.data');
     info: 'from data.js'
 }];*/
 
-
-/* const studentsMockUp = [{
-        name: 'Ivan Ivanov',
-        gender: 'male',
-        grade: '11',
-    },
-    {
-        name: 'Angel Stoyanov',
-        gender: 'male',
-        grade: '11',
-    },
-    {
-        name: 'Ralitsa Pavlova',
-        gender: 'female',
-        grade: '11',
-    },
-    {
-        name: 'Kristina Raeva',
-        gender: 'female',
-        grade: '10',
-    },
-]; */
-
-
 const init = async (db) => {
+    // seed data
     let collectionAdmins = db.collection('admins');
     await collectionAdmins.count() === 0 && collectionAdmins.insert(seed.admins);
     let collectionStudents = db.collection('students');
@@ -87,5 +64,4 @@ const users = {
 module.exports = {
     init,
     users,
-    // students: require('./students.data'),
 };

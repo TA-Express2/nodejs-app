@@ -2,18 +2,8 @@ const { MongoClient, ObjectID } = require('mongodb');
 
 const init = (data) => {
     const controller = {
-        getStudentView(req, res) {
-            const db = req.db;
-            const collection = db.get('users');
-            collection.find({}, {}, function(e, list) {
-                res.render('students', {
-                    userlist: list,
-                    title: 'Students list',
-                });
-            });
-        },
-        getAllStudents(req, res) {
-            return data.students.getAllStudents()
+        getAll(req, res) {
+            return data.students.getAll()
                 .then((students) => {
                     return res.render('students', {
                         title: 'Students',

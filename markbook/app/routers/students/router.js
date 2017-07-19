@@ -11,7 +11,7 @@ module.exports = (app, data) => {
         })
         /* GET students page. */
         .get('/students', (req, res) => {
-            return controller.getAllStudents(req, res);
+            return controller.getAll(req, res);
         })
         .get('/:id', (req, res) => {
             const id = req.params.id;

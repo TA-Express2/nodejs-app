@@ -7,24 +7,6 @@ class BaseData {
         this.collection = this.db.collection(this.collectionName);
     }
 
-    getAllStudents() {
-        const filter = {};
-        const options = {};
-        let result = this.collection
-            .find(filter, options)
-            .toArray();
-
-        if (this.ModelClass.toViewModel) {
-            result = result.then((models) => {
-                return models
-                    .map((model) =>
-                        this.ModelClass.toViewModel(model));
-            });
-        }
-
-        return result;
-    }
-
     filterBy(props) {
         return this.collection.find(props)
             .toArray();
