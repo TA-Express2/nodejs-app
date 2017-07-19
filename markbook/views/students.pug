@@ -11,6 +11,8 @@ block content
                             | Student's name
                         th
                             | Student's grade
+                        th
+
                 tbody
                     each user in model
                          if(true || user.role === 'student')
@@ -21,3 +23,5 @@ block content
                                     =user.firstName + ' ' + user.lastName
                                 td
                                     =user.grade
+                                td
+                                    a(class='button' href=`/students/${user.number}`) View profile
