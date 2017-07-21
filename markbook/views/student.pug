@@ -1,4 +1,14 @@
 extends layout
 
 block content
-    h1= title
+    p Student number: <strong>#{model.number}</strong>
+    h2 <strong>#{model.firstName} #{model.lastName}</strong>
+    p Grade: <strong>#{model.grade}</strong>
+    p Email: <strong>#{model.email}</strong>
+    p EGN: <strong>#{model.egn}</strong>
+    p Gender: <strong>#{model.gender}</strong>
+    p Address: <strong>#{model.address}</strong>
+    p Parent: <strong>#{model.parentName}</strong>
+    p Parent phone: <strong>#{model.parentPhone}</strong>
+    p Status: <strong>#{model.status}</strong>
+

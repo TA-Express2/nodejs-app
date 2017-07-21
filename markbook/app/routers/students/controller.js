@@ -11,16 +11,19 @@ const init = (data) => {
                     });
                 });
         },
-        async getStudentById(req, res) {
-            let student = await data.students.findByNumber(req.params.id);
-            if (!student) {
-                return res.render('noUser', {
-                    title: 'No such a student',
-                });
-            }
-            return res.render('student', {
-                title: `Student ${req.params.id}`,
-            });
+        getStudentById(req, res) {
+            return data.students.findByNumber(req.params.id)
+                .then((student) => {
+                    if (!student) {
+                        return res.render('noUser', {
+                            title: 'No such a student',
+                        });
+                    }
+                    return res.render('student', {
+                        model: student
+                    });
+
+                })
         },
         getStudentProfile(req, res) {
             if (req.user) {
