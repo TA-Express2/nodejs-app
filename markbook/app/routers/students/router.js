@@ -13,8 +13,7 @@ module.exports = (app, data) => {
         .get('/students', (req, res) => {
             return controller.getAll(req, res);
         })
-        .get('/:id', (req, res) => {
-            const id = req.params.id;
+        .get('/students/:id', (req, res) => {
             return controller.getStudentById(req, res);
         })
         /* GET student's profile. */

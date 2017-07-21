@@ -6,6 +6,18 @@ class StudentsData extends BaseData {
         super(db, Student, Student);
     }
 
+    // findById(id) {
+    //     return this.collection.findOne({
+    //         _id: new ObjectID(id),
+    //     });
+    // }
+
+    findByNumber(id) {
+        return this.collection.findOne({
+            number: id
+        });
+    }
+
     _isModelValid(model) {
         // custom validation
         return super._isModelValid(model);

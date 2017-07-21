@@ -12,6 +12,7 @@ const mongo = require('mongodb');
 const monk = require('monk');
 const db = monk('localhost:27017/markbook');
 const app = express();
+const favicon = require('serve-favicon');
 const init = async() => {
     const config = require('../config');
     const db = await require('../db').init(config.connectionString);
@@ -42,7 +43,7 @@ const init = async() => {
     app.set('views', path.join(__dirname, '../views'));
     app.set('view engine', 'pug');
     // uncomment after placing your favicon in /public
-    // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+    app.use(favicon(__dirname + '/../public/assets/favicon.png'));
     app.use(logger('dev'));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));

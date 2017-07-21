@@ -18,6 +18,7 @@ module.exports = (app, data) => {
     app.use('/', about);
     app.use('/', login);
     app.use('/', students);
+    app.use('/:id', students);
     app.use('/', profile);
     app.use('/', marks);
     app.use('/', editMarks);

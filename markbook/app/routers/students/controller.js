@@ -11,14 +11,15 @@ const init = (data) => {
                     });
                 });
         },
-        getStudentById(req, res) {
-            if (!req.id) {
+        async getStudentById(req, res) {
+            let student = await data.students.findByNumber(req.params.id);
+            if (!student) {
                 return res.render('noUser', {
                     title: 'No such a student',
                 });
             }
             return res.render('student', {
-                title: `Student ${req.id}`,
+                title: `Student ${req.params.id}`,
             });
         },
         getStudentProfile(req, res) {
