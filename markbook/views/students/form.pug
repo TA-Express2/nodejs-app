@@ -1,0 +1,45 @@
+extends ../layout
+
+block content
+    h2
+        | New student:
+    form(method='POST' action='/students')
+        div.form
+            label(for='firstName') First name: 
+                input#firstName(type='text' placeholder='First name' name='firstName' required)
+            br
+            label(for='lastName') Last name: 
+                input#lastName(type='text' placeholder='Last name' name='lastName' required)
+            br
+            label(for='grade') Grade: 
+                input#grade(type='text' placeholder='Grade' name='grade' required)
+            br
+            label(for='email') Email: 
+                input#email(type='email' placeholder='Email' name='email' required)
+            br
+            label(for='egn') EGN: 
+                input#egn(type='text' placeholder='EGN' name='egn' required)
+            br
+            label(for='gender') Gender: 
+                select#gender(name='gender' required)
+                    option(value='' disabled selected) Select
+                    option(value='M') Male
+                    option(value='F') Female
+            br
+            label(for='address') Address: 
+                input#address(type='text' placeholder='Address' name='address')
+            br
+            label(for='parentName') Parent name: 
+                input#parentName(type='text' placeholder='Parent name' name='parentName')
+            br
+            label(for='parentPhone') Parent phone: 
+                input#parentPhone(type='text' placeholder='Parent phone' name='parentPhone')
+            br
+            label(for='status') Status: 
+                select#status(name='status' required)
+                    option(value='' disabled selected) Select
+                    option(value='active' selected) Active
+                    option(value='unactive') Unactive
+            br
+            button.btn.btn-success Save
+            //- button.btn.btn-default Cancel

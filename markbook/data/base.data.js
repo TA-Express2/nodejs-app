@@ -37,6 +37,12 @@ class BaseData {
             });
     }
 
+    updateById(model) {
+        return this.collection.updateOne({
+            _id: model._id,
+        }, model);
+    }
+
     _isModelValid(model) {
         // TODO
         return this.validator.isValid(model);

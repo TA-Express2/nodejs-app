@@ -18,6 +18,14 @@ class StudentsData extends BaseData {
         });
     }
 
+    getCollectionCount() {
+        return this.collection.count();
+    }
+
+    updateStudent(student) {
+        return this.collection.update(student);
+    }
+
     _isModelValid(model) {
         // custom validation
         return super._isModelValid(model);

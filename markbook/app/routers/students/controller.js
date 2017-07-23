@@ -11,6 +11,25 @@ const init = (data) => {
                     });
                 });
         },
+        addStudentForm(req, res) {
+            return res.render('students/form');
+        },
+        addStudent(req, res) {
+            const student = req.body;
+            data.students.create(student)
+                .then(async (dbStudent) => {
+                    let count = (await data.students.getCollectionCount()).toString();
+                    let pad = '0000';
+                    let number = 'S' + pad.substring(0, pad.length - count.length) + count;
+                    data.students.collection.update({_id: dbStudent._id}, {
+                        $set: {
+                            role: 'student',
+                            number: number
+                        }
+                    });
+                    res.redirect('/students');
+                })
+        },
         getStudentById(req, res) {
             return data.students.findByNumber(req.params.id)
                 .then((student) => {
@@ -22,16 +41,7 @@ const init = (data) => {
                     return res.render('student', {
                         model: student
                     });
-
-                })
-        },
-        getStudentProfile(req, res) {
-            if (req.user) {
-                return res.render('profile', {
-                    title: 'Your profile:',
                 });
-            }
-            return res.redirect('/login');
         },
         getStudentMarks(req, res) {
             if (req.user) {

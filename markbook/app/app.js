@@ -48,6 +48,7 @@ const init = async() => {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(cookieParser());
+    app.use(require('connect-flash')());
 
     app.use('/public', express.static(path.join(__dirname, '../public')));
     app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));

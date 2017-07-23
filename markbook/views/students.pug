@@ -1,27 +1,29 @@
 extends layout
 
 block content
-    h1= title
+    div(class='inline')
+        h1= title
+        a(href='/students/form' type='button' class='btn btn-primary middle') Add student
     table.table.table-responsive.table-striped
-                thead
-                    tr
-                        th
-                            | Student's username
-                        th
-                            | Student's name
-                        th
-                            | Student's grade
-                        th
+        thead
+            tr
+                th
+                    | Student's username
+                th
+                    | Student's name
+                th
+                    | Student's grade
+                th
 
-                tbody
-                    each user in model
-                         if (true || user.role === 'student')
-                            tr
-                                td
-                                    =user.number
-                                td
-                                    =user.firstName + ' ' + user.lastName
-                                td
-                                    =user.grade
-                                td
-                                    a(class='button' href=`/students/${user.number}`) View profile
+        tbody
+            each user in model
+                if (true || user.role === 'student')
+                tr
+                    td
+                        =user.number
+                    td
+                        =user.firstName + ' ' + user.lastName
+                    td
+                        =user.grade
+                    td
+                        a(class='button' href=`/students/${user.number}`) View profile
