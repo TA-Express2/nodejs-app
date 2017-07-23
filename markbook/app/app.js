@@ -29,6 +29,31 @@ const init = (data) => {
         next();
     });
 
+    // socketio  
+    const http = require('http').server(app);
+    const io = require('socket.io')(http);
+
+    // Handle socket operation.
+    // On any connection listen for events.
+
+    io.on('connection', function(socket) {
+        console.log('We have user connected !');
+        // This event will be emitted from Client when some one add mark.
+        socket.on('mark added', function() {
+        // Add the comment in database.
+        db.addComment(data.user, data.comment, mongo,
+            function(error, result) {
+                if (error) {
+                    io.emit('error');
+                } else {
+                    // On successful addition, emit event for client.
+                    socket.broadcast.emit('notify everyone',
+                    { user: data.user, comment: data.comment });
+                }
+            });
+        });
+    });
+
     // confiq
     // view engine setup
     app.set('views', path.join(__dirname, '../views'));
