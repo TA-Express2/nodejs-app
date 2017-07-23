@@ -10,7 +10,7 @@ const MongoStore = require('connect-mongo')(session);
 
 const configAuth = (app, { users }) => {
     return MongoClient.connect('mongodb://localhost/markbook')
-        .then(async(db) => {
+        .then(async (db) => {
             const collectionAdmins = db.collection('admins');
             const adminsList = await collectionAdmins.find().toArray();
 

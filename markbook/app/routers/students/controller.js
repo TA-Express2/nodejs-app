@@ -5,7 +5,7 @@ const init = (data) => {
         getAll(req, res) {
             return data.students.getAll()
                 .then((students) => {
-                    return res.render('students', {
+                    return res.render('students/listAll', {
                         title: 'Students',
                         model: students
                     });
@@ -27,7 +27,7 @@ const init = (data) => {
                             number: number
                         }
                     });
-                    res.redirect('/students');
+                    res.redirect('/students/listAll');
                 })
         },
         getStudentById(req, res) {
@@ -38,7 +38,7 @@ const init = (data) => {
                             title: 'No such a student',
                         });
                     }
-                    return res.render('student', {
+                    return res.render('students/student', {
                         model: student
                     });
                 });
@@ -78,7 +78,7 @@ const init = (data) => {
         saveEditMarks(req, res, next) {
             if (req.user.role === "admin" || req.user.role === "teacher") {
                 return MongoClient.connect('mongodb://localhost/markbook')
-                    .then(async(db) => {
+                    .then(async (db) => {
 
                         const collection = db.collection('students');
                         const userId = req.body.id;
@@ -102,6 +102,14 @@ const init = (data) => {
                         );
                     });
             };
+        },
+        getStudentProfile(req, res) {
+            if (req.user) {
+                return res.render('profile', {
+                    title: 'Your profile:',
+                });
+            }
+            return res.redirect('/login');
         },
     };
     return controller;

@@ -6,24 +6,13 @@ module.exports = (app, data) => {
 
     router
         .get('/students', controller.getAll)
-        .get('/students/form', controller.addStudentForm)
         .post('/students', controller.addStudent)
+        .get('/students/form', controller.addStudentForm)
         .get('/students/:id', controller.getStudentById)
-        /* GET student's marks. */
-        .get('/students/marks', (req, res) => {
-            return controller.getStudentMarks(req, res);
-        })
-        .post('/students/marks/saveMarks', function(req, res, next) {
-            return controller.saveEditMarks(req, res, next);
-        })
-        /* SAVE marks after edition. */
-        .post('/students/marks/saveMarks', function(req, res, next) {
-            return controller.saveEditMarks(req, res, next);
-        })
-        /* GET edit marks. */
-        .get('/students/marks/editMarks', (req, res, next) => {
-            return controller.getEditMarksView(req, res, next);
-        });
+        .get('/students/marks', controller.getStudentMarks)
+        .post('/students/marks/saveMarks', controller.saveEditMarks)
+        .get('/students/marks/editMarks', controller.getEditMarksView)
+        .get('/students/profile', controller.getStudentProfile);
 
     return router;
 };
