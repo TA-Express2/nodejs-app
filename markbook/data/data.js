@@ -16,7 +16,7 @@ const StudentsData = require('./students.data');
     info: 'from data.js'
 }];*/
 
-const init = async (db) => {
+const init = async(db) => {
     // seed data
     let collectionAdmins = db.collection('admins');
     await collectionAdmins.count() === 0 && collectionAdmins.insert(seed.admins);
@@ -30,38 +30,6 @@ const init = async (db) => {
     });
 };
 
-const users = {
-    findById(id, usersList) {
-        id = parseInt(id, 10);
-
-        const user = usersList.find((student) => {
-            return student.id === id;
-        });
-
-        return new Promise((resolve, reject) => {
-            if (!user) {
-                return reject('No user with such id!');
-            }
-            return resolve(user);
-        });
-    },
-    findByUsername(username, usersList) {
-        const user = usersList.find((student) => {
-            return student.username === username;
-        });
-
-        return new Promise((resolve, reject) => {
-            if (!user) {
-                return reject('No user with such username!');
-            }
-            console.log(`PROMISE FINDUSER => ${user.id}`);
-            return resolve(user);
-        });
-    },
-};
-
-
 module.exports = {
     init,
-    users,
 };

@@ -17,8 +17,9 @@ const init = async() => {
     const config = require('../config');
     const db = await require('../db').init(config.connectionString);
     const data = await require('../data').init(db);
+    const usersData = await require('../data/users.data');
     require('../config/config')
-    await require('../config/auth.config')(app, data);
+    await require('../config/auth.config')(app, usersData);
 
     // Login with user from mongo not working with this one
     // const init = (data) => {

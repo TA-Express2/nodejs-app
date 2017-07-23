@@ -4,67 +4,53 @@ block content
     h1= title
 
     table.table.table-responsive.table-striped
-        if (currentUser.role === 'student') 
+        if (currentUser.role === 'student')
             thead
                 tr
                     th
-                        | Student's ID
+                        | Student's number
                     th
                         | Student's name
-                    th
-                        | English
-                    th
-                        | History
-                    th
-                        | Mathematics
+                    each subject in currentUser.marks
+                        th
+                            = subject.name
             tbody
-                    tr
-                        td
-                            = currentUser.username
-                        td
-                            = currentUser.name
-                        td
-                            = currentUser.marks.english
-                        td
-                            = currentUser.marks.history
-                        td
-                            = currentUser.marks.mathematics
+                tr
+                    td
+                        = currentUser.number
+                    td
+                        = currentUser.firstName
+                        | &nbsp;
+                        = currentUser.lastName
+                    each subject in currentUser.marks
+                            td
+                               = Object.values(subject)[0]
         if (currentUser.role === 'admin')
             thead
                 tr
                     th
-                        | Student's ID
+                        | Student's number
                     th
                         | Student's name
-                    th(colspan='2')
-                        | English
-                    th(colspan='2')
-                        | History
-                    th(colspan='2')
-                        | Mathematics
+                    each mark in model[1].marks
+                            th(colspan="2")
+                                = mark.name
             tbody
-                each user in userlist
-                    if (user.role === 'student')
-                        tr
+                each student in model
+                    tr
+                        td
+                            = student.number
+                        td
+                            = student.firstName
+                            |   &nbsp;
+                            = student.lastName
+                        each mark in student.marks
                             td
-                                =user.username
-                            td
-                                =user.name
-                            td
-                                =user.marks.english
-                            td.english
-                                button.editMarksButton.btn.btn-primary(href='', data-id=''+user.id type='button', data-toggle='modal', data-target='#myModal')
+                                = Object.values(mark)[0]
+                            td(class=''+ mark.name.toLowerCase())
+                                button.editMarksButton.btn.btn-primary(href='', data-id=''+student.id type='button', data-toggle='modal', data-target='#myModal')
                                     | Edit
-                            td
-                                =user.marks.history
-                            td.history
-                                button.editMarksButton.btn.btn-primary(href='', data-id=''+user.id type='button', data-toggle='modal', data-target='#myModal')
-                                    | Edit
-                            td
-                                =user.marks.mathematics
-                            td.mathematics
-                                button.editMarksButton.btn.btn-primary(href='', data-id=''+user.id type='button', data-toggle='modal', data-target='#myModal')
-                                    | Edit               
+
         if (currentUser.role === 'teacher')
             thead
                 tr
@@ -72,59 +58,32 @@ block content
                         | Student's ID
                     th
                         | Student's name
-                    if (currentUser.subject && currentUser.subject === "English")
-                        th(colspan='2')
-                            | English
-                    else 
-                        th
-                            | English
-                    if (currentUser.subject && currentUser.subject === "History")
-                        th(colspan='2')
-                            | Histrory
-                    else 
-                        th
-                            | History
-                    if (currentUser.subject && currentUser.subject === "Mathemarics")
-                        th(colspan='2')
-                            | Mathematics
-                    else 
-                        th
-                            | Mathematics
+                    each mark in model[1].marks
+                        if (currentUser.subject && currentUser.subject === mark.name)
+                            th(colspan='2')
+                                = mark.name
+                        else
+                            th
+                                = mark.name
             tbody
-                each user in userlist
-                    if (user.role === 'student')
-                        tr
-                            td
-                                =user.username
-                            td
-                                =user.name
-                            if (currentUser.subject && currentUser.subject === 'English')
+                each student in model
+                    tr
+                        td
+                            = student.number
+                        td
+                            = student.firstName
+                            |   &nbsp;
+                            = student.lastName
+                        each mark in student.marks
+                            if (currentUser.subject && currentUser.subject === mark.name)
                                 td
-                                    =user.marks.english
-                                td.english
-                                    button.editMarksButton.btn.btn-primary(href='', data-id=''+user.id type='button', data-toggle='modal', data-target='#myModal')
+                                    = Object.values(mark)[0]
+                                td(class='' + mark.name)
+                                    button.editMarksButton.btn.btn-primary(href='', data-id=''+student.id type='button', data-toggle='modal', data-target='#myModal')
                                         | Edit
                             else
                                 td
-                                    =user.marks.english
-                            if (currentUser.subject && currentUser.subject === 'History')
-                                td
-                                    =user.marks.history
-                                td.history
-                                    button.editMarksButton.btn.btn-primary(href='', data-id=''+user.id type='button', data-toggle='modal', data-target='#myModal')
-                                        | Edit
-                            else
-                                td
-                                    =user.marks.history
-                            if (currentUser.subject && currentUser.subject === 'Mathematics')
-                                td
-                                    =user.marks.mathematics
-                                td.mathematics
-                                    button.editMarksButton.btn.btn-primary(href='', data-id=''+user.id type='button', data-toggle='modal', data-target='#myModal')
-                                        | Edit
-                            else
-                                td
-                                    =user.marks.mathematics
+                                    = Object.values(mark)[0]
     #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
         .modal-dialog(role='document')
             .modal-content

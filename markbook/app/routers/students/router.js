@@ -16,6 +16,11 @@ module.exports = (app, data) => {
         .post('/students/marks/saveMarks', function(req, res, next) {
             return controller.saveEditMarks(req, res, next);
         })
+        /* SAVE marks after edition. */
+        .post('/students/marks/saveMarks', function(req, res, next) {
+            return controller.saveEditMarks(req, res, next);
+        })
+        /* GET edit marks. */
         .get('/students/marks/editMarks', (req, res, next) => {
             return controller.getEditMarksView(req, res, next);
         });

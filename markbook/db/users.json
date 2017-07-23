@@ -1,88 +1,132 @@
 {
-  "admins": [
-    {
-      "firstName": "admin",
-      "lastName": "admin",
-      "email": "admin@admin.com",
-      "status": "active",
-      "role": "admin",
-      "hashPassword": "admin"
-    }
-  ],
-  "students": [
-    {
-      "number": "S0001",
-      "firstName": "Nadezhda",
-      "lastName": "Grozdeva",
-      "egn": "9502222222",
-      "email": "nadeto@gmail.com",
-      "gender": "female",
-      "grade": "11A",
-      "status": "active",
-      "role": "student",
-      "address": "V. Turnovo",
-      "parentName": "Maria Grozdeva",
-      "parentPhone": "123",
-      "hashPassword": "123",
-      "marks": [
-        {"Math": [5, 4, 6]},
-        {"Literature": [6]},
-        {"Chemistry": [5, 6]},
-        {"Biology": [5, 6]},
-        {"History": [5, 6]}
-      ]
-    },
-    {
-      "number": "S0002",
-      "firstName": "Plamen",
-      "lastName": "Petrov",
-      "egn": "9201056181",
-      "email": "paco@gmail.com",
-      "gender": "male",
-      "grade": "12C",
-      "status": "active",
-      "role": "student",
-      "address": "Plovdiv",
-      "parentName": "Ivan Petrov",
-      "parentPhone": "456",
-      "hashPassword": "123",
-      "marks": [
-        {"Math": [6, 6, 6]},
-        {"Literature": [6, 5]},
-        {"Chemistry": [5, 5]},
-        {"Biology": [5, 5, 6]},
-        {"History": [4, 3]}
-      ]
-    },
-    {
-      "number": "S0003",
-      "firstName": "Emilia",
-      "lastName": "Pavlova",
-      "egn": "8901258616",
-      "email": "ems@gmail.com",
-      "gender": "female",
-      "grade": "12A",
-      "status": "active",
-      "role": "student",
-      "address": "Sofia",
-      "parentName": "Pesho Pesho",
-      "parentPhone": "789",
-      "hashPassword": "123",
-      "marks": [
-        {"Math": [6, 6, 6]},
-        {"Literature": [5, 6]},
-        {"Chemistry": [5, 4, 5]},
-        {"Biology": [5, 6]},
-        {"History": [5, 4, 4]}
-      ]
-    }
-  ],
-  "teachers": [
-    {
-      "id": "T0001",
-      "name": "Doncho",
-      "role": "teacher",
-      "passhash": "!123456qw*"
-    }
-  ]
+    "admins": [{
+        "firstName": "admin",
+        "lastName": "admin",
+        "email": "admin@admin.com",
+        "status": "active",
+        "role": "admin",
+        "hashPassword": "admin"
+    }],
+    "students": [{
+            "_id": "5970eab9fc89712430bcccfe",
+            "number": "S0001",
+            "firstName": "Nadezhda",
+            "lastName": "Grozdeva",
+            "egn": "9502222222",
+            "email": "nadeto@gmail.com",
+            "gender": "female",
+            "grade": "11A",
+            "status": "active",
+            "role": "student",
+            "address": "V. Turnovo",
+            "parentName": "Maria Grozdeva",
+            "parentPhone": "123",
+            "hashPassword": "123",
+            "marks": [{
+                    "Math": [5, 4, 6],
+                    "name": "Math"
+                },
+                {
+                    "Literature": [6],
+                    "name": "Literature"
+                },
+                {
+                    "Chemistry": [5, 6],
+                    "name": "Chemistry"
+                },
+                {
+                    "Biology": [5, 6],
+                    "name": "Biology"
+                },
+                {
+                    "History": [5, 6],
+                    "name": "History"
+                }
+            ]
+        },
+        {
+            "_id": "5970eab9fc89712430bcccff",
+            "number": "S0002",
+            "firstName": "Plamen",
+            "lastName": "Petrov",
+            "egn": "9201056181",
+            "email": "paco@gmail.com",
+            "gender": "male",
+            "grade": "12C",
+            "status": "active",
+            "role": "student",
+            "address": "Plovdiv",
+            "parentName": "Ivan Petrov",
+            "parentPhone": "456",
+            "hashPassword": "123",
+            "marks": [{
+                    "Math": [6, 6, 6],
+                    "name": "Math"
+                },
+                {
+                    "Literature": [6, 5],
+                    "name": "Literature"
+                },
+                {
+                    "Chemistry": [5, 5],
+                    "name": "Chemistry"
+                },
+                {
+                    "Biology": [5, 5, 6],
+                    "name": "Biology"
+                },
+                {
+                    "History": [4, 3],
+                    "name": "History"
+                }
+            ]
+        },
+        {
+            "_id": "5970eab9fc89712430bccd00",
+            "number": "S0003",
+            "firstName": "Emilia",
+            "lastName": "Pavlova",
+            "egn": "8901258616",
+            "email": "ems@gmail.com",
+            "gender": "female",
+            "grade": "12A",
+            "status": "active",
+            "role": "student",
+            "address": "Sofia",
+            "parentName": "Pesho Pesho",
+            "parentPhone": "789",
+            "hashPassword": "123",
+            "marks": [{
+                    "Math": [6, 6, 6],
+                    "name": "Math"
+                },
+                {
+                    "Literature": [5, 6],
+                    "name": "Literature"
+                },
+                {
+                    "Chemistry": [5, 4, 5],
+                    "name": "Chemistry"
+                },
+                {
+                    "Biology": [5, 6],
+                    "name": "Biology"
+                },
+                {
+                    "History": [5, 4, 4],
+                    "name": "History"
+                }
+            ]
+        }
+    ],
+    "teachers": [{
+        "id": "T0001",
+        "firstName": "Doncho",
+        "lastName": "Minkov",
+        "email": "doncho@doncho.com",
+        "subject": "Math",
+        "name": "Doncho",
+        "role": "teacher",
+        "hashPassword": "!123456qw*"
+    }]
 }
