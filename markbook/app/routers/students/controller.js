@@ -35,68 +35,65 @@ const init = (data) => {
         },
         getStudentMarks(req, res) {
             if (req.user) {
-                const db = req.db;
-                const collection = db.get('users');
-                collection.find({}, {}, function(e, list) {
-                    res.render('marks', {
-                        userlist: list,
-                        title: 'Marks',
+                return data.students.getAll()
+                    .then((students) => {
+                        return res.render('marks', {
+                            title: 'Marks',
+                            model: students
+                        });
                     });
-                });
-                // return res.render('marks', {
-                //  title: 'Marks',
-                // });
             } else {
                 return res.redirect('/login');
             }
         },
         getEditMarksView(req, res, next) {
-            const id = parseInt(req.query.id);
+            const id = JSON.stringify(req.query.id);
             if (req.user.role === "admin" || req.user.role === "teacher") {
-                return MongoClient.connect('mongodb://localhost/app')
-                    .then(async(db) => {
-                        const collection = db.collection('users');
-                        const usersList = await collection.find({ id: id }).toArray(function(err, docs) {
-
-                            if (err) throw err;
-
-                            res.send(docs);
-                            db.close();
+                return data.students.getAll()
+                    .then((students) => {
+                        let data;
+                        students.forEach((student) => {
+                            if (JSON.stringify(student._id) === id) {
+                                return data = student;
+                            }
+                            return data;
                         });
+                        res.send(data);
                     })
-            } else {
-                return res.redirect('/students/marks');
+                    .catch(function(err) {
+                        throw err;
+                    });
             }
         },
         saveEditMarks(req, res, next) {
             if (req.user.role === "admin" || req.user.role === "teacher") {
-                return MongoClient.connect('mongodb://localhost/app')
+                return MongoClient.connect('mongodb://localhost/markbook')
                     .then(async(db) => {
-                        const collection = db.collection('users');
-                        const userId = parseInt(req.body.id, 10);
-                        const subject = req.body.subject.toLowerCase();
-                        const key = `marks.${subject}`;
-                        const marks = req.body.marks.split(',').map(function(item) {
-                            return parseInt(item, 10);
-                        })
 
-                        collection.update({ id: userId }, {
+                        const collection = db.collection('students');
+                        const userId = req.body.id;
+                        const subject = req.body.subject;
+                        const marks = req.body.marks.split(',');
+
+                        collection.update({
+                                "_id": ObjectID(userId),
+                                "marks.name": subject,
+                            }, {
                                 $set: {
-                                    ['marks.' + subject]: marks,
-                                }
+                                    ['marks.$.' + subject]: marks,
+                                },
                             },
                             function(err, success) {
                                 if (err) {
                                     throw err;
-                                }
-                            }
+                                };
+                                return res.redirect('/students/marks');
+                            },
                         );
-                        return res.redirect('/students/marks');
                     });
-            }
+            };
         },
     };
-
     return controller;
 };
 

@@ -8,19 +8,25 @@ $(document).ready(function() {
     $(function() {
         $('.editMarksButton').on('click', function() {
             const id = $(this).data('id');
-            const subject = $(this).parent().attr('class')
+            const subject = $(this).parent().attr('class');
+
             $.ajax({
                 method: "GET",
                 url: "http://localhost:3000/students/marks/editMarks",
                 dataType: "json",
-                data: { id: parseInt(id) },
+                data: { id: id },
                 success: function(data) {},
-                error: function(err) {}
+                error: function(err) {
+                    console.log(err)
+                }
             }).done(function(data) {
-                $('#modalUserId').text(data[0]['id']);
-                $('#modalUsername').text(data[0]['name']);
+                $('#modalUserID').text(data['_id']);
+                $('#modalUserNumber').text(data['number']);
+                $('#modalUsername').text(data['firstName'] + ' ' + data['lastName']);
                 $('#subject').text(subject.toUpperCase());
-                $('#marks').val((data[0]['marks'][subject]));
+                const index = data.marks.findIndex(obj => obj[[subject[0].toUpperCase() + subject.substr(1)]]);
+                $('#indexSubject').text(index);
+                $('#marks').val(data['marks'][index][subject[0].toUpperCase() + subject.substr(1).toLowerCase()]);
             });
         });
     });
@@ -29,24 +35,31 @@ $(document).ready(function() {
         $('.saveEditMarksButton').on('click', function(e) {
             e.preventDefault();
 
-            const id = $('#modalUserId').text();
-            const subject = $(this).parent().attr('class');
+            const id = $('#modalUserID').text();
+            const subject = $('#subject').text()[0].toUpperCase() + $('#subject').text().substr(1).toLowerCase();
+            const marks = $('#marks').val();
+            const index = $('#indexSubject').text();
 
             $.ajax({
                 method: "POST",
                 url: "http://localhost:3000/students/marks/saveMarks",
                 dataType: 'json',
                 data: {
-                    "id": $('#modalUserId').text(),
-                    "subject": $('#subject').text(),
-                    "marks": $('#marks').val(),
+                    "id": id,
+                    "subject": subject,
+                    "marks": marks,
+                    "index": index,
                 },
                 success: function(success) {},
-                error: function(err) {}
+                error: function(err) {
+                    console.log(err)
+                }
             });
             $('#myModal').modal('hide');
-            location.reload();
         });
+    });
+    $('#myModal').on('hidden.bs.modal', function() {
+        location.reload();
     });
 });
 

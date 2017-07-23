@@ -14,9 +14,19 @@ block content
                     tbody
                         tr
                             th
-                                | Username:
+                                | Student's number:
                             td
-                                | #{currentUser.username}
+                                | #{currentUser.number}
+                        tr
+                            th
+                                | First name:
+                            td
+                                | #{currentUser.firstName}
+                        tr
+                            th
+                                | Last name:
+                            td
+                                | #{currentUser.lastName}
                         tr
                             th
                                 | Role:
@@ -24,15 +34,10 @@ block content
                                 | #{currentUser.role}
                         tr
                             th
-                                | Name:
-                            td
-                                | #{currentUser.name}
-                        tr
-                            th
                                 | Identification number:
                             td
                                 | #{currentUser.egn}
-                            tr
+                        tr
                             th
                                 | Grade:
                             td
@@ -47,6 +52,12 @@ block content
                                 | Phone number:
                             td
                                 | #{currentUser.phone}
+                        tr
+                            th
+                                | Email:
+                            td
+                                | #{currentUser.email}
+
             #parentInfo.tab-pane.fade
                 table.table.table-responsive
                     tbody
@@ -65,7 +76,7 @@ block content
                                 | Phone number:
                             td
                                 | #{currentUser.parentPhone}
-    else
+    if (currentUser.role === 'admin')
         ul.nav.nav-tabs
             li.active
                 a(data-toggle='tab', href='#userInfo') User's info
@@ -75,9 +86,14 @@ block content
                     tbody
                         tr
                             th
-                                | Username:
+                                | First Name:
                             td
-                                | #{currentUser.username}
+                                | #{currentUser.firstName}
+                        tr
+                            th
+                                | Last Name:
+                            td
+                                | #{currentUser.lastName}
                         tr
                             th
                                 | Role:
@@ -85,27 +101,40 @@ block content
                                 | #{currentUser.role}
                         tr
                             th
-                                | Name:
-                            td
-                                | #{currentUser.name}
-                        tr
-                            tr
-                            th
-                                | Subject:
-                            td
-                                | #{currentUser.subject}
-                        tr
-                            th
-                                | Address:
-                            td
-                                | #{currentUser.address}
-                        tr
-                            th
-                                | Phone number:
-                            td
-                                | #{currentUser.phone}
-                        tr
-                            th
                                 | Email:
                             td
                                 | #{currentUser.email}
+    if (currentUser.role === 'teacher')
+        ul.nav.nav-tabs
+            li.active
+                a(data-toggle='tab', href='#userInfo') User's info
+        .tab-content
+        #userInfo.tab-pane.fade.in.active
+            table.table.table-responsive
+                tbody
+                    tr
+                        th
+                            | First Name:
+                        td
+                            | #{currentUser.firstName}
+                    tr
+                        th
+                            | Last Name:
+                        td
+                            | #{currentUser.lastName}
+                    tr
+                        th
+                            | Role:
+                        td
+                            | #{currentUser.role}
+                    tr
+                        tr
+                        th
+                            | Subject:
+                        td
+                            | #{currentUser.subject}
+                    tr
+                        th
+                            | Email:
+                        td
+                            | #{currentUser.email}

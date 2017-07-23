@@ -3,26 +3,37 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const { Strategy } = require('passport-local');
 const auth = require('passport-local-authenticate');
+const users = require('../data/users.data')
 
 const { MongoClient } = require('mongodb');
 const MongoStore = require('connect-mongo')(session);
 
 const configAuth = (app, { users }) => {
     return MongoClient.connect('mongodb://localhost/markbook')
-        .then(async (db) => {
-            const collection = db.collection('users');
-            const usersList = await collection.find().toArray();
+        .then(async(db) => {
+            const collectionAdmins = db.collection('admins');
+            const adminsList = await collectionAdmins.find().toArray();
+
+            const collectionStudents = db.collection('students');
+            const studentsList = await collectionStudents.find().toArray();
+
+            const collectionTeachers = db.collection('teachers');
+            const teachersList = await collectionTeachers.find().toArray();
+
+            let usersList = [];
+            usersList.push(adminsList);
+            usersList.push(studentsList);
+            usersList.push(teachersList);
 
             passport.use(new Strategy({
                     usernameField: 'username',
                     passwordField: 'password',
                 },
                 (username, password, done) => {
-                    // console.log(username);
                     return users.findByUsername(username, usersList)
                         .then((user) => {
-                            // console.log(user.password);
-                            if (user.password !== password) {
+                            console.log(user.password);
+                            if (user.hashPassword !== password) {
                                 done(new Error('Invalid password!'));
                             }
                             return done(null, user);
@@ -45,7 +56,7 @@ const configAuth = (app, { users }) => {
             app.use(passport.session());
 
             passport.serializeUser((user, done) => {
-                done(null, user.id);
+                done(null, user._id);
             });
 
             passport.deserializeUser((id, done) => {

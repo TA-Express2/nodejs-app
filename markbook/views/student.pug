@@ -3,12 +3,30 @@ extends layout
 block content
     p Student number: <strong>#{model.number}</strong>
     h2 <strong>#{model.firstName} #{model.lastName}</strong>
-    p Grade: <strong>#{model.grade}</strong>
-    p Email: <strong>#{model.email}</strong>
-    p EGN: <strong>#{model.egn}</strong>
-    p Gender: <strong>#{model.gender}</strong>
-    p Address: <strong>#{model.address}</strong>
-    p Parent: <strong>#{model.parentName}</strong>
-    p Parent phone: <strong>#{model.parentPhone}</strong>
-    p Status: <strong>#{model.status}</strong>
-
+    ul.nav.nav-tabs
+            li.active
+                a(data-toggle='tab', href='#studentInfoById') Student's info
+            li
+                a(data-toggle='tab', href='#studentMarksById') Student's marks
+    .tab-content
+            #studentInfoById.tab-pane.fade.in.active
+                p Grade: <strong>#{model.grade}</strong>
+                p Email: <strong>#{model.email}</strong>
+                p EGN: <strong>#{model.egn}</strong>
+                p Gender: <strong>#{model.gender}</strong>
+                p Address: <strong>#{model.address}</strong>
+                p Parent: <strong>#{model.parentName}</strong>
+                p Parent phone: <strong>#{model.parentPhone}</strong>
+                p Status: <strong>#{model.status}</strong>
+            #studentMarksById.tab-pane.fade
+                table.table.table-responsive.table-striped
+                    thead
+                        tr
+                            each mark in model.marks
+                                    th
+                                        = mark.name
+                    tbody
+                        tr
+                            each mark in model.marks
+                                td
+                                    = Object.values(mark)[0]
