@@ -14,7 +14,7 @@ class StudentsData extends BaseData {
 
     findByNumber(id) {
         return this.collection.findOne({
-            number: id
+            number: id,
         });
     }
 

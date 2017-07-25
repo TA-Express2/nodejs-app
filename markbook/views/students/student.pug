@@ -20,6 +20,7 @@ block content
                 p Status: <strong>#{model.status}</strong>
             #studentMarksById.tab-pane.fade
                 table.table.table-responsive.table-striped
+                if (model.marks)
                     thead
                         tr
                             each mark in model.marks

@@ -16,6 +16,7 @@ const init = (data) => {
         },
         addStudent(req, res) {
             const student = req.body;
+            console.log('************************', student)
             data.students.create(student)
                 .then(async (dbStudent) => {
                     let count = (await data.students.getCollectionCount()).toString();

@@ -1,9 +1,9 @@
 extends ../layout
 
 block content
-    div(class='inline')
+    div.inline
         h1= title
-        a(href='/students/form' type='button' class='btn btn-primary middle') Add student
+        a.btn.btn-primary.middle(href='/students/form' type='button') Add student
     table.table.table-responsive.table-striped
         thead
             tr
@@ -19,11 +19,8 @@ block content
             each user in model
                 if (true || user.role === 'student')
                 tr
+                    td #{user.number}
+                    td #{user.firstName} #{user.lastName}
+                    td #{user.grade}
                     td
-                        =user.number
-                    td
-                        =user.firstName + ' ' + user.lastName
-                    td
-                        =user.grade
-                    td
-                        a(class='button' href=`/students/${user.number}`) View profile
+                        a.button(href=`/students/${user.number}`) View profile

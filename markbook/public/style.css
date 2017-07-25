@@ -41,9 +41,29 @@ body {
 
 /* All students page */
 
+.form {
+  width: 40%;
+  min-width: 300px;
+}
+
+.form > label,
+.form > input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form select {
+  width: 64.2%;
+  height: 26px;
+}
+
 .inline {
   display: flex;
   justify-content: space-between;
+}
+
+.inline > button {
+  width: 100px;
 }
 
 .middle {
