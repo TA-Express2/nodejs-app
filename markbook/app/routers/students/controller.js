@@ -26,7 +26,7 @@ const init = (data) => {
                             number: number
                         }
                     });
-                    res.redirect('/students/listAll');
+                    res.redirect('/students');
                 })
         },
         getStudentById(req, res) {
@@ -42,14 +42,25 @@ const init = (data) => {
                     });
                 });
         },
-        editStudentById(req, res) {
-            console.log('+++++++++++++++++', req.params.id)
+        showStudentById(req, res) {
             return data.students.findByNumber(req.params.id)
                 .then((student) => {
-                    console.log('student', student)
                     return res.render('students/edit', {
                         model: student
                     });
+                });
+        },
+        editStudentById(req, res) {
+            return data.students.findByNumber(req.params.id)
+                .then((student) => {
+                    data.students.updateStudent(student, req.body);
+                    data.students.collection.update({_id: student._id}, {
+                        $set: {
+                            role: 'student',
+                            number: req.params.id
+                        }
+                    });
+                    res.redirect('/students');
                 });
         },
         getStudentMarks(req, res) {

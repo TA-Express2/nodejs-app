@@ -6,17 +6,17 @@ block content
     form.form(method='POST' action='/students')
         div.form
             label(for='firstName') First name: 
-                input#firstName(type='text' placeholder='First name' name='firstName' pattern='[A-Za-z]+' required)
+                input#firstName(type='text' placeholder='First name' name='firstName' pattern='[A-Za-z]+' )
             label(for='lastName') Last name: 
-                input#lastName(type='text' placeholder='Last name' name='lastName' pattern='[A-Za-z]+' required)
+                input#lastName(type='text' placeholder='Last name' name='lastName' pattern='[A-Za-z]+' )
             label(for='grade') Grade: 
-                input#grade(type='text' placeholder='Grade' name='grade' pattern='^[0-9]{0,2}[A-Za-z]$' required)
+                input#grade(type='text' placeholder='Grade' name='grade' pattern='^[0-9]{0,2}[A-Za-z]$' )
             label(for='email') Email: 
-                input#email(type='email' placeholder='Email' name='email' required)
+                input#email(type='email' placeholder='Email' name='email' )
             label(for='egn') EGN: 
-                input#egn(type='text' placeholder='EGN' name='egn' pattern='^\d{10}$' required)
+                input#egn(type='text' placeholder='EGN' name='egn' pattern='^\d{10}$' )
             label(for='gender') Gender: 
-                select#gender(name='gender' required)
+                select#gender(name='gender' )
                     option(value='' disabled selected) Select
                     option(value='male') male
                     option(value='female') female
@@ -27,7 +27,7 @@ block content
             label(for='parentPhone') Parent phone: 
                 input#parentPhone(type='text' placeholder='Parent phone' name='parentPhone' pattern='[\w-\/\\]+')
             label(for='status') Status: 
-                select#status(name='status' required)
+                select#status(name='status')
                     option(value='' disabled selected) Select
                     option(value='active' selected) active
                     option(value='unactive') unactive

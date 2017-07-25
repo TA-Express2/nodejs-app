@@ -19,7 +19,7 @@ block content
                 p Parent phone: <strong>#{model.parentPhone}</strong>
                 p Status: <strong>#{model.status}</strong>
                 br
-                a(href=`/students/${model.number}/edit`) Edit student data
+                a(href=`/students/edit/${model.number}`) Edit student data
             #studentMarksById.tab-pane.fade
                 table.table.table-responsive.table-striped
                 if (model.marks)

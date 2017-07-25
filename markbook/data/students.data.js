@@ -22,8 +22,8 @@ class StudentsData extends BaseData {
         return this.collection.count();
     }
 
-    updateStudent(student) {
-        return this.collection.update(student);
+    updateStudent(student, data) {
+        return this.collection.update(student, data);
     }
 
     _isModelValid(model) {
