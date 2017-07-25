@@ -9,6 +9,7 @@ module.exports = (app, data) => {
         .post('/students', controller.addStudent)
         .get('/students/form', controller.addStudentForm)
         .get('/students/:id', controller.getStudentById)
+        .get('/students/:id/edit', controller.editStudentById)
         .get('/students/marks', controller.getStudentMarks)
         .post('/students/marks/saveMarks', controller.saveEditMarks)
         .get('/students/marks/editMarks', controller.getEditMarksView)

@@ -18,20 +18,20 @@ block content
             label(for='gender') Gender: 
                 select#gender(name='gender' required)
                     option(value='' disabled selected) Select
-                    option(value='M') Male
-                    option(value='F') Female
+                    option(value='male') male
+                    option(value='female') female
             label(for='address') Address: 
                 input#address(type='text' placeholder='Address' name='address' pattern='[\w,;-\\.]')
             label(for='parentName') Parent name: 
                 input#parentName(type='text' placeholder='Parent name' name='parentName' pattern='[A-Za-z]+')
             label(for='parentPhone') Parent phone: 
-                input#parentPhone(type='text' placeholder='Parent phone' name='parentPhone' pattern='[\w-]+')
+                input#parentPhone(type='text' placeholder='Parent phone' name='parentPhone' pattern='[\w-\/\\]+')
             label(for='status') Status: 
                 select#status(name='status' required)
                     option(value='' disabled selected) Select
-                    option(value='active' selected) Active
-                    option(value='unactive') Unactive
+                    option(value='active' selected) active
+                    option(value='unactive') unactive
             br
             div.inline
-                button.btn.btn-default(type='reset') Cancel
+                button.btn.btn-default(type='reset' onclick='location.href = \'/students\'') Cancel
                 button.btn.btn-success Save

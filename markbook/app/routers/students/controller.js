@@ -6,7 +6,6 @@ const init = (data) => {
             return data.students.getAll()
                 .then((students) => {
                     return res.render('students/listAll', {
-                        title: 'Students',
                         model: students
                     });
                 });
@@ -16,7 +15,6 @@ const init = (data) => {
         },
         addStudent(req, res) {
             const student = req.body;
-            console.log('************************', student)
             data.students.create(student)
                 .then(async (dbStudent) => {
                     let count = (await data.students.getCollectionCount()).toString();
@@ -40,6 +38,16 @@ const init = (data) => {
                         });
                     }
                     return res.render('students/student', {
+                        model: student
+                    });
+                });
+        },
+        editStudentById(req, res) {
+            console.log('+++++++++++++++++', req.params.id)
+            return data.students.findByNumber(req.params.id)
+                .then((student) => {
+                    console.log('student', student)
+                    return res.render('students/edit', {
                         model: student
                     });
                 });
