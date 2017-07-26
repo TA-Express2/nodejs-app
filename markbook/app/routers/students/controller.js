@@ -16,11 +16,11 @@ const init = (data) => {
         addStudent(req, res) {
             const student = req.body;
             data.students.create(student)
-                .then(async (dbStudent) => {
+                .then(async(dbStudent) => {
                     let count = (await data.students.getCollectionCount()).toString();
                     let pad = '0000';
                     let number = 'S' + pad.substring(0, pad.length - count.length) + count;
-                    data.students.collection.update({_id: dbStudent._id}, {
+                    data.students.collection.update({ _id: dbStudent._id }, {
                         $set: {
                             role: 'student',
                             number: number
@@ -54,7 +54,7 @@ const init = (data) => {
             return data.students.findByNumber(req.params.id)
                 .then((student) => {
                     data.students.updateStudent(student, req.body);
-                    data.students.collection.update({_id: student._id}, {
+                    data.students.collection.update({ _id: student._id }, {
                         $set: {
                             role: 'student',
                             number: req.params.id
@@ -98,7 +98,7 @@ const init = (data) => {
         saveEditMarks(req, res, next) {
             if (req.user.role === "admin" || req.user.role === "teacher") {
                 return MongoClient.connect('mongodb://localhost/markbook')
-                    .then(async (db) => {
+                    .then(async(db) => {
 
                         const collection = db.collection('students');
                         const userId = req.body.id;
@@ -116,20 +116,12 @@ const init = (data) => {
                             function(err, success) {
                                 if (err) {
                                     throw err;
-                                };
+                                }
                                 return res.redirect('/students/marks');
                             },
                         );
                     });
-            };
-        },
-        getStudentProfile(req, res) {
-            if (req.user) {
-                return res.render('profile', {
-                    title: 'Your profile:',
-                });
             }
-            return res.redirect('/login');
         },
     };
     return controller;

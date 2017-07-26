@@ -26,7 +26,7 @@ const configAuth = (app, { users }) => {
             usersList.push(teachersList);
 
             passport.use(new Strategy({
-                    usernameField: 'username',
+                    usernameField: 'email',
                     passwordField: 'password',
                 },
                 (username, password, done) => {
