@@ -21,29 +21,11 @@ const init = async () => {
     require('../config/config')
     await require('../config/auth.config')(app, usersData);
 
-    // Login with user from mongo not working with this one
-    // const init = (data) => {
-    //     const app = express();
-
-    app.use((req, res, next) => {
-        // console.log('----Current user-----');
-        // console.log(`req.user = ${req.user}`);
-        next();
-    });
-
-    // logged in user accessible via currentUser
-    app.use((req, res, next) => {
-        if (req.user) {
-            res.locals.currentUser = req.user;
-        }
-        next();
-    });
-
     // confiq
     // view engine setup
     app.set('views', path.join(__dirname, '../views'));
     app.set('view engine', 'pug');
-    // uncomment after placing your favicon in /public
+
     app.use(favicon(__dirname + '/../public/assets/favicon.png'));
     app.use(logger('dev'));
     app.use(bodyParser.json());
@@ -55,8 +37,12 @@ const init = async () => {
     app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
 
     // Make our db accessible to our router
-    app.use(function(req, res, next) {
+    // logged in user accessible via currentUser
+    app.use((req, res, next) => {
         req.db = db;
+        if (req.user) {
+            res.locals.currentUser = req.user;
+        }
         next();
     });
 

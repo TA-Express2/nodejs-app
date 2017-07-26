@@ -26,13 +26,14 @@ const configAuth = (app, { users }) => {
             usersList.push(teachersList);
 
             passport.use(new Strategy({
-                    usernameField: 'username',
+                    usernameField: 'email',
                     passwordField: 'password',
                 },
-                (username, password, done) => {
-                    return users.findByUsername(username, usersList)
+                (email, password, done) => {
+                    return users.findByEmail(email, usersList)
                         .then((user) => {
-                            console.log(user.password);
+                            console.log('user', user);
+                            console.log('password', user.password);
                             if (user.hashPassword !== password) {
                                 done(new Error('Invalid password!'));
                             }

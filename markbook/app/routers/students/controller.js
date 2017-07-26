@@ -34,7 +34,7 @@ const init = (data) => {
                 .then((student) => {
                     if (!student) {
                         return res.render('noUser', {
-                            title: 'No such a student',
+                            title: 'Student not found!',
                         });
                     }
                     return res.render('students/student', {

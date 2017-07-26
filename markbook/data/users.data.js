@@ -20,11 +20,11 @@ const users = {
             return resolve(user);
         });
     },
-    findByUsername(username, usersList) {
+    findByEmail(email, usersList) {
         let user;
         usersList.forEach((users) => {
             users.find((student) => {
-                if (student.email === username) {
+                if (student.email === email) {
                     return user = student;
                 }
                 return user;
@@ -34,7 +34,7 @@ const users = {
 
         return new Promise((resolve, reject) => {
             if (!user) {
-                return reject('No user with such username!');
+                return reject('User not found!');
             }
             return resolve(user);
         });
