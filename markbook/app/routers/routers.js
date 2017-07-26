@@ -3,7 +3,7 @@ module.exports = (app, data) => {
     const about = require('./home')(app, data);
     const login = require('./auth')(app, data);
     const students = require('./students')(app, data);
-    const profile = require('./students')(app, data);
+    const profile = require('./users')(app, data);
     const marks = require('./students')(app, data);
     const editMarks = require('./students')(app, data);
     const saveMarks = require('./students')(app, data);

@@ -13,8 +13,7 @@ module.exports = (app, data) => {
         .post('/students/edit/:id', controller.editStudentById)
         .get('/students/marks', controller.getStudentMarks)
         .post('/students/marks/saveMarks', controller.saveEditMarks)
-        .get('/students/marks/editMarks', controller.getEditMarksView)
-        .get('/students/profile', controller.getStudentProfile);
+        .get('/students/marks/editMarks', controller.getEditMarksView);
 
     return router;
 };
