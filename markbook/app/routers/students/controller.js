@@ -6,25 +6,37 @@ const init = (data) => {
             return data.students.getAll()
                 .then((students) => {
                     return res.render('students/listAll', {
-                        model: students
+                        currentUser: req.user,
+                        model: students,
                     });
                 });
         },
         addStudentForm(req, res) {
-            return res.render('students/form');
+            return res.render('students/form', {
+                currentUser: req.user,
+            });
         },
         addStudent(req, res) {
             const student = req.body;
             data.students.create(student)
                 .then(async(dbStudent) => {
-                    let count = (await data.students.getCollectionCount()).toString();
-                    let pad = '0000';
-                    let number = 'S' + pad.substring(0, pad.length - count.length) + count;
+                    const count = (await data.students.getCollectionCount()).toString();
+                    const pad = '0000';
+                    const number = 'S' + pad.substring(0, pad.length - count.length) + count;
                     data.students.collection.update({ _id: dbStudent._id }, {
                         $set: {
-                            role: 'student',
-                            number: number
-                        }
+                            number: number,
+                            marks: [],
+                        },
+                    })
+                    .then(data.users.create({
+                        email: student.email,
+                        hashPassword: student.egn,
+                        egn: student.egn,
+                        role: 'student',
+                    }))
+                    .catch(function(err) {
+                        throw err;
                     });
                     res.redirect('/students');
                 })
@@ -33,12 +45,13 @@ const init = (data) => {
             return data.students.findByNumber(req.params.id)
                 .then((student) => {
                     if (!student) {
-                        return res.render('noUser', {
+                        return res.render('users/noUser', {
                             title: 'Student not found!',
                         });
                     }
                     return res.render('students/student', {
-                        model: student
+                        currentUser: req.user,
+                        model: student,
                     });
                 });
         },
@@ -46,8 +59,12 @@ const init = (data) => {
             return data.students.findByNumber(req.params.id)
                 .then((student) => {
                     return res.render('students/edit', {
-                        model: student
+                        currentUser: req.user,
+                        model: student,
                     });
+                })
+                .catch(function(err) {
+                    throw err;
                 });
         },
         editStudentById(req, res) {
@@ -67,9 +84,10 @@ const init = (data) => {
             if (req.user) {
                 return data.students.getAll()
                     .then((students) => {
-                        return res.render('marks', {
+                        return res.render('students/marks', {
+                            currentUser: req.user,
                             title: 'Marks',
-                            model: students
+                            model: students,
                         });
                     });
             } else {

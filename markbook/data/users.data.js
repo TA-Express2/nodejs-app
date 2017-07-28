@@ -1,47 +1,54 @@
-const users = {
-    findById(id, usersList) {
-        id = JSON.stringify(id);
+const BaseData = require('./base.data');
+const User = require('../models/user.model');
 
-        let user;
-        usersList.forEach((users) => {
-            users.find((student) => {
-                if (JSON.stringify(student._id) === id) {
-                    return user = student;
-                }
-                return user;
-            });
-            return user;
-        });
+class UsersData extends BaseData {
+    constructor(db) {
+        super(db, User, User);
+    }
 
-        return new Promise((resolve, reject) => {
-            if (!user) {
-                return reject('No user with such id!');
+    checkPassword(email, password) {
+        const findByEmail = () => {
+            return this.findByEmail(email);
+        }
+        const redirect = (user) => {
+             if (!user) {
+                throw new Error('Invalid user!');
             }
-            return resolve(user);
-        });
-    },
-    findByEmail(email, usersList) {
-        let user;
-        usersList.forEach((users) => {
-            users.find((student) => {
-                if (student.email === email) {
-                    return user = student;
-                }
-                return user;
-            });
-            return user;
-        })
 
-        return new Promise((resolve, reject) => {
-            if (!user) {
-                return reject('User not found!');
+            if (user.egn === password) {
+                console.log('REDIRECT');
+            } else if (user.hashPassword !== password) {
+                throw new Error('Invalid password!');
             }
-            return resolve(user);
-        });
-    },
-};
 
+            return user;
+        };
+        return findByEmail()
+            .then(redirect);
+        // return this.findByEmail(email)
+        //     .then((user) => {
+        //         if (!user) {
+        //             throw new Error('Invalid user!');
+        //         }
 
-module.exports = {
-    users,
-};
+        //         if (user.egn === password) {
+        //             console.log('REDIRECT');
+        //         } else if (user.hashPassword !== password) {
+        //             throw new Error('Invalid password!');
+        //         }
+
+        //         return user;
+        //     })
+        //     .catch((err) => {
+        //         throw err;
+        //     });
+    }
+
+    findByEmail(email) {
+        return this
+            .filterBy({ email: new RegExp(email, 'i') })
+            .then(([user]) => user);
+    }
+}
+
+module.exports = UsersData;

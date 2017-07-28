@@ -1,7 +1,7 @@
-extends ../layout
+extends ../_common/layout
 
 block content
-    h2=title
+    h2
         | Edit student #{model.number}
     form.form(method='POST' action=`/students/edit/${model.number}`)
         div.form
@@ -14,7 +14,7 @@ block content
             label(for='email') Email: 
                 input(type='email' placeholder='Email' value=model.email name='email' )
             label(for='egn') EGN: 
-                input(type='text' placeholder='EGN' value=model.egn name='egn' )
+                input(type='text' placeholder='EGN' value=model.egn name='egn' pattern='^[0-9]{10}$' )
             label(for='gender') Gender: 
                 select(name='gender')
                     - options = [ 'male', 'female']

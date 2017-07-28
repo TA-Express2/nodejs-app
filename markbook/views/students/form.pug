@@ -1,4 +1,4 @@
-extends ../layout
+extends ../_common/layout
 
 block content
     h2
@@ -14,7 +14,7 @@ block content
             label(for='email') Email: 
                 input#email(type='email' placeholder='Email' name='email' )
             label(for='egn') EGN: 
-                input#egn(type='text' placeholder='EGN' name='egn' pattern='^\d{10}$' )
+                input#egn(type='text' placeholder='EGN' name='egn' pattern='^[0-9]{10}$' )
             label(for='gender') Gender: 
                 select#gender(name='gender' )
                     option(value='' disabled selected) Select
@@ -23,7 +23,7 @@ block content
             label(for='address') Address: 
                 input#address(type='text' placeholder='Address' name='address' pattern='[\w,;-\\.]')
             label(for='parentName') Parent name: 
-                input#parentName(type='text' placeholder='Parent name' name='parentName' pattern='[A-Za-z]+')
+                input#parentName(type='text' placeholder='Parent name' name='parentName' pattern='[A-Za-z ]+')
             label(for='parentPhone') Parent phone: 
                 input#parentPhone(type='text' placeholder='Parent phone' name='parentPhone' pattern='[\w-\/\\]+')
             label(for='status') Status: 

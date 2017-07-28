@@ -1,6 +1,4 @@
-const User = require('./user.model');
-
-class Student extends User {
+class User {
     static isValid(model) {
         return typeof model !== 'undefined';
     }
@@ -10,7 +8,7 @@ class Student extends User {
     }
 
     static toViewModel(model) {
-        const viewModel = new Student();
+        const viewModel = new User();
 
         Object.keys(model)
             .forEach((prop) => {
@@ -21,4 +19,4 @@ class Student extends User {
     }
 }
 
-module.exports = Student;
+module.exports = User;
