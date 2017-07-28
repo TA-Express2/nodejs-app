@@ -7,23 +7,41 @@ class UsersData extends BaseData {
     }
 
     checkPassword(email, password) {
-        return this.findByEmail(email)
-            .then((user) => {
-                if (!user) {
-                    throw new Error('Invalid user!');
-                }
+        const findByEmail = () => {
+            return this.findByEmail(email);
+        }
+        const redirect = (user) => {
+             if (!user) {
+                throw new Error('Invalid user!');
+            }
 
-                if (user.egn === password) {
-                    console.log('REDIRECT');
-                } else if (user.hashPassword !== password) {
-                    throw new Error('Invalid password!');
-                }
+            if (user.egn === password) {
+                console.log('REDIRECT');
+            } else if (user.hashPassword !== password) {
+                throw new Error('Invalid password!');
+            }
 
-                return user;
-            })
-            .catch((err) => {
-                throw err;
-            });
+            return user;
+        };
+        return findByEmail()
+            .then(redirect);
+        // return this.findByEmail(email)
+        //     .then((user) => {
+        //         if (!user) {
+        //             throw new Error('Invalid user!');
+        //         }
+
+        //         if (user.egn === password) {
+        //             console.log('REDIRECT');
+        //         } else if (user.hashPassword !== password) {
+        //             throw new Error('Invalid password!');
+        //         }
+
+        //         return user;
+        //     })
+        //     .catch((err) => {
+        //         throw err;
+        //     });
     }
 
     findByEmail(email) {

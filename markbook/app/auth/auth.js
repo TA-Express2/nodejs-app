@@ -25,6 +25,7 @@ const configAuth = (app, data) => {
     app.use(session({
         store: new MongoStore({ url: config.connectionString }),
         secret: 'Secret Key',
+        maxAge: new Date(Date.now() + 60 * 60 * 1000),
         resave: true,
         saveUninitialized: true,
     }));

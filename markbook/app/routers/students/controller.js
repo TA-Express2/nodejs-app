@@ -6,12 +6,15 @@ const init = (data) => {
             return data.students.getAll()
                 .then((students) => {
                     return res.render('students/listAll', {
+                        currentUser: req.user,
                         model: students,
                     });
                 });
         },
         addStudentForm(req, res) {
-            return res.render('students/form');
+            return res.render('students/form', {
+                currentUser: req.user,
+            });
         },
         addStudent(req, res) {
             const student = req.body;
@@ -22,7 +25,6 @@ const init = (data) => {
                     const number = 'S' + pad.substring(0, pad.length - count.length) + count;
                     data.students.collection.update({ _id: dbStudent._id }, {
                         $set: {
-                            role: 'student',
                             number: number,
                             marks: [],
                         },
@@ -48,6 +50,7 @@ const init = (data) => {
                         });
                     }
                     return res.render('students/student', {
+                        currentUser: req.user,
                         model: student,
                     });
                 });
@@ -56,6 +59,7 @@ const init = (data) => {
             return data.students.findByNumber(req.params.id)
                 .then((student) => {
                     return res.render('students/edit', {
+                        currentUser: req.user,
                         model: student,
                     });
                 })
@@ -81,6 +85,7 @@ const init = (data) => {
                 return data.students.getAll()
                     .then((students) => {
                         return res.render('students/marks', {
+                            currentUser: req.user,
                             title: 'Marks',
                             model: students,
                         });
