@@ -1,23 +1,15 @@
 const seed = require('../db/users.json');
+const UsersData = require('./users.data');
+const AdminsData = require('./admins.data');
 const StudentsData = require('./students.data');
-
-/* const usersList = [{
-    id: 1,
-    username: 'S00001',
-    password: 'asdfg',
-    name: 'Nadezhda Grozdeva',
-    egn: 9502130058,
-    address: 'V. Tyrnovo',
-    grade: 12,
-    phone: 56983446,
-    parentName: 'Ivanka Ivanova',
-    parentAddress: 'V. Tyrnovo',
-    parentPhone: 21149764145,
-    info: 'from data.js'
-}];*/
+const TeachersData = require('./teachers.data');
 
 const init = async (db) => {
     // seed data
+    const collectionUsers = db.collection('users');
+    if (await collectionUsers.count() === 0) {
+        collectionUsers.insert(seed.users);
+    }
     const collectionAdmins = db.collection('admins');
     if (await collectionAdmins.count() === 0) {
         collectionAdmins.insert(seed.admins);
@@ -32,7 +24,10 @@ const init = async (db) => {
     }
 
     return Promise.resolve({
+        users: new UsersData(db),
+        admins: new AdminsData(db),
         students: new StudentsData(db),
+        teachers: new TeachersData(db),
     });
 };
 

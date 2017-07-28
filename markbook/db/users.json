@@ -1,4 +1,49 @@
 {
+    "users": [{
+        "email": "admin@admin.com",
+        "hashPassword": "admin",
+        "role": "admin"
+    },
+    {
+        "email": "nadeto@gmail.com",
+        "hashPassword": "123",
+        "role": "student"
+    },
+    {
+        "email": "paco@gmail.com",
+        "hashPassword": "123",
+        "role": "student"
+    },
+    {
+        "email": "ems@gmail.com",
+        "hashPassword": "123",
+        "role": "student"
+    },
+    {
+        "email": "aivanova@gmail.com",
+        "hashPassword": "123",
+        "role": "student"
+    },
+    {
+        "email": "popo@gmail.com",
+        "hashPassword": "123",
+        "role": "student"
+    },
+    {
+        "email": "ivo_shopata@gmail.com",
+        "hashPassword": "123",
+        "role": "student"
+    },
+    {
+        "email": "doncho@doncho.com",
+        "hashPassword": "!123456qw*",
+        "role": "teacher"
+    },
+    {
+        "email": "ickata@abv.bg",
+        "hashPassword": "!123456qw*",
+        "role": "teacher"
+    }],
     "admins": [{
         "firstName": "admin",
         "lastName": "admin",
@@ -245,5 +290,24 @@
         "role": "teacher",
         "hashPassword": "!123456qw*"
     }],
-    "subjects": ["Math", "Literature", "Chemistry", "Biology", "History"]
+    "subjects": [{
+        "subject": "Math",
+        "teacher": "Doncho Minkov"
+    },
+    {
+        "subject": "Literature",
+        "teacher": "Hristo Hristov"
+    },
+    {
+        "subject": "Chemistry",
+        "teacher": ""
+    },
+    {
+        "subject": "Biology",
+        "teacher": ""
+    },
+    {
+        "subject": "History",
+        "teacher": "Hristo Hristov"
+    }]
 }

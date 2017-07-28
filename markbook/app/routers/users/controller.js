@@ -4,7 +4,7 @@ const init = (data) => {
     const controller = {
         getStudentProfile(req, res) {
             if (req.user) {
-                return res.render('profile', {
+                return res.render('users/profile', {
                     title: 'Your profile:',
                 });
             }

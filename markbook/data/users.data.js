@@ -1,47 +1,36 @@
-const users = {
-    findById(id, usersList) {
-        id = JSON.stringify(id);
+const BaseData = require('./base.data');
+const User = require('../models/user.model');
 
-        let user;
-        usersList.forEach((users) => {
-            users.find((student) => {
-                if (JSON.stringify(student._id) === id) {
-                    return user = student;
+class UsersData extends BaseData {
+    constructor(db) {
+        super(db, User, User);
+    }
+
+    checkPassword(email, password) {
+        return this.findByEmail(email)
+            .then((user) => {
+                if (!user) {
+                    throw new Error('Invalid user!');
                 }
-                return user;
-            });
-            return user;
-        });
 
-        return new Promise((resolve, reject) => {
-            if (!user) {
-                return reject('No user with such id!');
-            }
-            return resolve(user);
-        });
-    },
-    findByEmail(email, usersList) {
-        let user;
-        usersList.forEach((users) => {
-            users.find((student) => {
-                if (student.email === email) {
-                    return user = student;
+                if (user.egn === password) {
+                    console.log('REDIRECT');
+                } else if (user.hashPassword !== password) {
+                    throw new Error('Invalid password!');
                 }
+
                 return user;
+            })
+            .catch((err) => {
+                throw err;
             });
-            return user;
-        })
+    }
 
-        return new Promise((resolve, reject) => {
-            if (!user) {
-                return reject('User not found!');
-            }
-            return resolve(user);
-        });
-    },
-};
+    findByEmail(email) {
+        return this
+            .filterBy({ email: new RegExp(email, 'i') })
+            .then(([user]) => user);
+    }
+}
 
-
-module.exports = {
-    users,
-};
+module.exports = UsersData;

@@ -1,9 +1,9 @@
 const BaseData = require('./base.data');
-const Student = require('../models/student.model');
+const Admin = require('../models/admin.model');
 
-class StudentsData extends BaseData {
+class AdminsData extends BaseData {
     constructor(db) {
-        super(db, Student, Student);
+        super(db, Admin, Admin);
     }
 
     findByNumber(id) {
@@ -16,14 +16,10 @@ class StudentsData extends BaseData {
         return this.collection.count();
     }
 
-    updateStudent(student, data) {
-        return this.collection.update(student, data);
-    }
-
     _isModelValid(model) {
         // custom validation
         return super._isModelValid(model);
     }
 }
 
-module.exports = StudentsData;
+module.exports = AdminsData;

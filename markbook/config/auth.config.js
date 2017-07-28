@@ -1,4 +1,4 @@
-const passport = require('passport');
+/* const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const { Strategy } = require('passport-local');
@@ -70,4 +70,4 @@ const configAuth = (app, { users }) => {
         });
 };
 
-module.exports = configAuth;
+module.exports = configAuth; */
