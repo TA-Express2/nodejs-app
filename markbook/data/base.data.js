@@ -18,6 +18,7 @@ class BaseData {
         return this.collection.find(props).sort({ firstName: 1 })
             .toArray();
     }
+
     getAll() {
         return this.collection.find()
             .toArray()
@@ -59,6 +60,17 @@ class BaseData {
         return this.collection.updateOne({
             _id: model._id,
         }, model);
+    }
+
+
+    findByNumber(id) {
+        return this.collection.findOne({
+            number: id,
+        });
+    }
+
+    getCollectionCount() {
+        return this.collection.count();
     }
 
     _isModelValid(model) {

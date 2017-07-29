@@ -4,9 +4,6 @@ module.exports = (app, data) => {
     const changePassword = require('./users')(app, data);
     const profile = require('./users')(app, data);
     const students = require('./students')(app, data);
-    const marks = require('./students')(app, data);
-    const editMarks = require('./students')(app, data);
-    const saveMarks = require('./students')(app, data);
     const teachers = require('./teachers')(app, data);
     const markbook = require('./markbook')(app, data);
 
@@ -18,12 +15,14 @@ module.exports = (app, data) => {
 
     app.use('/', home);
     app.use('/', login);
+    app.use('/', profile);
     app.use('/', changePassword);
     app.use('/', students);
     app.use('/:id', students);
     app.use('/edit/:id', students);
-    app.use('/', profile);
     app.use('/', teachers);
+    app.use('/:id', teachers);
+    app.use('/edit/:id', teachers);
     app.use('/:grade', markbook);
     app.use('/saveMarks', markbook);
 };

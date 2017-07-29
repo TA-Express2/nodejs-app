@@ -1,0 +1,21 @@
+extends ../_common/layout
+
+block content
+    if (user)
+        if (user.role === 'admin')
+            h2
+                | Edit teacher #{model.number}
+            form.form(method='POST' action=`/teachers/edit/${model.number}`)
+                div.form
+                    label(for='firstName') First name: 
+                        input(type='text' placeholder='First name' value=model.firstName name='firstName' pattern='[A-Za-z]+' )
+                    label(for='lastName') Last name: 
+                        input(type='text' placeholder='Last name' value=model.lastName name='lastName' pattern='[A-Za-z]+' )
+                    label(for='email') Email: 
+                        input(type='email' placeholder='Email' value=model.email name='email' )
+                    label(for='egn') EGN: 
+                        input(type='text' placeholder='EGN' value=model.egn name='egn' pattern='^[0-9]{10}$' )
+                    br
+                    div.inline
+                        button.btn.btn-default(type='reset' onclick=`location.href = \`/teachers/${model.number}\``) Cancel
+                        button.btn.btn-success Save

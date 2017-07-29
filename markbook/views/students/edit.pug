@@ -34,7 +34,6 @@ block content
                             for status in options
                                 option(selected=model.status == status) #{status}
                     br
-                    model.number
                     div.inline
                         button.btn.btn-default(type='reset' onclick=`location.href = \`/students/${model.number}\``) Cancel
                         button.btn.btn-success Save

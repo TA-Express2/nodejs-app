@@ -1,0 +1,19 @@
+extends ../_common/layout
+
+block content
+    h2
+        | New Teacher:
+    form.form(method='POST' action='/teachers')
+        div.form
+            label(for='firstName') First name: 
+                input(type='text' placeholder='First name' name='firstName' pattern='[A-Za-z]+' required)
+            label(for='lastName') Last name: 
+                input(type='text' placeholder='Last name' name='lastName' pattern='[A-Za-z]+' required)
+            label(for='email') Email: 
+                input(type='email' placeholder='Email' name='email' required)
+            label(for='egn') EGN: 
+                input(type='text' placeholder='EGN' name='egn' pattern='^[0-9]{10}$' required)
+            br
+            div.inline
+                button.btn.btn-default(type='reset' onclick='location.href = \'/teachers\'') Cancel
+                button.btn.btn-success Save

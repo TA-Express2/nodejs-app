@@ -257,20 +257,25 @@
         }
     ],
     "teachers": [{
-        "id": "T0001",
+        "number": "T0001",
         "firstName": "Doncho",
         "lastName": "Minkov",
         "egn": "8410206986",
         "email": "doncho@doncho.com",
-        "subject": "Math"
+        "subjects": [
+            "Math"
+            ]
     },
     {
-        "id": "T0002",
+        "number": "T0002",
         "firstName": "Hristo",
         "lastName": "Hristov",
         "egn": "8406154823",
         "email": "ickata@abv.bg",
-        "subject": "Literature"
+        "subjects": [
+            "Literature",
+            "History"
+            ]
     }],
     "subjects": [{
         "subject": "Math",

@@ -6,16 +6,6 @@ class StudentsData extends BaseData {
         super(db, Student, Student);
     }
 
-    findByNumber(id) {
-        return this.collection.findOne({
-            number: id,
-        });
-    }
-
-    getCollectionCount() {
-        return this.collection.count();
-    }
-
     updateStudent(student, data) {
         return this.collection.update(student, data);
     }

@@ -12,10 +12,6 @@ class TeachersData extends BaseData {
         });
     }
 
-    // getCollectionCount() {
-    //     return this.collection.count();
-    // }
-
     updateTeacher(teacher, data) {
         return this.collection.update(teacher, data);
     }

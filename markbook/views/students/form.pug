@@ -6,28 +6,28 @@ block content
     form.form(method='POST' action='/students')
         div.form
             label(for='firstName') First name: 
-                input#firstName(type='text' placeholder='First name' name='firstName' pattern='[A-Za-z]+' )
+                input(type='text' placeholder='First name' name='firstName' pattern='[A-Za-z]+' required)
             label(for='lastName') Last name: 
-                input#lastName(type='text' placeholder='Last name' name='lastName' pattern='[A-Za-z]+' )
+                input(type='text' placeholder='Last name' name='lastName' pattern='[A-Za-z]+' required)
             label(for='grade') Grade: 
-                input#grade(type='text' placeholder='Grade' name='grade' pattern='^[0-9]{0,2}[A-Za-z]$' )
+                input(type='text' placeholder='Grade' name='grade' pattern='^[0-9]{0,2}[A-Za-z]$' required)
             label(for='email') Email: 
-                input#email(type='email' placeholder='Email' name='email' )
+                input(type='email' placeholder='Email' name='email' required)
             label(for='egn') EGN: 
-                input#egn(type='text' placeholder='EGN' name='egn' pattern='^[0-9]{10}$' )
+                input(type='text' placeholder='EGN' name='egn' pattern='^[0-9]{10}$' required)
             label(for='gender') Gender: 
-                select#gender(name='gender' )
+                select(name='gender' required)
                     option(value='' disabled selected) Select
                     option(value='male') male
                     option(value='female') female
             label(for='address') Address: 
-                input#address(type='text' placeholder='Address' name='address' pattern='[\w,;-\\.]')
+                input(type='text' placeholder='Address' name='address' pattern='[\w,;-\\.]')
             label(for='parentName') Parent name: 
-                input#parentName(type='text' placeholder='Parent name' name='parentName' pattern='[A-Za-z ]+')
+                input(type='text' placeholder='Parent name' name='parentName' pattern='[A-Za-z ]+')
             label(for='parentPhone') Parent phone: 
-                input#parentPhone(type='text' placeholder='Parent phone' name='parentPhone' pattern='[\w-\/\\]+')
+                input(type='text' placeholder='Parent phone' name='parentPhone' pattern='[\w-\/\\]+')
             label(for='status') Status: 
-                select#status(name='status')
+                select(name='status' required)
                     option(value='' disabled selected) Select
                     option(value='active' selected) active
                     option(value='unactive') unactive

@@ -1,0 +1,20 @@
+extends ../_common/layout
+
+block content
+    p Teacher's number: <strong>#{model.number}</strong>
+    h2 <strong>#{model.firstName} #{model.lastName}</strong>
+    .tab-content
+        #studentInfoById.tab-pane.fade.in.active
+            p Email: <strong>#{model.email}</strong>
+            p EGN: <strong>#{model.egn}</strong>
+            br
+            p Subjects:
+            if model.subjects
+                ul
+                    each subject in model.subjects
+                        strong
+                            li= subject
+            br
+            if (user)
+                if (user.role === 'admin')
+                    a(href=`/teachers/edit/${model.number}`) Edit teacher data

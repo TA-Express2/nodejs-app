@@ -9,6 +9,10 @@ class Teacher extends User {
         return this._id;
     }
 
+    set id(value) {
+        this._id = value;
+    }
+
     static toViewModel(model) {
         const viewModel = new Teacher();
 
