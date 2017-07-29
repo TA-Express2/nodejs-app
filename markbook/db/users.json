@@ -1,11 +1,54 @@
 {
+    "users": [{
+        "email": "admin@admin.com",
+        "hashPassword": "admin",
+        "role": "admin"
+    },
+    {
+        "email": "nadeto@gmail.com",
+        "hashPassword": "123",
+        "role": "student"
+    },
+    {
+        "email": "paco@gmail.com",
+        "hashPassword": "123",
+        "role": "student"
+    },
+    {
+        "email": "ems@gmail.com",
+        "hashPassword": "123",
+        "role": "student"
+    },
+    {
+        "email": "aivanova@gmail.com",
+        "hashPassword": "123",
+        "role": "student"
+    },
+    {
+        "email": "popo@gmail.com",
+        "hashPassword": "123",
+        "role": "student"
+    },
+    {
+        "email": "ivo_shopata@gmail.com",
+        "hashPassword": "123",
+        "role": "student"
+    },
+    {
+        "email": "doncho@doncho.com",
+        "hashPassword": "!123456qw*",
+        "role": "teacher"
+    },
+    {
+        "email": "ickata@abv.bg",
+        "hashPassword": "!123456qw*",
+        "role": "teacher"
+    }],
     "admins": [{
         "firstName": "admin",
         "lastName": "admin",
         "email": "admin@admin.com",
-        "status": "active",
-        "role": "admin",
-        "hashPassword": "admin"
+        "status": "active"
     }],
     "students": [{
             "number": "S0001",
@@ -16,11 +59,9 @@
             "gender": "female",
             "grade": "11A",
             "status": "active",
-            "role": "student",
             "address": "V. Turnovo",
             "parentName": "Maria Grozdeva",
             "parentPhone": "123",
-            "hashPassword": "123",
             "marks": [{
                     "Math": [5, 4, 6],
                     "name": "Math"
@@ -52,11 +93,9 @@
             "gender": "male",
             "grade": "12C",
             "status": "active",
-            "role": "student",
             "address": "Plovdiv",
             "parentName": "Ivan Petrov",
             "parentPhone": "456",
-            "hashPassword": "123",
             "marks": [{
                     "Math": [6, 6, 6],
                     "name": "Math"
@@ -89,11 +128,9 @@
             "gender": "female",
             "grade": "12A",
             "status": "active",
-            "role": "student",
             "address": "Sofia",
             "parentName": "Pesho Pesho",
             "parentPhone": "789",
-            "hashPassword": "123",
             "marks": [{
                     "Math": [6, 6, 6],
                     "name": "Math"
@@ -125,11 +162,9 @@
             "gender": "female",
             "grade": "12A",
             "status": "active",
-            "role": "student",
             "address": "Sofia",
             "parentName": "Pesho Pesho",
             "parentPhone": "789",
-            "hashPassword": "123",
             "marks": [{
                     "Math": [6, 6, 6],
                     "name": "Math"
@@ -161,11 +196,9 @@
             "gender": "male",
             "grade": "12C",
             "status": "active",
-            "role": "student",
             "address": "Burgas",
             "parentName": "Milko Hristov",
             "parentPhone": "789",
-            "hashPassword": "123",
             "marks": [{
                     "Math": [2, 3, 3],
                     "name": "Math"
@@ -197,11 +230,9 @@
             "gender": "male",
             "grade": "12A",
             "status": "active",
-            "role": "student",
             "address": "Sofia",
             "parentName": "Ivo Ivov",
             "parentPhone": "789",
-            "hashPassword": "123",
             "marks": [{
                     "Math": [5, 6, 6],
                     "name": "Math"
@@ -231,9 +262,7 @@
         "lastName": "Minkov",
         "egn": "8410206986",
         "email": "doncho@doncho.com",
-        "subject": "Math",
-        "role": "teacher",
-        "hashPassword": "!123456qw*"
+        "subject": "Math"
     },
     {
         "id": "T0002",
@@ -241,9 +270,26 @@
         "lastName": "Hristov",
         "egn": "8406154823",
         "email": "ickata@abv.bg",
-        "subject": "Literature",
-        "role": "teacher",
-        "hashPassword": "!123456qw*"
+        "subject": "Literature"
     }],
-    "subjects": ["Math", "Literature", "Chemistry", "Biology", "History"]
+    "subjects": [{
+        "subject": "Math",
+        "teacher": "Doncho Minkov"
+    },
+    {
+        "subject": "Literature",
+        "teacher": "Hristo Hristov"
+    },
+    {
+        "subject": "Chemistry",
+        "teacher": ""
+    },
+    {
+        "subject": "Biology",
+        "teacher": ""
+    },
+    {
+        "subject": "History",
+        "teacher": "Hristo Hristov"
+    }]
 }

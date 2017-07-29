@@ -1,4 +1,4 @@
-extends ../layout
+extends ../_common/layout
 
 block content
     p Student number: <strong>#{model.number}</strong>
@@ -19,7 +19,9 @@ block content
                 p Parent phone: <strong>#{model.parentPhone}</strong>
                 p Status: <strong>#{model.status}</strong>
                 br
-                a(href=`/students/edit/${model.number}`) Edit student data
+                if (user)
+                    if (user.role === 'admin' || user.role === 'teacher')
+                        a(href=`/students/edit/${model.number}`) Edit student data
             #studentMarksById.tab-pane.fade
                 table.table.table-responsive.table-striped
                 if (model.marks)

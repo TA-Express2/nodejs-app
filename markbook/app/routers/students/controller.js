@@ -6,7 +6,7 @@ const init = (data) => {
             return data.students.getAll()
                 .then((students) => {
                     return res.render('students/listAll', {
-                        model: students
+                        model: students,
                     });
                 });
         },
@@ -16,29 +16,38 @@ const init = (data) => {
         addStudent(req, res) {
             const student = req.body;
             data.students.create(student)
-                .then(async(dbStudent) => {
-                    let count = (await data.students.getCollectionCount()).toString();
-                    let pad = '0000';
-                    let number = 'S' + pad.substring(0, pad.length - count.length) + count;
+                .then(async (dbStudent) => {
+                    const count = (await data.students.getCollectionCount()).toString();
+                    const pad = '0000';
+                    const number = 'S' + pad.substring(0, pad.length - count.length) + count;
                     data.students.collection.update({ _id: dbStudent._id }, {
                         $set: {
-                            role: 'student',
-                            number: number
-                        }
+                            number: number,
+                            marks: [],
+                        },
+                    })
+                    .then(data.users.create({
+                        email: student.email,
+                        hashPassword: student.egn,
+                        egn: student.egn,
+                        role: 'student',
+                    }))
+                    .catch(function(err) {
+                        throw err;
                     });
                     res.redirect('/students');
-                })
+                });
         },
         getStudentById(req, res) {
             return data.students.findByNumber(req.params.id)
                 .then((student) => {
                     if (!student) {
-                        return res.render('noUser', {
+                        return res.render('users/noUser', {
                             title: 'Student not found!',
                         });
                     }
                     return res.render('students/student', {
-                        model: student
+                        model: student,
                     });
                 });
         },
@@ -46,8 +55,11 @@ const init = (data) => {
             return data.students.findByNumber(req.params.id)
                 .then((student) => {
                     return res.render('students/edit', {
-                        model: student
+                        model: student,
                     });
+                })
+                .catch(function(err) {
+                    throw err;
                 });
         },
         editStudentById(req, res) {
@@ -57,8 +69,8 @@ const init = (data) => {
                     data.students.collection.update({ _id: student._id }, {
                         $set: {
                             role: 'student',
-                            number: req.params.id
-                        }
+                            number: req.params.id,
+                        },
                     });
                     res.redirect('/students');
                 });
@@ -67,14 +79,13 @@ const init = (data) => {
             if (req.user) {
                 return data.students.getAll()
                     .then((students) => {
-                        return res.render('marks', {
+                        return res.render('students/marks', {
                             title: 'Marks',
-                            model: students
+                            model: students,
                         });
                     });
-            } else {
-                return res.redirect('/login');
             }
+            return res.redirect('/login');
         },
         getEditMarksView(req, res, next) {
             const id = JSON.stringify(req.query.id);

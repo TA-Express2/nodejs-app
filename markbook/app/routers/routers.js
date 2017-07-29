@@ -2,6 +2,7 @@ module.exports = (app, data) => {
     const home = require('./home')(app, data);
     const about = require('./home')(app, data);
     const login = require('./auth')(app, data);
+    const changePassword = require('./users')(app, data);
     const students = require('./students')(app, data);
     const profile = require('./users')(app, data);
     const marks = require('./students')(app, data);
@@ -17,6 +18,7 @@ module.exports = (app, data) => {
     app.use('/', home);
     app.use('/', about);
     app.use('/', login);
+    app.use('/', changePassword);
     app.use('/', students);
     app.use('/:id', students);
     app.use('/edit/:id', students);

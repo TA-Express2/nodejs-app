@@ -3,26 +3,24 @@ const passport = require('passport');
 
 module.exports = (app, data) => {
     const router = new express.Router();
-    const controller = require('./controller').init(app, data);
+    const controller = require('./controller').init(data);
 
-    /* GET register page. */
     router
-        .get('/login', (req, res) => {
-            return controller.getLoginView(req, res);
-        })
+        .get('/login', controller.getLoginView)
         .post('/login',
-            /* (req, res) => {
-                console.log('Post request sent')
-            }*/
             passport.authenticate('local', {
-                successRedirect: '/',
                 failureRedirect: '/login',
                 failureFlash: true,
-            })
+            }), (req, res) => {
+                if (req.user.egn === req.user.hashPassword) {
+                    return res.redirect('/changePassword');
+                }
+                return res.redirect('/');
+            }
         )
-        .get('/logout', function(req, res) {
+        .get('/logout', (req, res) => {
                 req.logout();
-                req.session.destroy(function(err) {
+                req.session.destroy((err) => {
                     res.redirect('/');
                 });
 
