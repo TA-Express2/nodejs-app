@@ -8,8 +8,8 @@ require('passport-local-authenticate');
 
 const configAuth = (app, data) => {
     passport.use(new Strategy({
-        usernameField : 'email',
-        passwordField : 'password'
+        usernameField: 'email',
+        passwordField: 'password',
         },
         (email, password, done) => {
             data.users.checkPassword(email, password)
@@ -20,7 +20,7 @@ const configAuth = (app, data) => {
                     done(err);
                 });
         }
-    ))
+    ));
     app.use(cookieParser());
     app.use(session({
         store: new MongoStore({ url: config.connectionString }),

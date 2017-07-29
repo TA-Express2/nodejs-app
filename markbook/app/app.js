@@ -14,14 +14,6 @@ const init = (data) => {
         next();
     });
 
-    // logged in user accessible via currentUser
-    app.use((req, res, next) => {
-        if (req.user) {
-            res.locals.currentUser = req.user;
-        }
-        next();
-    });
-
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {
         const err = new Error('Not Found');

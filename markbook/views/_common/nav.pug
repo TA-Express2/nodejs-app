@@ -14,10 +14,10 @@ nav.navbar.navbar-fixed-top.navbar-light
     .navbar-brand 
       a.nav-link(href="/") Markbook
     
-    if (currentUser)
+    if (user)
       ul.nav.navbar-nav.pull-right
         li.nav-item.dropdown
-          a.nav-link.dropdown-toggle(data-toggle="dropdown",href="#",role="button") #{currentUser.email}
+          a.nav-link.dropdown-toggle(data-toggle="dropdown",href="#",role="button") #{user.email}
             .dropdown-menu
               each val, key in userItems
                 +dropdown-item(key, val)

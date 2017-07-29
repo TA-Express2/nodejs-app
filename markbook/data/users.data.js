@@ -7,10 +7,11 @@ class UsersData extends BaseData {
     }
 
     checkPassword(email, password) {
-        const findByEmail = () => {
+        /* const findByEmail = () => {
             return this.findByEmail(email);
-        }
+        };
         const redirect = (user) => {
+            console.log(user)
              if (!user) {
                 throw new Error('Invalid user!');
             }
@@ -24,24 +25,22 @@ class UsersData extends BaseData {
             return user;
         };
         return findByEmail()
-            .then(redirect);
-        // return this.findByEmail(email)
-        //     .then((user) => {
-        //         if (!user) {
-        //             throw new Error('Invalid user!');
-        //         }
+            .then(redirect); */
+        return this.findByEmail(email)
+            .then((user) => {
+                if (!user) {
+                    throw new Error('Invalid user!');
+                }
 
-        //         if (user.egn === password) {
-        //             console.log('REDIRECT');
-        //         } else if (user.hashPassword !== password) {
-        //             throw new Error('Invalid password!');
-        //         }
+                if (user.hashPassword !== password) {
+                    throw new Error('Invalid password!');
+                }
 
-        //         return user;
-        //     })
-        //     .catch((err) => {
-        //         throw err;
-        //     });
+                return user;
+            })
+            .catch((err) => {
+                throw err;
+            });
     }
 
     findByEmail(email) {

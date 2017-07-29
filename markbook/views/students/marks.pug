@@ -4,28 +4,28 @@ block content
     h1= title
 
     table.table.table-responsive.table-striped
-        if (currentUser.role === 'student')
+        if (user.role === 'student')
             thead
                 tr
                     th
                         | Student's number
                     th
                         | Student's name
-                    each subject in currentUser.marks
+                    each subject in user.marks
                         th
                             = subject.name
             tbody
                 tr
                     td
-                        = currentUser.number
+                        = user.number
                     td
-                        = currentUser.firstName
+                        = user.firstName
                         | &nbsp;
-                        = currentUser.lastName
-                    each subject in currentUser.marks
+                        = user.lastName
+                    each subject in user.marks
                             td
                                = Object.values(subject)[0]
-        if (currentUser.role === 'admin')
+        if (user.role === 'admin')
             thead
                 tr
                     th
@@ -51,7 +51,7 @@ block content
                                 button.editMarksButton.btn.btn-primary(href='', data-id=''+student.id type='button', data-toggle='modal', data-target='#myModal')
                                     | Edit
 
-        if (currentUser.role === 'teacher')
+        if (user.role === 'teacher')
             thead
                 tr
                     th
@@ -59,7 +59,7 @@ block content
                     th
                         | Student's name
                     each mark in model[1].marks
-                        if (currentUser.subject && currentUser.subject === mark.name)
+                        if (user.subject && user.subject === mark.name)
                             th(colspan='2')
                                 = mark.name
                         else
@@ -75,7 +75,7 @@ block content
                             |   &nbsp;
                             = student.lastName
                         each mark in student.marks
-                            if (currentUser.subject && currentUser.subject === mark.name)
+                            if (user.subject && user.subject === mark.name)
                                 td
                                     = Object.values(mark)[0]
                                 td(class='' + mark.name)

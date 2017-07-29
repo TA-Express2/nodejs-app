@@ -6,20 +6,17 @@ const init = (data) => {
             return data.students.getAll()
                 .then((students) => {
                     return res.render('students/listAll', {
-                        currentUser: req.user,
                         model: students,
                     });
                 });
         },
         addStudentForm(req, res) {
-            return res.render('students/form', {
-                currentUser: req.user,
-            });
+            return res.render('students/form');
         },
         addStudent(req, res) {
             const student = req.body;
             data.students.create(student)
-                .then(async(dbStudent) => {
+                .then(async (dbStudent) => {
                     const count = (await data.students.getCollectionCount()).toString();
                     const pad = '0000';
                     const number = 'S' + pad.substring(0, pad.length - count.length) + count;
@@ -39,7 +36,7 @@ const init = (data) => {
                         throw err;
                     });
                     res.redirect('/students');
-                })
+                });
         },
         getStudentById(req, res) {
             return data.students.findByNumber(req.params.id)
@@ -50,7 +47,6 @@ const init = (data) => {
                         });
                     }
                     return res.render('students/student', {
-                        currentUser: req.user,
                         model: student,
                     });
                 });
@@ -59,7 +55,6 @@ const init = (data) => {
             return data.students.findByNumber(req.params.id)
                 .then((student) => {
                     return res.render('students/edit', {
-                        currentUser: req.user,
                         model: student,
                     });
                 })
@@ -74,8 +69,8 @@ const init = (data) => {
                     data.students.collection.update({ _id: student._id }, {
                         $set: {
                             role: 'student',
-                            number: req.params.id
-                        }
+                            number: req.params.id,
+                        },
                     });
                     res.redirect('/students');
                 });
@@ -85,14 +80,12 @@ const init = (data) => {
                 return data.students.getAll()
                     .then((students) => {
                         return res.render('students/marks', {
-                            currentUser: req.user,
                             title: 'Marks',
                             model: students,
                         });
                     });
-            } else {
-                return res.redirect('/login');
             }
+            return res.redirect('/login');
         },
         getEditMarksView(req, res, next) {
             const id = JSON.stringify(req.query.id);

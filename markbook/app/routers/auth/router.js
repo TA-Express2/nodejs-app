@@ -9,10 +9,14 @@ module.exports = (app, data) => {
         .get('/login', controller.getLoginView)
         .post('/login',
             passport.authenticate('local', {
-                successRedirect: '/',
                 failureRedirect: '/login',
                 failureFlash: true,
-            })
+            }), (req, res) => {
+                if (req.user.egn === req.user.hashPassword) {
+                    return res.redirect('/changePassword');
+                }
+                return res.redirect('/');
+            }
         )
         .get('/logout', (req, res) => {
                 req.logout();

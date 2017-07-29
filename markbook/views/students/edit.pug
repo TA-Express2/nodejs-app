@@ -1,38 +1,40 @@
 extends ../_common/layout
 
 block content
-    h2
-        | Edit student #{model.number}
-    form.form(method='POST' action=`/students/edit/${model.number}`)
-        div.form
-            label(for='firstName') First name: 
-                input(type='text' placeholder='First name' value=model.firstName name='firstName' pattern='[A-Za-z]+' )
-            label(for='lastName') Last name: 
-                input(type='text' placeholder='Last name' value=model.lastName name='lastName' pattern='[A-Za-z]+' )
-            label(for='grade') Grade: 
-                input(type='text' placeholder='Grade' value=model.grade name='grade' pattern='^[0-9]{0,2}[A-Za-z]$' )
-            label(for='email') Email: 
-                input(type='email' placeholder='Email' value=model.email name='email' )
-            label(for='egn') EGN: 
-                input(type='text' placeholder='EGN' value=model.egn name='egn' pattern='^[0-9]{10}$' )
-            label(for='gender') Gender: 
-                select(name='gender')
-                    - options = [ 'male', 'female']
-                    for gender in options
-                        option(selected=model.gender == gender) #{gender}
-            label(for='address') Address: 
-                input(type='text' placeholder='Address' value=model.address name='address' pattern='[\w,;-\\.]')
-            label(for='parentName') Parent name: 
-                input(type='text' placeholder='Parent name' value=model.parentName name='parentName' pattern='[A-Za-z ]+')
-            label(for='parentPhone') Parent phone: 
-                input(type='text' placeholder='Parent phone' value=model.parentPhone name='parentPhone' pattern='[\w-\/\\]+')
-            label(for='status') Status: 
-                select(name='status' )
-                    - options = [ 'active', 'unactive']
-                    for status in options
-                        option(selected=model.status == status) #{status}
-            br
-            model.number
-            div.inline
-                button.btn.btn-default(type='reset' onclick=`location.href = \`/students/${model.number}\``) Cancel
-                button.btn.btn-success Save
+    if (user)
+        if (user.role === 'admin' || user.role === 'teacher')
+            h2
+                | Edit student #{model.number}
+            form.form(method='POST' action=`/students/edit/${model.number}`)
+                div.form
+                    label(for='firstName') First name: 
+                        input(type='text' placeholder='First name' value=model.firstName name='firstName' pattern='[A-Za-z]+' )
+                    label(for='lastName') Last name: 
+                        input(type='text' placeholder='Last name' value=model.lastName name='lastName' pattern='[A-Za-z]+' )
+                    label(for='grade') Grade: 
+                        input(type='text' placeholder='Grade' value=model.grade name='grade' pattern='^[0-9]{0,2}[A-Za-z]$' )
+                    label(for='email') Email: 
+                        input(type='email' placeholder='Email' value=model.email name='email' )
+                    label(for='egn') EGN: 
+                        input(type='text' placeholder='EGN' value=model.egn name='egn' pattern='^[0-9]{10}$' )
+                    label(for='gender') Gender: 
+                        select(name='gender')
+                            - options = [ 'male', 'female']
+                            for gender in options
+                                option(selected=model.gender == gender) #{gender}
+                    label(for='address') Address: 
+                        input(type='text' placeholder='Address' value=model.address name='address' pattern='[\w,;-\\.]')
+                    label(for='parentName') Parent name: 
+                        input(type='text' placeholder='Parent name' value=model.parentName name='parentName' pattern='[A-Za-z ]+')
+                    label(for='parentPhone') Parent phone: 
+                        input(type='text' placeholder='Parent phone' value=model.parentPhone name='parentPhone' pattern='[\w-\/\\]+')
+                    label(for='status') Status: 
+                        select(name='status' )
+                            - options = [ 'active', 'unactive']
+                            for status in options
+                                option(selected=model.status == status) #{status}
+                    br
+                    model.number
+                    div.inline
+                        button.btn.btn-default(type='reset' onclick=`location.href = \`/students/${model.number}\``) Cancel
+                        button.btn.btn-success Save

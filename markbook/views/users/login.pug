@@ -2,7 +2,7 @@ extends ../_common/layout
 
 block content
     h1= title
-    form.form(action='login', method='post')
+    form.form(method='POST', action='login')
         label Email:
             input(type='email', name='email')
         label Password:

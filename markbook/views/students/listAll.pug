@@ -3,7 +3,9 @@ extends ../_common/layout
 block content
     div.inline
         h1= title
-        a.btn.btn-primary.middle(href='/students/form' type='button') Add student
+        if (user)
+            if (user.role === 'admin' || user.role === 'teacher')
+                a.btn.btn-primary.middle(href='/students/form' type='button') Add student
     table.table.table-responsive.table-striped
         thead
             tr
