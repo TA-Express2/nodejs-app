@@ -1,0 +1,30 @@
+extends ../_common/layout
+include subjects
+
+block content
+
+    h1= title
+        | &nbsp;of&nbsp;
+        = grade.grade
+        | &nbsp;grade
+    table.table.table-responsive.table-striped
+        thead
+            tr
+                th
+                    | Student's Number
+                th
+                    | Student's Name
+                each subject in subjects
+                    th(colspan='2')
+                        = subject
+        tdoby
+            each student in students
+                tr(id=student.number)
+                    td(class='number')
+                        = student.number
+                    td(class='name')
+                        = student.firstName
+                        |  &nbsp;
+                        = student.lastName
+                    +subjects(student, subjects)
+

@@ -76,3 +76,7 @@ body {
 .hidden {
   display: none;
 }
+
+input[type="text"][readonly] {
+   background-color: #ccc;
+}

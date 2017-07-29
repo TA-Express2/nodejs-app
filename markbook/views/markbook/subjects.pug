@@ -1,0 +1,41 @@
+mixin subjects(student, subjects)
+    - let thisStudent = student
+    - function getObjectKeyIndex(obj, keyToFind) { const index = obj.findIndex((x) => x.name === keyToFind); return index;}
+
+    each subj in subjects
+        td(class=`${subj} ${student.grade}`)
+            - i = getObjectKeyIndex(student.marks, subj)
+            - value = Object.values(student.marks)[i][subj]
+            = value
+        td
+            button.editMarksButton.btn.btn-primary(href='', data-id=''+ student.number, type='button', data-toggle='modal', data-target='#myModal')
+                | Edit
+
+    #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5#exampleModalLabel.modal-title Edit marks
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true')
+                .modal-body
+                    form(id='saveEditMarks', action='/markbook/saveMarks', method= 'POST')
+                        h5 Student's number:
+                        h3
+                            input#modalUserNumber(type='text', value='', name='studentNumber', readonly)
+                        h5 Student's name:
+                        h3
+                            input#modalUserName(type='text', value='', name='studentName', readonly)
+                        h5 Student's grade:
+                        h3
+                            input#modalUserGrade(type='text', value='', name='studentGrade', readonly)
+                        h5 Subject:
+                        h3
+                            input#modalSubject(type='text', value='', name='subject', readonly)
+                        //- h3#indexSubject
+                        h5 Marks:
+                        h3
+                            input#marks(type='text', name='marks', value='')
+                .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                    button.saveEditMarksButton.btn.btn-primary(type="submit") Save

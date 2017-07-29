@@ -24,14 +24,14 @@ block content
                         a(href=`/students/edit/${model.number}`) Edit student data
             #studentMarksById.tab-pane.fade
                 table.table.table-responsive.table-striped
-                if (model.marks)
-                    thead
-                        tr
-                            each mark in model.marks
+                    if (model.marks)
+                        thead
+                            tr
+                                each mark in model.marks
                                     th
                                         = mark.name
-                    tbody
-                        tr
-                            each mark in model.marks
-                                td
-                                    = Object.values(mark)[0]
+                        tbody
+                            tr
+                                each mark in model.marks
+                                    td
+                                        = Object.values(mark)[0]

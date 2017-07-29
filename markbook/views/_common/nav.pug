@@ -1,5 +1,6 @@
 - var links = { 'Item1': '/link1', 'Item2': '/link2' }
-- var userItems = { 'Profile': '/profile', 'Change password': '/changePassword', 'Marks': '/students/marks', 'Log out': '/logout' }
+- var userItems = { 'Profile': '/profile', 'Change password': '/changePassword', 'Log out': '/logout' }
+- var gradesItems = { "12A": "/markbook/12A", "12C": "/markbook/12C", "11A": "/markbook/11A" }
 
 mixin dropdown-item(name, link)
   a.dropdown-item(href=link)= name
@@ -32,8 +33,11 @@ nav.navbar.navbar-fixed-top.navbar-light
       li.nav-item
         a.nav-link(href='/students') Students
     ul.nav.navbar-nav.pull-right
-      li.nav-item
-        a.nav-link(href='/about') About
+        li.nav-item.dropdown
+          a.nav-link.dropdown-toggle(data-toggle="dropdown",href="#",role="button") Markbook
+            .dropdown-menu
+              each val, key in gradesItems
+                +dropdown-item(key, val)
     ul.nav.navbar-nav.pull-right
       li.nav-item
         a.nav-link(href='/home') Home
