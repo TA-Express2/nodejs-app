@@ -1,3 +1,5 @@
+/* globals $ */
+
 $(document).ready(function() {
     $('ul.nav li.dropdown').hover(function() {
         $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(200);
@@ -17,8 +19,8 @@ $(document).ready(function() {
                 data: { id: id },
                 success: function(data) {},
                 error: function(err) {
-                    console.log(err)
-                }
+                    console.log(err);
+                },
             }).done(function(data) {
                 $('#modalUserID').text(data['_id']);
                 $('#modalUserNumber').text(data['number']);
@@ -52,8 +54,8 @@ $(document).ready(function() {
                 },
                 success: function(success) {},
                 error: function(err) {
-                    console.log(err)
-                }
+                    console.log(err);
+                },
             });
             $('#myModal').modal('hide');
         });

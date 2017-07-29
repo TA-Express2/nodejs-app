@@ -31,6 +31,8 @@
         "pug-bootstrap": "0.0.15",
         "serve-favicon": "~2.3.2",
         "sinon": "^2.3.8",
+        "socket.io": "^2.0.3",
+        "toastr": "^2.1.2",
         "yarn": "^0.27.5"
     },
     "devDependencies": {
