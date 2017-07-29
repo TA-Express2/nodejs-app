@@ -1,5 +1,5 @@
 const init = (server) => {
-const io = require('socket.io')(server);
+const io = require('socket.io').listen(server);
 io.clients = [];
 
 io.on('connection', (socket) => {
