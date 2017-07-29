@@ -14,6 +14,10 @@ class BaseData {
             .toArray();
     }
 
+    filterByGradeAndSortAsc(props) {
+        return this.collection.find(props).sort({ firstName: 1 })
+            .toArray();
+    }
     getAll() {
         return this.collection.find()
             .toArray()

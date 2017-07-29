@@ -11,9 +11,6 @@ module.exports = (app, data) => {
         })
         .get('/home', (req, res) => {
             return controller.getHomeView(req, res);
-        })
-        .get('/about', (req, res) => {
-            return controller.getAboutView(req, res);
         });
 
     return router;

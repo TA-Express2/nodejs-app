@@ -1,13 +1,10 @@
 module.exports = (app, data) => {
     const home = require('./home')(app, data);
-    const about = require('./home')(app, data);
     const login = require('./auth')(app, data);
     const changePassword = require('./users')(app, data);
     const students = require('./students')(app, data);
     const profile = require('./users')(app, data);
-    const marks = require('./students')(app, data);
-    const editMarks = require('./students')(app, data);
-    const saveMarks = require('./students')(app, data);
+    const markbook = require('./markbook')(app, data);
 
     app.get('*', function(req, res, next) {
         // check if there is user logged in
@@ -16,14 +13,12 @@ module.exports = (app, data) => {
     });
 
     app.use('/', home);
-    app.use('/', about);
     app.use('/', login);
     app.use('/', changePassword);
     app.use('/', students);
     app.use('/:id', students);
     app.use('/edit/:id', students);
     app.use('/', profile);
-    app.use('/', marks);
-    app.use('/', editMarks);
-    app.use('/', saveMarks);
+    app.use('/:grade', markbook);
+    app.use('/saveMarks', markbook);
 };
