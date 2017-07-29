@@ -15,11 +15,8 @@ async()
     .then((app) => {
         app.set('port', port);
         const server = http.createServer(app);
-        require('./socketio').init(server)
-        .then((io) => {
-            app.io = io;
-        });
-        app.listen(config.port, () => console.log(`Listening at: ${config.port}`));
+        require('./socketio').init(server);
+        server.listen(config.port, () => console.log(`Listening at: ${config.port}`));
     });
 
 function normalizePort(val) {
