@@ -1,0 +1,31 @@
+extends ../_common/layout
+
+block content
+    div.inline
+        h1= title
+        //- if (user)
+        //-     if (user.role === 'admin' || user.role === 'teacher')
+        //-         if (user.role === 'admin')
+                    //- a.btn.btn-primary.middle(href='/teachers/form' type='button') Add teacher
+        table.table.table-responsive.table-striped
+            thead
+                tr
+                    th
+                        | Teacher's number
+                    th
+                        | Teacher's name
+                    th
+                        | Subjects
+                    th
+
+            tbody
+                //- each teacher in model
+                //-     tr
+                        //- td #{teacher.number}
+                        //- td #{teacher.firstName} #{teacher.lastName}
+                        //- td list subjects
+                        //- td
+                        //-     a(href=`/teachers/${teacher.number}`) View profile
+
+        //- else
+        //-     p You are not authorised to view this data.

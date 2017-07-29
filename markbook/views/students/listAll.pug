@@ -10,7 +10,7 @@ block content
         thead
             tr
                 th
-                    | Student's username
+                    | Student's number
                 th
                     | Student's name
                 th
@@ -18,11 +18,10 @@ block content
                 th
 
         tbody
-            each user in model
-                if (true || user.role === 'student')
+            each student in model
                 tr
-                    td #{user.number}
-                    td #{user.firstName} #{user.lastName}
-                    td #{user.grade}
+                    td #{student.number}
+                    td #{student.firstName} #{student.lastName}
+                    td #{student.grade}
                     td
-                        a(href=`/students/${user.number}`) View profile
+                        a(href=`/students/${student.number}`) View profile

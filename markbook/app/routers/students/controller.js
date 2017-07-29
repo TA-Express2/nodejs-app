@@ -89,7 +89,7 @@ const init = (data) => {
         },
         getEditMarksView(req, res, next) {
             const id = JSON.stringify(req.query.id);
-            if (req.user.role === "admin" || req.user.role === "teacher") {
+            if (req.user.role === 'admin' || req.user.role === 'teacher') {
                 return data.students.getAll()
                     .then((students) => {
                         let data;
