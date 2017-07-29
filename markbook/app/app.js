@@ -18,7 +18,7 @@ const init = async () => {
     const db = await require('../db').init(config.connectionString);
     const data = await require('../data').init(db);
     const usersData = await require('../data/users.data');
-    require('../config/config')
+    require('../config/config');
     await require('../config/auth.config')(app, usersData);
 
     // confiq
