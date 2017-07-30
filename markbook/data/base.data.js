@@ -24,9 +24,8 @@ class BaseData {
             .toArray()
             .then((models) => {
                 if (this.ModelClass.toViewModel) {
-                    return models.map(
-                        (model) => this.ModelClass.toViewModel(model)
-                    );
+                    return models
+                        .map((model) => this.ModelClass.toViewModel(model));
                 }
 
                 return models;
@@ -62,6 +61,19 @@ class BaseData {
         }, model);
     }
 
+    findOrCreateBy(props) {
+        return this.filterBy(props)
+            .then(([model]) => {
+                if (!model) {
+                    model = {};
+                    return this.collection.insert(model)
+                        .then(() => {
+                            return model;
+                        });
+                }
+                return model;
+            });
+    }
 
     findByNumber(id) {
         return this.collection.findOne({

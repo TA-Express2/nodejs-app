@@ -3,6 +3,7 @@ const UsersData = require('./users.data');
 const AdminsData = require('./admins.data');
 const StudentsData = require('./students.data');
 const TeachersData = require('./teachers.data');
+const SubjectsData = require('./subjects.data');
 
 const init = async (db) => {
     // seed data
@@ -22,12 +23,17 @@ const init = async (db) => {
     if (await collectionTeachers.count() === 0) {
         collectionTeachers.insert(seed.teachers);
     }
+    const collectionSubjects = db.collection('subjects');
+    if (await collectionSubjects.count() === 0) {
+        collectionSubjects.insert(seed.subjects);
+    }
 
     return Promise.resolve({
         users: new UsersData(db),
         admins: new AdminsData(db),
         students: new StudentsData(db),
         teachers: new TeachersData(db),
+        subjects: new SubjectsData(db),
     });
 };
 

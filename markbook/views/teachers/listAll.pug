@@ -31,5 +31,5 @@ block content
                                 a(href=`/teachers/${teacher.number}`) View profile
             if (user.role === 'student')
                 p You are not authorised to view this data.
-        unless user
+        else
             p You are not authorised to view this data.

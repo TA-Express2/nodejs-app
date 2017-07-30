@@ -28,6 +28,24 @@ $(document).ready(function() {
             $('#myModal').modal('hide');
         });
     });
+
+    $(function() {
+        $('.editSubjectButton').on('click', function() {
+            const id = $(this).data('id');
+            const subject = $(this).parent().attr('class');
+
+            $('#modalSubjectName').val($(`#${id} td.subject`).text());
+            $('#modalTeacherName').val($(`#${id} td.teacher`).text());
+        });
+    });
+
+    $(function() {
+        $('.editSubjectButton').on('click', function(e) {
+            e.preventDefault(e);
+            $('#editSubject')[0].submit();
+            $('#subjectModal').modal('hide');
+        });
+    });
 });
 
 $(document).scroll(function() {

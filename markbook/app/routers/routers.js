@@ -5,6 +5,7 @@ module.exports = (app, data) => {
     const profile = require('./users')(app, data);
     const students = require('./students')(app, data);
     const teachers = require('./teachers')(app, data);
+    const subjects = require('./subjects')(app, data);
     const markbook = require('./markbook')(app, data);
 
     app.get('*', function(req, res, next) {
@@ -23,6 +24,7 @@ module.exports = (app, data) => {
     app.use('/', teachers);
     app.use('/:id', teachers);
     app.use('/edit/:id', teachers);
+    app.use('/', subjects);
     app.use('/:grade', markbook);
     app.use('/saveMarks', markbook);
 };

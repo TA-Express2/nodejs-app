@@ -94,3 +94,8 @@ body {
 input[type="text"][readonly] {
    background-color: #ccc;
 }
+
+#modalTeacherName[readonly] {
+  width: 296px;
+  background-color: #ccc;
+}

@@ -8,8 +8,10 @@ mixin subjects(student, subjects)
             - value = Object.values(student.marks)[i][subj]
             = value
         td
-            button.editMarksButton.btn.btn-primary(href='', data-id=''+ student.number, type='button', data-toggle='modal', data-target='#myModal')
-                | Edit
+            if user
+                if  (user.role === 'admin')
+                    button.editMarksButton.btn.btn-primary(href='', data-id=''+ student.number, type='button', data-toggle='modal', data-target='#myModal')
+                        | Edit
 
     #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
         .modal-dialog(role='document')

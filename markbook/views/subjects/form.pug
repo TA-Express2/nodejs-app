@@ -1,0 +1,18 @@
+extends ../_common/layout
+
+block content
+    h2
+        | New subject:
+    form.form(id='editSubject' method='POST' action='/subjects')
+        div.form
+            label(for='subject') Subject: 
+                input#modalSubjectName(type='text' placeholder='Subject' name='subject' pattern='[A-Za-z]+' required)
+            label(for='teacher') Teacher: 
+                select#modalTeacherName(name='teacher')
+                    - teachers = [ 'Select', 'Doncho Minkov', 'Hristo Hristov'];
+                    for teacher in teachers
+                        option #{teacher}
+            br
+            div.inline
+                button.btn.btn-default(type='reset' onclick='location.href = \'/subjects\'') Cancel
+                button.btn.btn-success Save

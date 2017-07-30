@@ -2,7 +2,11 @@ const User = require('./user.model');
 
 class Student extends User {
     static isValid(model) {
-        return typeof model !== 'undefined';
+        return typeof model !== 'undefined' &&
+            typeof model.firstName === 'string' &&
+            model.firstName.length > 1 &&
+            model.lastName === 'string' &&
+            model.lastName.length > 1;
     }
 
     get id() {
