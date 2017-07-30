@@ -10,12 +10,18 @@ html
     script(src='../../node_modules/toastr/build/toastr.min.js')
     script(src='../../public/js/toastr.js')
     script(src='../../public/js/socketio.js')
+    block stylesheet
     link(rel='stylesheet', href='/node_modules/bootstrap/dist/css/bootstrap.css')
     link(rel='stylesheet', href='/node_modules/font-awesome/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/public/stylesheets/footer.css')
     link(rel='stylesheet', href='/public/style.css')
 body
-  div.wrapper
-    include nav
-    div.main
-      block content
-  include footer
+  div.site-wrapper
+    div.site-wrapper-inner
+      div.markbook-conteiner
+        div.navigation.clearfix
+          div.inner
+            include nav
+        div.main
+          block content
+        include footer
