@@ -59,3 +59,4 @@ ClientBin/
 node_modules/
 bower_components/
 *.2017-07-01T11-21-53Z-00000
+coverage/
