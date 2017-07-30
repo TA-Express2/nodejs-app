@@ -39,10 +39,7 @@ nav.navbar.navbar-fixed-top.navbar-light
           a.nav-link(href='/students') Students
     ul.nav.navbar-nav.pull-right
         li.nav-item.dropdown
-          a.nav-link.dropdown-toggle(data-toggle="dropdown",href="#",role="button") Markbook
+          a.nav-link.dropdown-toggle(data-toggle="dropdown",href="#",role="button") Grades
             .dropdown-menu
               each val, key in gradesItems
                 +dropdown-item(key, val)
-    ul.nav.navbar-nav.pull-right
-      li.nav-item
-        a.nav-link(href='/home') Home

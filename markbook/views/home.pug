@@ -1,6 +1,12 @@
 extends _common/layout
 
+block stylesheet
+  link(rel='stylesheet', href='../public/stylesheets/home.css')
 
 block content
-  h1=title
-  h4 Hello
+  div.cover.inner
+    h2.cover.heading Welcome to Markbook
+    p.lead The best free gradebook for teachers and students. It's clean and simple to use.
+    p.lead
+      a.btn.btn-lg.btn-default(href=`/learnMore`)
+        |Learn more  
