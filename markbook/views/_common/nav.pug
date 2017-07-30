@@ -1,5 +1,6 @@
 - var links = { 'Item1': '/link1', 'Item2': '/link2' }
 - var userItems = { 'Profile': '/profile', 'Change password': '/changePassword', 'Log out': '/logout' }
+- var users = { 'Students': '/students', 'Teachers': '/teachers', 'Subjects': '/subjects' }
 - var gradesItems = { "12A": "/markbook/12A", "12C": "/markbook/12C", "11A": "/markbook/11A" }
 
 mixin dropdown-item(name, link)
@@ -13,7 +14,7 @@ nav.navbar.navbar-fixed-top.navbar-light
   .container
     .navbar-brand 
       a.nav-link(href='/') Markbook
-    if (user)
+    if user
       ul.nav.navbar-nav.pull-right
         li.nav-item.dropdown
           a.nav-link.dropdown-toggle(data-toggle='dropdown',href='#',role='button') #{user.email}
@@ -24,14 +25,18 @@ nav.navbar.navbar-fixed-top.navbar-light
       ul.nav.navbar-nav.pull-right
         li.nav-item
           a.nav-link(href='/login') Log in
-    //- if (user)
-      //- if (user.role === 'admin' || user.role === 'teacher')
-    ul.nav.navbar-nav.pull-right
-      li.nav-item
-        a.nav-link(href='/teachers') Teachers
-    ul.nav.navbar-nav.pull-right
-      li.nav-item
-        a.nav-link(href='/students') Students
+    if user
+      if (user.role === 'admin' || user.role === 'teacher')
+        ul.nav.navbar-nav.pull-right
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle(data-toggle='dropdown',href='#',role='button') Users
+              .dropdown-menu
+                each val, key in users
+                  +dropdown-item(key, val)
+    else
+      ul.nav.navbar-nav.pull-right
+        li.nav-item
+          a.nav-link(href='/students') Students
     ul.nav.navbar-nav.pull-right
         li.nav-item.dropdown
           a.nav-link.dropdown-toggle(data-toggle="dropdown",href="#",role="button") Markbook
