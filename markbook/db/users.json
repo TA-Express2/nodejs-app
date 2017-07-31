@@ -1,47 +1,47 @@
 {
     "users": [{
         "email": "admin@admin.com",
-        "hashPassword": "admin",
+        "hashPassword": "21232f297a57a5a743894a0e4a801fc3",
         "role": "admin"
     },
     {
         "email": "nadeto@gmail.com",
-        "hashPassword": "123",
+        "hashPassword": "202cb962ac59075b964b07152d234b70",
         "role": "student"
     },
     {
         "email": "paco@gmail.com",
-        "hashPassword": "123",
+        "hashPassword": "202cb962ac59075b964b07152d234b70",
         "role": "student"
     },
     {
         "email": "ems@gmail.com",
-        "hashPassword": "123",
+        "hashPassword": "202cb962ac59075b964b07152d234b70",
         "role": "student"
     },
     {
         "email": "aivanova@gmail.com",
-        "hashPassword": "123",
+        "hashPassword": "202cb962ac59075b964b07152d234b70",
         "role": "student"
     },
     {
         "email": "popo@gmail.com",
-        "hashPassword": "123",
+        "hashPassword": "202cb962ac59075b964b07152d234b70",
         "role": "student"
     },
     {
         "email": "ivo_shopata@gmail.com",
-        "hashPassword": "123",
+        "hashPassword": "202cb962ac59075b964b07152d234b70",
         "role": "student"
     },
     {
         "email": "doncho@doncho.com",
-        "hashPassword": "!123456qw*",
+        "hashPassword": "c568217d9762c40d8b8ebf700b619c2a",
         "role": "teacher"
     },
     {
         "email": "ickata@abv.bg",
-        "hashPassword": "!123456qw*",
+        "hashPassword": "c568217d9762c40d8b8ebf700b619c2a",
         "role": "teacher"
     }],
     "admins": [{

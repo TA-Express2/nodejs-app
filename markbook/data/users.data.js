@@ -1,3 +1,4 @@
+const md5 = require('md5');
 const BaseData = require('./base.data');
 const User = require('../models/user.model');
 
@@ -13,7 +14,7 @@ class UsersData extends BaseData {
                     throw new Error('Invalid user!');
                 }
 
-                if (user.hashPassword !== password) {
+                if (user.hashPassword !== md5(password)) {
                     throw new Error('Invalid password!');
                 }
 

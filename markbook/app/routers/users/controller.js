@@ -1,4 +1,5 @@
 const { MongoClient, ObjectID } = require('mongodb');
+const md5 = require('md5');
 
 const init = (data) => {
     const controller = {
@@ -15,7 +16,7 @@ const init = (data) => {
             }
             return data.users.collection.update({ _id: req.user._id }, {
                         $set: {
-                            hashPassword: req.body.password,
+                            hashPassword: md5(req.body.password),
                         },
                         $unset: {
                             egn: '',
