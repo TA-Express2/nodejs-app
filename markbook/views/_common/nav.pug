@@ -1,7 +1,6 @@
 - var links = { 'Item1': '/link1', 'Item2': '/link2' }
 - var userItems = { 'Profile': '/profile', 'Change password': '/changePassword', 'Log out': '/logout' }
 - var users = { 'Students': '/students', 'Teachers': '/teachers', 'Subjects': '/subjects' }
-- var gradesItems = { "12A": "/markbook/12A", "12C": "/markbook/12C", "11A": "/markbook/11A" }
 
 mixin dropdown-item(name, link)
   a.dropdown-item(href=link)= name
@@ -36,9 +35,7 @@ nav.navbar.navbar-fixed-top.navbar-light
         ul.nav.navbar-nav.pull-right
           li.nav-item.dropdown
             a#nav-btn-grades.nav-link.dropdown-toggle(data-toggle="dropdown",href="#",role="button") Grades
-              .dropdown-menu
-                each val, key in gradesItems
-                  +dropdown-item(key, val)
+              .dropdown-menu#gradesDropdownItems
       else
         ul.nav.navbar-nav.pull-right
           li.nav-item

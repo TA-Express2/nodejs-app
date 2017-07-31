@@ -14,6 +14,9 @@ class BaseData {
             .toArray();
     }
 
+    gatherAllUniqProps(props) {
+        return this.collection.distinct(props);
+    }
     filterByGradeAndSortAsc(props) {
         return this.collection.find(props).sort({ firstName: 1 })
             .toArray();

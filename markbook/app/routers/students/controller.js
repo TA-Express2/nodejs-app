@@ -13,34 +13,40 @@ const init = (data) => {
                 });
         },
         addStudentForm(req, res) {
-            return res.render('students/form');
+            if (req.user && (req.user.role === 'admin' || req.user.role === 'teacher')) {
+                return res.render('students/form');
+            }
+            return res.redirect('/login');
         },
         addStudent(req, res) {
-            const student = req.body;
-            data.students.create(student)
-                .then(async (dbStudent) => {
-                    const count = (await data.students.getCollectionCount())
-                        .toString();
-                    const pad = '0000';
-                    const number = 'S' +
-                        pad.substring(0, pad.length - count.length) + count;
-                    data.students.collection.update({ _id: dbStudent._id }, {
-                        $set: {
-                            number: number,
-                            marks: [],
-                        },
-                    })
-                    .then(data.users.create({
-                        email: student.email,
-                        hashPassword: student.egn,
-                        egn: student.egn,
-                        role: 'student',
-                    }))
-                    .catch(function(err) {
-                        throw err;
+            if (req.user && (req.user.role === 'admin' || req.user.role === 'teacher')) {
+                const student = req.body;
+                data.students.create(student)
+                    .then(async (dbStudent) => {
+                        const count = (await data.students.getCollectionCount())
+                            .toString();
+                        const pad = '0000';
+                        const number = 'S' +
+                            pad.substring(0, pad.length - count.length) + count;
+                        data.students.collection.update({ _id: dbStudent._id }, {
+                            $set: {
+                                number: number,
+                                marks: [],
+                            },
+                        })
+                        .then(data.users.create({
+                            email: student.email,
+                            hashPassword: student.egn,
+                            egn: student.egn,
+                            role: 'student',
+                        }))
+                        .catch(function(err) {
+                            throw err;
+                        });
+                        res.redirect('/students');
                     });
-                    res.redirect('/students');
-                });
+            }
+            return res.redirect('login');
         },
         getStudentById(req, res) {
             return data.students.findByNumber(req.params.id)

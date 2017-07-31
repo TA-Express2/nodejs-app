@@ -14,9 +14,18 @@ block content
                     | Student's Number
                 th
                     | Student's Name
-                each subject in subjects
-                    th(colspan='2')
-                        = subject
+                if user.role === 'admin'
+                     each subj in subjects
+                        th(colspan='2')
+                            = subj
+                if user.role === 'teacher'
+                    each subj in subjects
+                        if thisUser.subjects && thisUser.subjects == subj
+                            th(colspan='2')
+                                = subj
+                        else
+                            th
+                                = subj
         tdoby
             each student in students
                 tr(id=student.number)
@@ -26,5 +35,5 @@ block content
                         = student.firstName
                         |  &nbsp;
                         = student.lastName
-                    +subjects(student, subjects)
+                    +subjects(student, subjects, thisUser, grade)
 
