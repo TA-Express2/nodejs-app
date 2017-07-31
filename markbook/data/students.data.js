@@ -6,6 +6,10 @@ class StudentsData extends BaseData {
         super(db, Student, Student);
     }
 
+    getDistinctMarks(field, props) {
+        return this.collection.distinct(field, props);
+    }
+
     updateStudent(student, data) {
         return this.collection.update(student, data);
     }
