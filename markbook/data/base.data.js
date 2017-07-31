@@ -75,11 +75,12 @@ class BaseData {
             });
     }
 
-     findByEmail(email) {
+    findByEmail(email) {
         return this
             .filterBy({ email: new RegExp(email, 'i') })
             .then(([user]) => user);
     }
+
     findByNumber(id) {
         return this.collection.findOne({
             number: id,

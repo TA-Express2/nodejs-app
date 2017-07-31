@@ -5,8 +5,6 @@ const md5 = require('md5');
 const init = (data) => {
     const controller = {
         getAll(req, res) {
-            console.log('123', md5('123'))
-            console.log('!123456qw*', md5('!123456qw*'))
             return data.students.getAll()
                 .then((students) => {
                     return res.render('students/listAll', {

@@ -27,15 +27,12 @@ const init = (data) => {
                 });
         },
         editSubject(req, res) {
-            // console.log('req.body', req.body);
             if (req.user && req.user.role === 'admin') {
-                const subjectId = req.body._id;
-                return data.subjects.findById(subjectId)
+                return data.subjects.findByName(req.body.subjectName)
                     .then((subject) => {
-                        // console.log('subject', subject)
-                        data.subjects.collection.update({ _id: subjectId }, {
+                        data.subjects.collection.update({ _id: subject._id }, {
                             $set: {
-                                'subject': req.body.subject,
+                                'subject': req.body.subjectName,
                                 'teacher': req.body.teacher,
                             },
                         });

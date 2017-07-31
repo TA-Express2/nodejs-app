@@ -20,7 +20,7 @@ block content
                 tr(id=`${subject._id}`)
                     td.subject #{subject.subject}
                     td.teacher #{subject.teacher}
-                    if (user.role === 'admin')
+                    if (user && user.role === 'admin')
                         td
                             if (subject.teacher)
                                 button.editSubjectButton.btn.btn-primary.middle(type='button' data-id=''+ subject._id data-toggle='modal' data-target='#subjectModal')

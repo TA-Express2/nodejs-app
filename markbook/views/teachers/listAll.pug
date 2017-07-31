@@ -1,35 +1,31 @@
 extends ../_common/layout
 
 block content
-        if user
-            div.inline
-                h1= title
-                if (user.role === 'admin' || user.role === 'teacher')
-                    if (user.role === 'admin')
-                        a.btn.btn-primary.middle(href='/teachers/form' type='button') Add teacher
-            table.table.table-responsive.table-striped
-                thead
-                    tr
-                        th
-                            | Teacher's number
-                        th
-                            | Teacher's name
-                        th
-                            | Subjects
-                        th
+        div.inline
+            h1= title
+            if (user && (user.role === 'admin' || user.role === 'teacher'))
+                if (user.role === 'admin')
+                    a.btn.btn-primary.middle(href='/teachers/form' type='button') Add teacher
+        table.table.table-responsive.table-striped
+            thead
+                tr
+                    th
+                        | Teacher's number
+                    th
+                        | Teacher's name
+                    th
+                        | Subjects
+                    th
 
-                tbody
-                    each teacher in model
-                        tr
-                            td #{teacher.number}
-                            td #{teacher.firstName} #{teacher.lastName}
-                            td 
-                                - subjects = [teacher.subjects];
-                                each subject in subjects.length ? subjects : ['']
-                                    p= subject
+            tbody
+                each teacher in model
+                    tr
+                        td #{teacher.number}
+                        td #{teacher.firstName} #{teacher.lastName}
+                        td 
+                            - subjects = [teacher.subjects];
+                            each subject in subjects.length ? subjects : ['']
+                                p= subject
+                        if (user && (user.role === 'admin' || user.role === 'teacher'))
                             td
                                 a(href=`/teachers/${teacher.number}`) View profile
-            if (user.role === 'student')
-                p You are not authorised to view this data.
-        else
-            p You are not authorised to view this data.

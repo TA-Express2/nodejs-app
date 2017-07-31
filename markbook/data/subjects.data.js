@@ -6,6 +6,12 @@ class SubjectsData extends BaseData {
         super(db, Subject, Subject);
     }
 
+    findByName(name) {
+        return this.collection.findOne({
+            subject: name,
+        });
+    }
+
     updateSubject(subject, data) {
         return this.collection.update(subject, data);
     }

@@ -23,5 +23,6 @@ block content
                     td #{student.number}
                     td #{student.firstName} #{student.lastName}
                     td #{student.grade}
-                    td
-                        a(href=`/students/${student.number}`) View profile
+                    if (user && (user.role === 'admin' || user.role === 'teacher'))
+                        td
+                            a(href=`/students/${student.number}`) View profile
