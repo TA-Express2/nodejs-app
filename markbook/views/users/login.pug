@@ -4,8 +4,8 @@ block content
     h1= title
     form.form(method='POST', action='login')
         label Email:
-            input(type='email', name='email')
+            input#input-email(type='email', name='email')
         label Password:
-            input(type='password', name='password')
-        button.btn.btn-success
+            input#input-pass(type='password', name='password')
+        button#btn-login.btn.btn-success
             | Sign in

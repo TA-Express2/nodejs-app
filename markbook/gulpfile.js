@@ -1,9 +1,10 @@
 /* eslint-disable no-console */
 
+
 const gulp = require('gulp');
 const istanbul = require('gulp-istanbul');
 const mocha = require('gulp-mocha');
-
+const { MongoClient } = require('mongodb');
 
 gulp.task('server:start', () => {
     return require('./server');
@@ -34,12 +35,13 @@ gulp.task('tests:unit', ['pre-test'], () => {
         .pipe(istanbul.writeReports());
 });
 
+
 const config = {
     connectionString: 'mongodb://localhost/items-db-test',
     port: 3002,
 };
 
-gulp.task('test-server:start', () => {
+gulp.task('server-start', () => {
     return Promise.resolve()
         .then(() => require('./db').init(config.connectionString))
         .then((db) => require('./data').init(db))
@@ -50,11 +52,20 @@ gulp.task('test-server:start', () => {
         });
 });
 
-const { MongoClient } = require('mongodb');
-
-gulp.task('test-server:stop', () => {
+gulp.task('server-stop', () => {
     return MongoClient.connect(config.connectionString)
         .then((db) => {
             return db.dropDatabase();
+        });
+});
+
+gulp.task('tests:functional', ['server-start'], () => {
+    return gulp.src('./test/functional/**/*.js')
+        .pipe(mocha({
+            reporter: 'nyan',
+            timeout: 50000,
+        }))
+        .once('end', () => {
+            gulp.start('server-stop');
         });
 });

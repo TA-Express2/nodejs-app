@@ -13,7 +13,7 @@ mixin nav-item(name, link)
 nav.navbar.navbar-fixed-top.navbar-light
   .container
     .navbar-brand 
-      a.nav-link(href='/') Markbook
+      a#nav-btn-markbook.nav-link(href='/') Markbook
     if user
       ul.nav.navbar-nav.pull-right
         li.nav-item.dropdown
@@ -24,7 +24,7 @@ nav.navbar.navbar-fixed-top.navbar-light
     else
       ul.nav.navbar-nav.pull-right
         li.nav-item
-          a.nav-link(href='/login') Log in
+          a#nav-btn-login.nav-link(href='/login') Log in
     if user
       if (user.role === 'admin' || user.role === 'teacher')
         ul.nav.navbar-nav.pull-right
@@ -39,7 +39,7 @@ nav.navbar.navbar-fixed-top.navbar-light
           a.nav-link(href='/students') Students
     ul.nav.navbar-nav.pull-right
         li.nav-item.dropdown
-          a.nav-link.dropdown-toggle(data-toggle="dropdown",href="#",role="button") Grades
+          a#nav-btn-grades.nav-link.dropdown-toggle(data-toggle="dropdown",href="#",role="button") Grades
             .dropdown-menu
               each val, key in gradesItems
                 +dropdown-item(key, val)

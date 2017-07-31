@@ -42,6 +42,7 @@
         "gulp": "^3.9.1",
         "gulp-istanbul": "^1.1.2",
         "gulp-mocha": "^3.0.1",
-        "istanbul": "^0.4.5"
+        "istanbul": "^0.4.5",
+        "selenium-webdriver": "^3.5.0"
     }
 }
