@@ -19,9 +19,11 @@ const init = (data) => {
             const student = req.body;
             data.students.create(student)
                 .then(async (dbStudent) => {
-                    const count = (await data.students.getCollectionCount()).toString();
+                    const count = (await data.students.getCollectionCount())
+                        .toString();
                     const pad = '0000';
-                    const number = 'S' + pad.substring(0, pad.length - count.length) + count;
+                    const number = 'S' +
+                        pad.substring(0, pad.length - count.length) + count;
                     data.students.collection.update({ _id: dbStudent._id }, {
                         $set: {
                             number: number,

@@ -44,6 +44,13 @@ $(document).ready(function() {
             $('#subjectModal').modal('hide');
         });
     });
+
+    $(function() {
+        $('.deleteSubjectButton').on('click', function() {
+            const id = $(this).data('id');
+            $(`#${id}`).remove();
+        });
+    });
 });
 
 $(document).scroll(function() {
