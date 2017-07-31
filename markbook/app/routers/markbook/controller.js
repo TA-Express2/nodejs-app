@@ -7,7 +7,7 @@ const init = (data) => {
                 const studentNumber = req.body.studentNumber;
                 return data.students.findByNumber(studentNumber)
                     .then((student) => {
-                        data.students.collection.update( {
+                        data.students.collection.update({
                             'number': studentNumber,
                             'marks.name': req.body.subject,
                         }, {

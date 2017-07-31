@@ -11,9 +11,7 @@ module.exports = (app, data) => {
         .get('/students/:id', controller.getStudentById)
         .get('/students/edit/:id', controller.showStudentById)
         .post('/students/edit/:id', controller.editStudentById)
-        .get('/students/marks', controller.getStudentMarks)
-        .post('/students/marks/saveMarks', controller.saveEditMarks)
-        .get('/students/marks/editMarks', controller.getEditMarksView);
+        .get('/students/marks', controller.getStudentMarks);
 
     return router;
 };

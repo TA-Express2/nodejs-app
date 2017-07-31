@@ -87,53 +87,6 @@ const init = (data) => {
             }
             return res.redirect('/login');
         },
-        getEditMarksView(req, res, next) {
-            const id = JSON.stringify(req.query.id);
-            if (req.user.role === 'admin' || req.user.role === 'teacher') {
-                return data.students.getAll()
-                    .then((students) => {
-                        let data;
-                        students.forEach((student) => {
-                            if (JSON.stringify(student._id) === id) {
-                                return data = student;
-                            }
-                            return data;
-                        });
-                        res.send(data);
-                    })
-                    .catch(function(err) {
-                        throw err;
-                    });
-            }
-        },
-        saveEditMarks(req, res, next) {
-            if (req.user.role === "admin" || req.user.role === "teacher") {
-                return MongoClient.connect('mongodb://localhost/markbook')
-                    .then(async(db) => {
-
-                        const collection = db.collection('students');
-                        const userId = req.body.id;
-                        const subject = req.body.subject;
-                        const marks = req.body.marks.split(',');
-
-                        collection.update({
-                                "_id": ObjectID(userId),
-                                "marks.name": subject,
-                            }, {
-                                $set: {
-                                    ['marks.$.' + subject]: marks,
-                                },
-                            },
-                            function(err, success) {
-                                if (err) {
-                                    throw err;
-                                }
-                                return res.redirect('/students/marks');
-                            },
-                        );
-                    });
-            }
-        },
     };
     return controller;
 };

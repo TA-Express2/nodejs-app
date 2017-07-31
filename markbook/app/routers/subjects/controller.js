@@ -1,5 +1,3 @@
-const { ObjectID } = require('mongodb');
-
 const init = (data) => {
     const controller = {
         getAllSubjects(req, res) {
@@ -29,17 +27,22 @@ const init = (data) => {
                 });
         },
         editSubject(req, res) {
-            // console.log(req.body);
-            if (req.user.role === 'admin' || req.user.role === 'teacher') {
-                data.subjects.updateSubject({ _id: req.body.id }, {
-                    $set: {
-                        subject: req.body.subject,
-                        teacher: req.body.teacher,
-                    },
-                })
-                .then(res.redirect('/subjects'));
+            // console.log('req.body', req.body);
+            if (req.user && req.user.role === 'admin') {
+                const subjectId = req.body._id;
+                return data.subjects.findById(subjectId)
+                    .then((subject) => {
+                        // console.log('subject', subject)
+                        data.subjects.collection.update({ _id: subjectId }, {
+                            $set: {
+                                'subject': req.body.subject,
+                                'teacher': req.body.teacher,
+                            },
+                        });
+                        res.redirect('/subjects');
+                    });
             }
-            return false;
+            return res.redirect('/subjects');
         },
     };
     return controller;

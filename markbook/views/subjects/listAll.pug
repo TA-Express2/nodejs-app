@@ -17,39 +17,39 @@ block content
 
         tbody
             each subject in model
-                tr
-                    td #{subject.subject}
-                    td #{subject.teacher}
+                tr(id=`${subject._id}`)
+                    td.subject #{subject.subject}
+                    td.teacher #{subject.teacher}
                     if (user.role === 'admin')
                         td
                             if (subject.teacher)
-                                button.btn.btn-primary.middle(type='button' data-toggle='modal' data-target='#subjectModal')
+                                button.editSubjectButton.btn.btn-primary.middle(type='button' data-id=''+ subject._id data-toggle='modal' data-target='#subjectModal')
                                     | Edit teacher
                             else
-                                button.btn.btn-primary.middle(type='button' data-toggle='modal' data-target='#subjectModal') 
+                                button.editSubjectButton.btn.btn-primary.middle(type='button' data-id=''+ subject._id data-toggle='modal' data-target='#subjectModal') 
                                     | Add teacher
                             button.btn.btn-default.middle(type='button')
                                 | Delete subject
 
 
-        #subjectModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel', aria-hidden='true')
-            .modal-dialog(role='document')
-                .modal-content
-                    .modal-header
-                        h5#exampleModalLabel.modal-title Edit subject
-                        button.close(type='button' data-dismiss='modal' aria-label='Close')
-                        span(aria-hidden='true')
-                    .modal-body
-                        form(id='editSubject' action='/subjects/form' method= 'POST')
-                            h5 Subject:
-                            h3
-                                input#modalSubjectName(type='text', value='', name='subject', readonly)
-                            h5 Teacher:
-                            h3
-                                select#modalTeacherName(name='teacher' readonly)
-                                    - teachers = [ 'Select', 'Doncho Minkov', 'Hristo Hristov'];
-                                    for teacher in teachers
-                                        option #{teacher}
-                    .modal-footer
-                        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-                        button.editSubjectButton.btn.btn-primary(type="submit") Save
+    #subjectModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5#exampleModalLabel.modal-title Edit subject
+                    button.close(type='button' data-dismiss='modal' aria-label='Close')
+                    span(aria-hidden='true')
+                .modal-body
+                    form(id='editSubject' action='/subjects/editSubject' method= 'POST')
+                        h5 Subject:
+                        h3
+                            input#modalSubjectName(type='text' value='' name='subjectName' readonly)
+                        h5 Teacher:
+                        h3
+                            select#modalTeacherName(name='teacher' readonly)
+                                - teachers = [ 'Select', 'Doncho Minkov', 'Hristo Hristov'];
+                                for teacher in teachers
+                                    option #{teacher}
+                .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                    button.saveSubjectButton.btn.btn-primary(type="submit") Save

@@ -8,7 +8,7 @@ module.exports = (app, data) => {
         .get('/subjects', controller.getAllSubjects)
         .post('/subjects', controller.addSubject)
         .get('/subjects/form', controller.addSubjectForm)
-        .post('/subjects/form', controller.editSubject);
+        .post('/subjects/editSubject', controller.editSubject);
 
     return router;
 };

@@ -7,25 +7,6 @@ class UsersData extends BaseData {
     }
 
     checkPassword(email, password) {
-        /* const findByEmail = () => {
-            return this.findByEmail(email);
-        };
-        const redirect = (user) => {
-            console.log(user)
-             if (!user) {
-                throw new Error('Invalid user!');
-            }
-
-            if (user.egn === password) {
-                console.log('REDIRECT');
-            } else if (user.hashPassword !== password) {
-                throw new Error('Invalid password!');
-            }
-
-            return user;
-        };
-        return findByEmail()
-            .then(redirect); */
         return this.findByEmail(email)
             .then((user) => {
                 if (!user) {

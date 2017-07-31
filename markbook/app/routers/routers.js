@@ -25,6 +25,7 @@ module.exports = (app, data) => {
     app.use('/:id', teachers);
     app.use('/edit/:id', teachers);
     app.use('/', subjects);
+    app.use('/editSubject', subjects);
     app.use('/:grade', markbook);
     app.use('/saveMarks', markbook);
 };
