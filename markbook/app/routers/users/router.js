@@ -7,7 +7,7 @@ module.exports = (app, data) => {
     router
         .get('/changePassword', controller.viewChangeUserPassword)
         .post('/changePassword', controller.changeUserPassword)
-        .get('/profile', controller.getStudentProfile);
+        .get('/profile', controller.getUserProfile);
 
     return router;
 };

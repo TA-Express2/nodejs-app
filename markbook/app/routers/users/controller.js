@@ -23,11 +23,40 @@ const init = (data) => {
                     })
                 .then(res.redirect('/'));
         },
-        getStudentProfile(req, res) {
+        getUserProfile(req, res) {
             if (req.user) {
-                return res.render('users/profile', {
-                    title: 'Your profile:',
-                });
+                const role = req.user.role;
+                const email = req.user.email;
+                if (role === 'admin') {
+                    return data.admins.findByEmail(email)
+                        .then((user) => {
+                            return res.render('users/profile', {
+                            title: 'Your profile:',
+                            dataUser: user,
+                            role: role,
+                            });
+                        });
+                }
+                if (role === 'teacher') {
+                    return data.teachers.findByEmail(email)
+                        .then((user) => {
+                            return res.render('users/profile', {
+                            title: 'Your profile:',
+                            dataUser: user,
+                            role: role,
+                            });
+                        });
+                }
+                if (role === 'student') {
+                    return data.students.findByEmail(email)
+                        .then((user) => {
+                            return res.render('users/profile', {
+                            title: 'Your profile:',
+                            dataUser: user,
+                            role: role,
+                            });
+                        });
+                }
             }
             return res.redirect('/login');
         },

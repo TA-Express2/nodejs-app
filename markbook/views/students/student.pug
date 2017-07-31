@@ -11,27 +11,35 @@ block content
     .tab-content
             #studentInfoById.tab-pane.fade.in.active
                 p Grade: <strong>#{model.grade}</strong>
-                p Email: <strong>#{model.email}</strong>
-                p EGN: <strong>#{model.egn}</strong>
+                if user
+                    if user.role === 'admin' || user.role === 'teacher'
+                        p Email: <strong>#{model.email}</strong>
+                if user
+                    if user.role === 'admin' || user.role === 'teacher'
+                        p EGN: <strong>#{model.egn}</strong>
                 p Gender: <strong>#{model.gender}</strong>
                 p Address: <strong>#{model.address}</strong>
                 p Parent: <strong>#{model.parentName}</strong>
-                p Parent phone: <strong>#{model.parentPhone}</strong>
+                if user
+                    if user.role === 'admin' || user.role === 'teacher'
+                        p Parent phone: <strong>#{model.parentPhone}</strong>
                 p Status: <strong>#{model.status}</strong>
                 br
-                if (user)
-                    if (user.role === 'admin' || user.role === 'teacher')
+                if user
+                    if user.role === 'admin' || user.role === 'teacher'
                         a(href=`/students/edit/${model.number}`) Edit student data
             #studentMarksById.tab-pane.fade
-                table.table.table-responsive.table-striped
-                    if (model.marks)
-                        thead
-                            tr
-                                each mark in model.marks
-                                    th
-                                        = mark.name
-                        tbody
-                            tr
-                                each mark in model.marks
-                                    td
-                                        = Object.values(mark)[0]
+                if user
+                    if user.role === 'admin' || user.role === 'teacher'
+                        table.table.table-responsive.table-striped
+                            if (model.marks)
+                                thead
+                                    tr
+                                        each mark in model.marks
+                                            th
+                                                = mark.name
+                                tbody
+                                    tr
+                                        each mark in model.marks
+                                            td
+                                                = Object.values(mark)[0]

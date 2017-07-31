@@ -1,13 +1,15 @@
-extends _common/layout
+extends ../_common/layout
 
 block content
     h1= title
-    if (user.role === 'student')
+    if user && user.role === 'student'
         ul.nav.nav-tabs
             li.active
                 a(data-toggle='tab', href='#studentInfo') Student's info
             li
                 a(data-toggle='tab', href='#parentInfo') Parent's info
+            li
+                a(data-toggle='tab', href='#studentMarks') Student's marks
         .tab-content
             #studentInfo.tab-pane.fade.in.active
                 table.table.table-responsive
@@ -16,17 +18,17 @@ block content
                             th
                                 | Student's number:
                             td
-                                | #{user.number}
+                                | #{dataUser.number}
                         tr
                             th
                                 | First name:
                             td
-                                | #{user.firstName}
+                                | #{dataUser.firstName}
                         tr
                             th
                                 | Last name:
                             td
-                                | #{user.lastName}
+                                | #{dataUser.lastName}
                         tr
                             th
                                 | Role:
@@ -36,27 +38,22 @@ block content
                             th
                                 | Identification number:
                             td
-                                | #{user.egn}
+                                | #{dataUser.egn}
                         tr
                             th
                                 | Grade:
                             td
-                                | #{user.grade}
+                                | #{dataUser.grade}
                         tr
                             th
                                 | Address:
                             td
-                                | #{user.address}
-                        tr
-                            th
-                                | Phone number:
-                            td
-                                | #{user.phone}
+                                | #{dataUser.address}
                         tr
                             th
                                 | Email:
                             td
-                                | #{user.email}
+                                | #{dataUser.email}
 
             #parentInfo.tab-pane.fade
                 table.table.table-responsive
@@ -65,18 +62,25 @@ block content
                             th
                                 | Name:
                             td
-                                | #{user.parentName}
-                        tr
-                            th
-                                | Address:
-                            td
-                                | #{user.parentAddress}
+                                | #{dataUser.parentName}
                         tr
                             th
                                 | Phone number:
                             td
-                                | #{user.parentPhone}
-    if (user.role === 'admin')
+                                | #{dataUser.parentPhone}
+            #studentMarks.tab-pane.fade
+                table.table.table-responsive.table-striped
+                    thead
+                        tr
+                            each mark in dataUser.marks
+                                th
+                                    = mark.name
+                    tbody
+                        tr
+                            each mark in dataUser.marks
+                                td
+                                    = Object.values(mark)[0]
+    if user && user.role === 'admin'
         ul.nav.nav-tabs
             li.active
                 a(data-toggle='tab', href='#userInfo') User's info
@@ -88,12 +92,12 @@ block content
                             th
                                 | First Name:
                             td
-                                | #{user.firstName}
+                                | #{dataUser.firstName}
                         tr
                             th
                                 | Last Name:
                             td
-                                | #{user.lastName}
+                                | #{dataUser.lastName}
                         tr
                             th
                                 | Role:
@@ -103,8 +107,8 @@ block content
                             th
                                 | Email:
                             td
-                                | #{user.email}
-    if (user.role === 'teacher')
+                                | #{dataUser.email}
+    if user && user.role === 'teacher'
         ul.nav.nav-tabs
             li.active
                 a(data-toggle='tab', href='#userInfo') User's info
@@ -116,12 +120,12 @@ block content
                         th
                             | First Name:
                         td
-                            | #{user.firstName}
+                            | #{dataUser.firstName}
                     tr
                         th
                             | Last Name:
                         td
-                            | #{user.lastName}
+                            | #{dataUser.lastName}
                     tr
                         th
                             | Role:
@@ -132,9 +136,9 @@ block content
                         th
                             | Subject:
                         td
-                            | #{user.subject}
+                            | #{dataUser.subjects}
                     tr
                         th
                             | Email:
                         td
-                            | #{user.email}
+                            | #{dataUser.email}
