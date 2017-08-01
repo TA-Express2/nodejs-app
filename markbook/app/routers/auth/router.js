@@ -1,5 +1,6 @@
 const express = require('express');
 const passport = require('passport');
+const md5 = require('md5');
 
 module.exports = (app, data) => {
     const router = new express.Router();
@@ -12,7 +13,7 @@ module.exports = (app, data) => {
                 failureRedirect: '/login',
                 failureFlash: true,
             }), (req, res) => {
-                if (req.user.egn === req.user.hashPassword) {
+                if (req.user.egn && (md5(req.user.egn) === req.user.hashPassword)) {
                     return res.redirect('/changePassword');
                 }
                 return res.redirect('/');
