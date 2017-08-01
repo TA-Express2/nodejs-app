@@ -1,6 +1,6 @@
 const { MongoClient, ObjectID } = require('mongodb');
 
-const init = (data) => {
+const init = (app, data) => {
     const controller = {
         saveMarks(req, res) {
             if (req.user && (req.user.role === 'admin' || req.user.role === 'teacher')) {
@@ -15,6 +15,10 @@ const init = (data) => {
                                     ['marks.$.' + req.body.subject]: req.body.marks,
                                 },
                             });
+                            // app.io.emit('new-marks', {
+                            // marks: req.body.marks,
+                            // url: `/markbook/${req.body.studentGrade}`,
+                            // });
                         res.redirect(`/markbook/${req.body.studentGrade}`);
                     });
             }

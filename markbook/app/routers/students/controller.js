@@ -26,7 +26,8 @@ const init = (data) => {
                         const pad = '0000';
                         const number = 'S' +
                             pad.substring(0, pad.length - count.length) + count;
-                        data.students.collection.update({ _id: dbStudent._id }, {
+                        data.students.collection
+                        .update({ _id: dbStudent._id }, {
                             $set: {
                                 number: number,
                                 marks: [],

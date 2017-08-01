@@ -1,6 +1,7 @@
 - var links = { 'Item1': '/link1', 'Item2': '/link2' }
 - var userItems = { 'Profile': '/profile', 'Change password': '/changePassword', 'Log out': '/logout' }
 - var users = { 'Students': '/students', 'Teachers': '/teachers', 'Subjects': '/subjects' }
+- var gradesItems = { "12A": "/grades/12A", "12C": "/grades/12C", "11A": "/grades/11A" }
 
 mixin dropdown-item(name, link)
   a.dropdown-item(href=link)= name
@@ -26,7 +27,7 @@ nav.navbar.navbar-fixed-top.navbar-light
           a#nav-btn-login.nav-link(href='/login') Log in
     ul.nav.navbar-nav.pull-right
       li.nav-item.dropdown
-        a.nav-link.dropdown-toggle(data-toggle='dropdown',href='#',role='button') Users
+        a#nav-btn-users.nav-link.dropdown-toggle(data-toggle='dropdown',href='#',role='button') Users
           .dropdown-menu
             each val, key in users
               +dropdown-item(key, val)
