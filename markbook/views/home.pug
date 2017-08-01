@@ -8,4 +8,5 @@ block content
     h2.cover.heading Welcome to Markbook
     div.inner
       p.lead The best free gradebook for teachers and students. It's clean and simple to use.
-      p.lead Log in to have full access.
+      unless user
+        p.lead Log in to have full access.

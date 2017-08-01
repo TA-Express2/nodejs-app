@@ -1,3 +1,5 @@
+const md5 = require('md5');
+
 const init = (data) => {
     const controller = {
         getAllTeachers(req, res) {
@@ -30,7 +32,7 @@ const init = (data) => {
                     })
                     .then(data.users.create({
                         email: teacher.email,
-                        hashPassword: teacher.egn,
+                        hashPassword: md5(teacher.egn),
                         egn: teacher.egn,
                         role: 'teacher',
                     }))
