@@ -14,17 +14,24 @@ const init = (data) => {
         },
         addSubject(req, res) {
             const subject = req.body;
-            data.subjects.create(subject)
-                // .then(data.teachers.findOrCreateBy(subject))
-                //     console.log('subject', subject)
-                // .then((dbSubject) => {
-                //     console.log('dbSubject', dbSubject)
-                // })
-                .then(res.redirect('/subjects'))
-                .catch((err) => {
-                    req.flash('error', err);
-                    return res.redirect('/subjects/form');
-                });
+            data.subjects.create(subject);
+            if (subject.teacher) {
+                const firstName = subject.teacher.split(' ')[0];
+                const lastName = subject.teacher.split(' ')[1];
+                data.teachers.findBUserNames(firstName, lastName)
+                    .then((dbTeacher) => {
+                        data.teachers.collection.update({ _id: dbTeacher._id }, {
+                            $push: {
+                                subjects: subject.subject,
+                            },
+                        });
+                    })
+                    .catch((err) => {
+                        req.flash('error', err);
+                        return res.redirect('/subjects/form');
+                    });
+            }
+            res.redirect('/subjects');
         },
         editSubject(req, res) {
             if (req.user && req.user.role === 'admin') {
@@ -36,6 +43,22 @@ const init = (data) => {
                                 'teacher': req.body.teacher,
                             },
                         });
+                        if (subject.teacher) {
+                            const firstName = subject.teacher.split(' ')[0];
+                            const lastName = subject.teacher.split(' ')[1];
+                            data.teachers.findBUserNames(firstName, lastName)
+                                .then((dbTeacher) => {
+                                    data.teachers.collection.update({ _id: dbTeacher._id }, {
+                                        $push: {
+                                            subjects: subject.subject,
+                                        },
+                                    });
+                                })
+                                .catch((err) => {
+                                    req.flash('error', err);
+                                    return res.redirect('/subjects/form');
+                                });
+                        }
                         res.redirect('/subjects');
                     });
             }
