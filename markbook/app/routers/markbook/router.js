@@ -5,7 +5,8 @@ module.exports = (app, data) => {
     const controller = require('./controller').init(data);
 
     router
+        .get('/grades', controller.getAllGrades)
         .get('/:grade', controller.getMarkbookByGrade)
-        .post('/saveMarks', controller.saveMarks);
+        .post('/:grade', controller.saveMarks);
     return router;
 };

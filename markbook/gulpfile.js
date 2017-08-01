@@ -28,6 +28,8 @@ gulp.task('pre-test', () => {
 gulp.task('tests:unit', ['pre-test'], () => {
     return gulp.src([
         './test/unit/**/*.js',
+        './test/integration/**/*.js',
+        './test/functional/**/*.js',
     ])
         .pipe(mocha({
             reporter: 'nyan',

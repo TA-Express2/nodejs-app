@@ -2,14 +2,24 @@ mixin subjects(student, subjects)
     - let thisStudent = student
     - function getObjectKeyIndex(obj, keyToFind) { const index = obj.findIndex((x) => x.name === keyToFind); return index;}
 
-    each subj in subjects
-        td(class=`${subj} ${student.grade}`)
-            - i = getObjectKeyIndex(student.marks, subj)
-            - value = Object.values(student.marks)[i][subj]
-            = value
-        td
-            if user
-                if  (user.role === 'admin')
+    if user && user.role === 'admin'
+        each subj in subjects
+            td(class=`${subj} ${student.grade}`)
+                - i = getObjectKeyIndex(student.marks, subj)
+                - value = Object.values(student.marks)[i][subj]
+                = value
+            td
+                button.editMarksButton.btn.btn-primary(href='', data-id=''+ student.number, type='button', data-toggle='modal', data-target='#myModal')
+                    | Edit
+
+    if user && user.role === 'teacher'
+        each subj in subjects
+            td(class=`${subj} ${student.grade}`)
+                - i = getObjectKeyIndex(student.marks, subj)
+                - value = Object.values(student.marks)[i][subj]
+                = value
+            if  thisUser.subjects && thisUser.subjects == subj
+                td
                     button.editMarksButton.btn.btn-primary(href='', data-id=''+ student.number, type='button', data-toggle='modal', data-target='#myModal')
                         | Edit
 
