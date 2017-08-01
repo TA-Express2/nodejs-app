@@ -1,7 +1,3 @@
-const { MongoClient, ObjectID } = require('mongodb');
-const md5 = require('md5');
-
-
 const init = (data) => {
     const controller = {
         getAll(req, res) {
@@ -46,7 +42,6 @@ const init = (data) => {
                         res.redirect('/students');
                     });
             }
-            return res.redirect('login');
         },
         getStudentById(req, res) {
             return data.students.findByNumber(req.params.id)

@@ -1,4 +1,3 @@
-const { MongoClient, ObjectID } = require('mongodb');
 const md5 = require('md5');
 
 const init = (data) => {
