@@ -6,7 +6,7 @@ _Web applications with Node.js_
 
 This is a **Standard Web application** using [Node.js](http://nodejs.org), [Express](expressjs.com) and [MongoDB](https://www.mongodb.com/).  
 
-We implement simple grade book where the teachers can upload the marks of their students and they can see the anytime. 
+We implement simple grade book where the teachers can upload the marks of their students and they can see them anytime. 
 
 ### Technologies used
 
@@ -24,24 +24,24 @@ We implement simple grade book where the teachers can upload the marks of their 
 
 - Home page
 - Users
- - Students
- - Theachers
- - Subjects
+    - Students
+    - Theachers
+    - Subjects
 - Log in
 
 ### Private Part (Registered users area)
 
 - Grades
- - by classes
+    - By classes
 - Profile
- - Change password
- - Log out
+    - Change password
+    - Log out
 - Editing
- - Grades
- - Teachers/Subjects
+    - Grades
+    - Teachers/Subjects
 - Profiles
- - Students
- - Teachers
+    - Students
+    - Teachers
 
 ### Deployment in Amazon Web Services (AWS)
 
@@ -51,10 +51,6 @@ We implement simple grade book where the teachers can upload the marks of their 
 
 [nodejs-app](https://github.com/TA-Express2/nodejs-app)
 
-
 ### Deliverables
 
-
 [Sowcase System](http://best.telerikacademy.com)
-
-### Public Project Defense
