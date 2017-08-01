@@ -30,6 +30,12 @@ $(document).ready(function() {
     });
 
     $(function() {
+        $('#gradesDropdownItems').on('click', function(e) {
+            self.location = $(e.target).attr('href');
+        });
+    });
+
+    $(function() {
         $('.editSubjectButton').on('click', function() {
             const id = $(this).data('id');
             $('#modalSubjectName').val($(`tr#${id} td.subject`).text());

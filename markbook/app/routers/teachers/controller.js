@@ -9,7 +9,10 @@ const init = (data) => {
                 });
         },
         addTeacherForm(req, res) {
-            return res.render('teachers/form');
+            if (req.user && req.user.role === 'admin') {
+                return res.render('teachers/form');
+            }
+            return res.redirect('/login');
         },
         addTeacher(req, res) {
             const teacher = req.body;

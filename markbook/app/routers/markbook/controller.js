@@ -24,25 +24,37 @@ const init = (app, data) => {
             return res.redirect(`/login`);
         },
         getMarkbookByGrade(req, res) {
-            if (req.user && (req.user.role === 'admin' || req.user.role === 'teacher')) {
-                // return MongoClient.connect('mongodb://localhost/markbook')
-                const grade = req.params;
-                return data.students.getDistinctMarks('marks.name', { grade: grade.grade })
-                    .then((subjects) => {
-                        // const collectionStudents = db.collection('students');
-                        // let  = await collectionStudents.distinct('marks.name', { grade: grade.grade });
-                        subjects = subjects.sort({ 'name': 1 });
-                        // console.log(subjects);
-                        return data.students.filterByGradeAndSortAsc(grade)
-                            .then((student) => {
-                                if (!student) {
-                                    return res.render('noUser', {
-                                        title: 'No such a grade',
-                                    });
+            const grade = req.params;
+            let students;
+            let subjects;
+            if ( req.user && (req.user.role === 'admin' || req.user.role === 'teacher')) {
+                const email = req.user.email;
+                return data.students.filterByGradeAndSortAsc(grade)
+                    .then((studs) => {
+                        students = studs;
+                        if (!students) {
+                            return res.render('noUser', {
+                                title: 'No such a grade',
+                            });
+                        }
+                        return data.students.getDistinctMarks('marks.name', { grade: grade.grade })
+                            .then((subj) => {
+                                subjects = subj.sort( { 'name': 1 } );
+                                if (req.user.role === 'admin') {
+                                    return data.admins.findByEmail(email);
                                 }
+                                if (req.user.role === 'teacher') {
+                                    return data.teachers.findByEmail(email);
+                                }
+                                if (req.user.role === 'student') {
+                                    return data.students.findByEmail(email);
+                                }
+                            })
+                            .then((currUser) => {
                                 return res.render('markbook/markbook', {
                                     subjects: subjects,
-                                    students: student,
+                                    students: students,
+                                    thisUser: currUser,
                                     grade: grade,
                                     title: 'Markbook',
                                 });
@@ -50,6 +62,12 @@ const init = (app, data) => {
                     });
             }
             return res.redirect(`/login`);
+        },
+        getAllGrades(req, res, next) {
+            return data.students.gatherAllUniqProps('grade')
+                .then((grades) => {
+                    res.send(grades);
+                });
         },
     };
     return controller;

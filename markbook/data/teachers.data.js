@@ -12,6 +12,13 @@ class TeachersData extends BaseData {
         });
     }
 
+    findBUserNames(firstName, lastName) {
+        return this.collection.findOne({
+            firstName: firstName,
+            lastName: lastName,
+        });
+    }
+
     updateTeacher(teacher, data) {
         return this.collection.update(teacher, data);
     }
