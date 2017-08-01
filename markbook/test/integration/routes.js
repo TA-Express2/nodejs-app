@@ -111,10 +111,10 @@ describe('TESTING ROUTES', () => {
                 });
         });
     });
-    describe('Testing students routes', () => {
-        it('expect GET /students to return 200', (done) => {
+    describe('Testing subjects routes', () => {
+        it('expect GET /subjects to return 200', (done) => {
             request(app)
-                .get('/students')
+                .get('/subjects')
                 .expect(200)
                 .end((err, res) => {
                     if (err) {
@@ -123,9 +123,9 @@ describe('TESTING ROUTES', () => {
                     return done();
                 });
         });
-        it('expect POST /students to return 302', (done) => {
+        it('expect POST /subjects to return 302', (done) => {
             request(app)
-                .post('/students')
+                .post('/subjects')
                 .expect(302)
                 .end((err, res) => {
                     if (err) {
@@ -134,9 +134,9 @@ describe('TESTING ROUTES', () => {
                     return done();
                 });
         });
-        it('expect GET /students/form to return 302 if not logged in', (done) => {
+        it('expect GET /subjects/form to return 302', (done) => {
             request(app)
-                .get('/students/form')
+                .get('/subjects/form')
                 .expect(302)
                 .end((err, res) => {
                     if (err) {
@@ -145,43 +145,10 @@ describe('TESTING ROUTES', () => {
                     return done();
                 });
         });
-        it('expect GET /students/:id to return 200', (done) => {
+        it('expect POST /subjects/editSubject to return 302', (done) => {
             request(app)
-                .get('/students/S0001')
-                .expect(200)
-                .end((err, res) => {
-                    if (err) {
-                        return done(err);
-                    }
-                    return done();
-                });
-        });
-        it('expect GET /students/edit/:id to return 200', (done) => {
-            request(app)
-                .get('/students/edit/S0001')
-                .expect(200)
-                .end((err, res) => {
-                    if (err) {
-                        return done(err);
-                    }
-                    return done();
-                });
-        });
-        it('expect POST /students/edit/:id to return 302', (done) => {
-            request(app)
-                .post('/students/edit/S0001')
+                .post('/subjects/editSubject')
                 .expect(302)
-                .end((err, res) => {
-                    if (err) {
-                        return done(err);
-                    }
-                    return done();
-                });
-        });
-        it('expect GET /students/marks to return 200', (done) => {
-            request(app)
-                .get('/students/marks')
-                .expect(200)
                 .end((err, res) => {
                     if (err) {
                         return done(err);
@@ -294,4 +261,3 @@ describe('TESTING ROUTES', () => {
         });
     });
 });
-
