@@ -20,7 +20,8 @@ const init = (data) => {
                 const lastName = subject.teacher.split(' ')[1];
                 data.teachers.findBUserNames(firstName, lastName)
                     .then((dbTeacher) => {
-                        data.teachers.collection.update({ _id: dbTeacher._id }, {
+                        data.teachers.collection
+                        .update({ _id: dbTeacher._id }, {
                             $push: {
                                 subjects: subject.subject,
                             },
@@ -48,7 +49,8 @@ const init = (data) => {
                             const lastName = subject.teacher.split(' ')[1];
                             data.teachers.findBUserNames(firstName, lastName)
                                 .then((dbTeacher) => {
-                                    data.teachers.collection.update({ _id: dbTeacher._id }, {
+                                    data.teachers.collection
+                                    .update({ _id: dbTeacher._id }, {
                                         $push: {
                                             subjects: subject.subject,
                                         },

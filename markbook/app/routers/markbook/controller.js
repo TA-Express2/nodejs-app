@@ -15,9 +15,10 @@ const init = (app, data) => {
                                     ['marks.$.' + req.body.subject]: req.body.marks,
                                 },
                             });
-                            app.io.emit('new-marks', {
-                            marks: req.body.marks,
-                        });
+                            // app.io.emit('new-marks', {
+                            // marks: req.body.marks,
+                            // url: `/markbook/${req.body.studentGrade}`,
+                            // });
                         res.redirect(`/markbook/${req.body.studentGrade}`);
                     });
             }

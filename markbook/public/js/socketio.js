@@ -3,6 +3,6 @@
 const socket = io();
 
 socket.on('new-marks', (msg) => {
-    const string = msg.user + ' added new marks in ' + msg.forum;
+    const string = 'New marks added: ' + msg.marks;
     toastr.info(string, 'New marks');
 });
